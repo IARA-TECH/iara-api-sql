@@ -4,7 +4,6 @@ package com.iaraapi.model;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -12,10 +11,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.annotation.processing.Generated;
 import java.sql.Date;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -32,26 +31,43 @@ public class User {
     @Column(name="pk_uuid")
     private UUID id;
 
-    @NotBlank(message = "O nome é obrigatório")
-    @Size(max = 50, message = "O nome deve ter no máximo 50 caracteres")
+    @NotBlank(message = "Name is required.")
+    @Size(max = 50, message = "Name must have a maximum of 20 characters.")
     private String name;
 
-    @NotBlank(message = "O email é obrigatório")
-    @Size(max = 50, message = "O email deve ter no máximo 50 caracteres")
+    @NotBlank(message = "Email is required.")
+    @Size(max = 50, message = "Email must have a maximum of 50 characters.")
     private String email;
 
-    @NotBlank(message = "A senha é obrigatória")
+    @NotBlank(message = "Password is required.")
+    @Size(min = 8, max = 20, message = "Password must have a minimum of 8 and a maximum of 20 characters.")
     private String password;
 
-    @NotNull(message = "A data de nascimento é obigatória")
+    @NotNull(message = "Birthdate is required.")
     private Date birthDate;
 
-//    private Gender gender;
-//    private Role role;
-//    private Factory factory;
+    @ManyToOne
+    @JoinColumn(name = "gender_id")
+    @NotNull(message = "Gender is required.")
+    private Gender gender;
 
-    private Timestamp createdAt;
-    private Timestamp changedAt;
-    private Timestamp deactivatedAt;
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    @NotNull(message = "Role is required.")
+    private Role role;
+
+    @ManyToOne
+    @JoinColumn(name = "factory_id")
+    @NotNull(message = "Factory is required.")
+    private Factory factory;
+
+    @CreationTimestamp
+    @Column(name = "created_at", updatable = false)
+    private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    private LocalDateTime changedAt;
+    private LocalDateTime deactivatedAt;
+
 
 }
