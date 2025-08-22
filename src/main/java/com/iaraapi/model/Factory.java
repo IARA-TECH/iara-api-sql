@@ -2,6 +2,7 @@ package com.iaraapi.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -39,9 +40,19 @@ public class Factory {
     private String domain;
 
 //    @ManyToOne
-//    @JoinColumn(name = "factory_id")
-//    @
+//    @JoinColumn(name = "company_id")
+//    @NotNull(message = "Company is required.")
 //    private Company company;
+
+    @ManyToOne
+    @JoinColumn(name = "admin_account_uuid")
+    @NotNull(message = "Admin is required.")
+    private Admin admin;
+
+//    @ManyToOne
+//    @JoinColumn(name = "address_id")
+//    @NotNull(message = "Address is required.")
+//    private Address address;
 
     private LocalDate createdAt;
 }
