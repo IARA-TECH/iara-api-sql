@@ -27,6 +27,7 @@ public class Company {
     private Field field;
 
     @CreationTimestamp
+    @Column(updatable = false)
     private LocalDateTime createdAt;
 
 }

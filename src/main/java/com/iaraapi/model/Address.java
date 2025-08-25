@@ -7,6 +7,9 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "address")
@@ -45,5 +48,9 @@ public class Address {
     @NotBlank(message = "State is required.")
     @Size(max = 20, message = "State must have a maximum of 30 characters.")
     private String complement;
+
+    @CreationTimestamp
+    @Column(updatable = false)
+    private LocalDateTime createdAt;
 
 }
