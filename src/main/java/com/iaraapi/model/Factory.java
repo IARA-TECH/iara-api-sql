@@ -39,10 +39,10 @@ public class Factory {
     @Size(max = 20, message = "Domain must have a maximum of 20 characters")
     private String domain;
 
-//    @ManyToOne
-//    @JoinColumn(name = "company_id")
-//    @NotNull(message = "Company is required.")
-//    private Company company;
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    @NotNull(message = "Company is required.")
+    private Company company;
 
     @ManyToOne
     @JoinColumn(name = "admin_account_uuid")
