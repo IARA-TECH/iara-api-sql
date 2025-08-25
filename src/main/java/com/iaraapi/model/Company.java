@@ -17,14 +17,14 @@ import java.time.LocalDateTime;
 public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @NotBlank(message = "Name is required.")
     private String name;
 
-//    @ManyToOne
-//    @JoinColumn(name = "field_id")
-//    private Field field;
+    @ManyToOne
+    @JoinColumn(name = "field_id")
+    private Field field;
 
     @CreationTimestamp
     private LocalDateTime createdAt;

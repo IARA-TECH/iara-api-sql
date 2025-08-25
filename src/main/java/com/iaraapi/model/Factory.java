@@ -20,7 +20,7 @@ public class Factory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "pk_id")
-    private Integer id;
+    private Long id;
 
     @NotBlank(message = "CNPJ is required.")
     @Size(min = 14, max = 14, message = "CNPJ must have 14 characters")

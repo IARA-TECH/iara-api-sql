@@ -1,7 +1,5 @@
 package com.iaraapi.model;
 
-import com.fasterxml.jackson.databind.PropertyNamingStrategies;
-import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -10,26 +8,23 @@ import lombok.Builder;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "gender")
+@Table(name = "field")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-
-public class Gender {
+public class Field {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "pk_id")
     private Long id;
 
-    @NotBlank(message = "Name is required.")
-    @Size(max = 20, message = "Name must have a maximum of 20 characters")
+    @NotBlank(message = "State is required.")
+    @Size(max = 20, message = "State must have a maximum of 50 characters.")
     private String name;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
-    private Timestamp createdAt;
+    private LocalDateTime createdAt;
 }

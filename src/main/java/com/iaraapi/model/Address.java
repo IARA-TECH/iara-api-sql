@@ -17,7 +17,7 @@ public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "pk_id")
-    private int id;
+    private Long id;
 
     @NotBlank(message = "State is required.")
     @Size(max = 50, message = "State must have a maximum of 50 characters.")

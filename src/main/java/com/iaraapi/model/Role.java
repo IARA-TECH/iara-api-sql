@@ -22,7 +22,7 @@ public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @NotBlank(message = "Name is required.")
     @Size(max = 20, message = "Name must have a maximum of 20 characters.")

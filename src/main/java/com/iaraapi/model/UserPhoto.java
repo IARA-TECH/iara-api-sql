@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 public class UserPhoto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @NotBlank(message = "Url blob is required.")
     @Size(max = 100, message = "Url blob has a maximum of 100 characters.")
