@@ -1,4 +1,7 @@
 package com.iaraapi.repository;
 
-public interface Factory {
+import com.iaraapi.model.Factory;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface FactoryRepository extends JpaRepository<Factory,Long> {
 }
