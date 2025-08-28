@@ -35,10 +35,9 @@ public class UserPhoto {
     private User user;
 
     @CreationTimestamp
-    @Column(updatable = false)
+    @Column(updatable = false, nullable = false)
     private LocalDateTime createdAt;
 
     @UpdateTimestamp
-    @Column(insertable = false)
     private LocalDateTime changedAt;
 }

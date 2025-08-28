@@ -47,11 +47,10 @@ public class Admin {
     private Gender gender;
 
     @CreationTimestamp
-    @Column(updatable = false)
+    @Column(updatable = false, nullable = false)
     private LocalDateTime createdAt;
 
     @UpdateTimestamp
-    @Column(insertable = false)
     private LocalDateTime changedAt;
 
     private LocalDateTime deactivatedAt;

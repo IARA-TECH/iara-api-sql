@@ -42,7 +42,7 @@ public class Payment {
     private PaymentMethod paymentMethod;
 
     @CreationTimestamp
-    @Column(updatable = false)
+    @Column(updatable = false, nullable = false)
     private LocalDateTime paidAt;
 
 

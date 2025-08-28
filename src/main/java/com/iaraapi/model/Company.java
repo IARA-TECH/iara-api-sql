@@ -30,7 +30,7 @@ public class Company {
     private Field field;
 
     @CreationTimestamp
-    @Column(updatable = false)
+    @Column(updatable = false, nullable = false)
     private LocalDateTime createdAt;
 
 }

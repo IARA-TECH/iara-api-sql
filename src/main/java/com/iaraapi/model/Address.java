@@ -53,7 +53,7 @@ public class Address {
     private String complement;
 
     @CreationTimestamp
-    @Column(updatable = false)
+    @Column(updatable = false, nullable = false)
     private LocalDateTime createdAt;
 
 }

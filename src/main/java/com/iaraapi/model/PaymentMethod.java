@@ -27,6 +27,6 @@ public class PaymentMethod {
     private String name;
 
     @CreationTimestamp
-    @Column(updatable = false)
+    @Column(updatable = false, nullable = false)
     private LocalDateTime createdAt;
 }
