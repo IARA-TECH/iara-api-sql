@@ -1,23 +1,15 @@
 package com.iaraapi.model;
 
-import com.fasterxml.jackson.databind.PropertyNamingStrategies;
-import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
-@Entity
-@Table(name = "company")
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class Company {
+public class Shift {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,12 +17,15 @@ public class Company {
     @NotBlank(message = "Name is required.")
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "field_id")
-    private Field field;
+    @NotNull(message = "Start time is required.")
+    private LocalTime startsAt;
+
+    @NotNull(message = "End time is required.")
+    private LocalTime endsAt;
 
     @CreationTimestamp
     @Column(updatable = false, nullable = false)
     private LocalDateTime createdAt;
-
+    @UpdateTimestamp
+    private LocalDateTime changedAt;
 }

@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -13,8 +12,6 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.UUID;
 
 @Entity
 @Table(name = "admin_account")
@@ -22,29 +19,19 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class Admin {
+public class Subscription {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private UUID id;
+    private Long id;
+
+    @NotNull(message = "Price is required.")
+    private Double price;
 
     @NotBlank(message = "Name is required.")
-    @Size(max = 50, message = "Name has a maximum of 50 characters.")
     private String name;
 
-    @NotBlank(message = "Email is required.")
-    @Size(max = 50, message = "Email has a maximum of 50 characters.")
-    private String email;
-
-    @NotBlank(message = "Password is required.")
-    @Size(max = 20, message = "Password has a maximum of 20 characters.")
-    private String password;
-
-    @NotNull(message = "Birth date is required.")
-    private Date birthDate;
-
-    @JoinColumn(name = "gender_id")
-    @ManyToOne
-    private Gender gender;
+    @NotNull(message = "Monthly duration is required.")
+    private Integer monthlyDuration;
 
     @CreationTimestamp
     @Column(updatable = false, nullable = false)
@@ -53,5 +40,4 @@ public class Admin {
     @UpdateTimestamp
     private LocalDateTime changedAt;
 
-    private LocalDateTime deactivatedAt;
 }
