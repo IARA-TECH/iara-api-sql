@@ -1,0 +1,52 @@
+package com.iaraapi.model;
+
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
+
+
+@Entity
+@Table(name = "factory")
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
+public class Factory {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "pk_id")
+    private Long id;
+
+    @NotBlank(message = "CNPJ is required.")
+    @Size(min = 14, max = 14, message = "CNPJ must have 14 characters")
+    private String cnpj;
+
+    @NotBlank(message = "Factory domain is required.")
+    @Size(max = 20, message = "Domain must have a maximum of 20 characters")
+    private String domain;
+
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    @NotNull(message = "Company is required.")
+    private Company company;
+
+    @ManyToOne
+    @JoinColumn(name = "admin_account_uuid")
+    @NotNull(message = "Admin is required.")
+    private Admin admin;
+
+    @ManyToOne
+    @JoinColumn(name = "address_id")
+    @NotNull(message = "Address is required.")
+    private Address address;
+
+    private LocalDate createdAt;
+}
