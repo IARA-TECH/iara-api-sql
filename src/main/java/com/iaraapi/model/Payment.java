@@ -4,6 +4,7 @@ package com.iaraapi.model;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -23,10 +24,13 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull(message = "Total is required.")
     private Double total;
 
+    @NotNull(message = "Expiration date is required.")
     private LocalDateTime expiresOn;
 
+    @NotNull(message = "Indicate if the payment has expired.")
     private Boolean isExpired;
 
     @ManyToOne
