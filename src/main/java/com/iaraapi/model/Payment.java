@@ -35,14 +35,17 @@ public class Payment {
 
     @ManyToOne
     @JoinColumn(name = "subscription_id")
+    @NotNull(message = "Subscription is required.")
     private Subscription subscription;
 
     @ManyToOne
     @JoinColumn(name = "admin_account_uid")
+    @NotNull(message = "Admin is required.")
     private Admin admin;
 
     @ManyToOne
     @JoinColumn(name = "payment_method_id")
+    @NotNull(message = "Payment method is required.")
     private PaymentMethod paymentMethod;
 
     @CreationTimestamp
