@@ -4,14 +4,22 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
+@Entity
+@Table(name = "sheet")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Sheet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "pk_id")
     private Long id;
 
     @NotBlank(message = "Blob URL is required.")

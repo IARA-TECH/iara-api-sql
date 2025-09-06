@@ -1,12 +1,10 @@
 package com.iaraapi.model;
 
-import com.fasterxml.jackson.databind.PropertyNamingStrategies;
-import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -14,11 +12,9 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "gender")
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-
 public class Gender {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
