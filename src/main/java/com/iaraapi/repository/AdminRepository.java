@@ -2,6 +2,10 @@ package com.iaraapi.repository;
 
 import com.iaraapi.model.Admin;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface AdminRepository extends JpaRepository<Admin, Integer> {
+import java.util.UUID;
+
+@Repository
+public interface AdminRepository extends JpaRepository<Admin, UUID> {
 }
