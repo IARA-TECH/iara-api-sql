@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -14,14 +15,14 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "admin_account")
+@Table(name = "subscription")
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
+@Data
 public class Subscription {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "pk_id")
     private Long id;
 
     @NotNull(message = "Price is required.")
@@ -34,7 +35,6 @@ public class Subscription {
     private Integer monthlyDuration;
 
     @CreationTimestamp
-    @Column(updatable = false, nullable = false)
     private LocalDateTime createdAt;
 
     @UpdateTimestamp
