@@ -1,15 +1,12 @@
 package com.iaraapi.model;
 
 
-import com.fasterxml.jackson.databind.PropertyNamingStrategies;
-import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -17,11 +14,11 @@ import java.time.LocalDateTime;
 @Table(name = "payment")
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
+@Data
 public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "pk_id")
     private Long id;
 
     @NotNull(message = "Total is required.")
@@ -49,7 +46,6 @@ public class Payment {
     private PaymentMethod paymentMethod;
 
     @CreationTimestamp
-    @Column(updatable = false, nullable = false)
     private LocalDateTime paidAt;
 
 
