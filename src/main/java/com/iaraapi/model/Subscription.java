@@ -25,13 +25,13 @@ public class Subscription {
     @Column(name = "pk_id")
     private Long id;
 
-    @NotNull(message = "Price is required.")
+    @Column(nullable = false)
     private Double price;
 
-    @NotBlank(message = "Name is required.")
+    @Column(nullable = false)
     private String name;
 
-    @NotNull(message = "Monthly duration is required.")
+    @Column(nullable = false)
     private Integer monthlyDuration;
 
     @CreationTimestamp

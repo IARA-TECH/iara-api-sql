@@ -22,7 +22,7 @@ public class PaymentMethod {
     @Column(name = "pk_id")
     private Long id;
 
-    @NotBlank(message = "Name is required")
+    @Column(nullable = false)
     private String name;
 
     @CreationTimestamp

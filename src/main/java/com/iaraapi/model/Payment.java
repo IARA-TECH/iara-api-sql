@@ -21,28 +21,25 @@ public class Payment {
     @Column(name = "pk_id")
     private Long id;
 
-    @NotNull(message = "Total is required.")
+    @Column(nullable = false)
     private Double total;
 
-    @NotNull(message = "Expiration date is required.")
+    @Column(nullable = false)
     private LocalDateTime expiresOn;
 
-    @NotNull(message = "Indicate if the payment has expired.")
+    @Column(nullable = false)
     private Boolean isExpired;
 
     @ManyToOne
-    @JoinColumn(name = "subscription_id")
-    @NotNull(message = "Subscription is required.")
+    @JoinColumn(name = "subscription_id",  nullable = false)
     private Subscription subscription;
 
     @ManyToOne
-    @JoinColumn(name = "admin_account_uid")
-    @NotNull(message = "Admin is required.")
+    @JoinColumn(name = "admin_account_uid", nullable = false)
     private Admin admin;
 
     @ManyToOne
-    @JoinColumn(name = "payment_method_id")
-    @NotNull(message = "Payment method is required.")
+    @JoinColumn(name = "payment_method_id", nullable = false)
     private PaymentMethod paymentMethod;
 
     @CreationTimestamp
