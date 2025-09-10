@@ -21,8 +21,7 @@ public class Gender {
     @Column(name = "pk_id")
     private Long id;
 
-    @NotBlank(message = "Name is required.")
-    @Size(max = 20, message = "Name must have a maximum of 20 characters")
+    @Column
     private String name;
 
     @CreationTimestamp
