@@ -20,8 +20,7 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Name is required.")
-    @Size(max = 20, message = "Name must have a maximum of 20 characters.")
+    @Column
     private String name;
 
     @CreationTimestamp
