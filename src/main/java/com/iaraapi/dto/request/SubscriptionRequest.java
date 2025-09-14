@@ -6,15 +6,18 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Data
+import java.math.BigDecimal;
+
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class SubscriptionRequest {
     @NotNull(message = "Price is required.")
-    private Double price;
+    private BigDecimal price;
 
     @NotBlank(message = "Name is required.")
     private String name;
