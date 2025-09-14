@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class SusbscriptionRequest {
+public class SubscriptionRequest {
     @NotNull(message = "Price is required.")
     private Double price;
 
