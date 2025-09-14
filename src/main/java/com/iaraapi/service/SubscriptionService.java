@@ -7,11 +7,13 @@ import com.iaraapi.dto.request.SubscriptionRequest;
 import com.iaraapi.repository.SubscriptionRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
+@Service
 public class SubscriptionService {
     private final SubscriptionRepository subscriptionRepository;
     private final ObjectMapper objectMapper;
@@ -36,26 +38,29 @@ public class SubscriptionService {
         return objectMapper.convertValue(subscriptionRepository.save(subscription), SubscriptionResponse.class);
     }
 
-    public void deleteSubscriptionById(Long id) {
+    public SubscriptionResponse deleteSubscriptionById(Long id) {
         Subscription subscription = subscriptionRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Subscription with ID "
                         + id + " not found"));
         subscriptionRepository.delete(subscription);
+        return objectMapper.convertValue(subscription, SubscriptionResponse.class);
     }
 
-    public void updateSubscriptionById(Long id, SubscriptionRequest request) {
+    public SubscriptionResponse updateSubscriptionById(Long id, SubscriptionRequest request) {
         Optional<Subscription> optionalSubscription = subscriptionRepository.findById(id);
         if (optionalSubscription.isPresent()) {
-            updateSubscription(optionalSubscription, request);
+           return objectMapper.convertValue(updateSubscription(optionalSubscription, request), SubscriptionResponse.class);
         }
+        throw new EntityNotFoundException("Subscription with ID " + id + " not found.");
     }
 
-    private void updateSubscription(Optional<Subscription> optionalSubscription, SubscriptionRequest request) {
+    private Subscription updateSubscription(Optional<Subscription> optionalSubscription, SubscriptionRequest request) {
         Subscription subscription = optionalSubscription.get();
         subscription.setName(request.getName());
         subscription.setPrice(request.getPrice());
         subscription.setMonthlyDuration(request.getMonthlyDuration());
         subscriptionRepository.save(subscription);
+        return subscription;
     }
 
 }
