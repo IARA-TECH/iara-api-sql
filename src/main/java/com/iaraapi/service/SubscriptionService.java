@@ -17,59 +17,56 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Service
 public class SubscriptionService {
-    private final SubscriptionRepository subscriptionRepository;
-    private final SubscriptionMapper subscriptionMapper;
+    private final SubscriptionRepository repository;
+    private final SubscriptionMapper mapper;
 
     public List<SubscriptionResponse> getAllSubscriptions() {
-        log.info("[SubscriptionService] [getAllSubscriptions] START GET SUBSCRIPTIONS");
-        return subscriptionRepository.findAll()
+        log.info("[SubscriptionService] [getAllSubscriptions] GET SUBSCRIPTIONS");
+        return repository.findAll()
                 .stream()
-                .map(subscriptionMapper::toResponse)
+                .map(mapper::toResponse)
                 .toList();
 
     }
 
     public SubscriptionResponse getSubscriptionById(Long id) {
         log.info("[SubscriptionService] [getSubscriptionById] GET SUBSCRIPTION BY ID {}", id);
-        return subscriptionMapper.toResponse(subscriptionRepository.findById(id)
+        return mapper.toResponse(repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Subscription with ID " + id + " not found.")));
     }
 
     public SubscriptionResponse createSubscription(SubscriptionRequest request) {
         log.info("[SubscriptionService] [createSubscription] Subscription request {}", request);
-        Subscription subscription = subscriptionMapper.toEntity(request);
+        Subscription subscription = mapper.toEntity(request);
 
         log.info("[SubscriptionService] [createSubscription] Subscription {}", subscription);
-        return subscriptionMapper.toResponse(subscriptionRepository.save(subscription));
+        return mapper.toResponse(repository.save(subscription));
     }
 
     public SubscriptionResponse deleteSubscriptionById(Long id) {
         log.info("[SubscriptionService] [deleteSubscriptionById] Delete Subscription with ID {}", id);
-        Subscription subscription = subscriptionRepository.findById(id)
+        Subscription subscription = repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Subscription with ID "
                         + id + " not found"));
 
         log.info("[SubscriptionService] [deleteSubscriptionById] Delete Subscription {}", subscription);
-        subscriptionRepository.delete(subscription);
+        repository.delete(subscription);
 
-        return subscriptionMapper.toResponse(subscription);
+        return mapper.toResponse(subscription);
     }
 
     public SubscriptionResponse updateSubscriptionById(Long id, SubscriptionRequest request) {
-        Optional<Subscription> optionalSubscription = subscriptionRepository.findById(id);
-        if (optionalSubscription.isPresent()) {
-            Subscription subscription = optionalSubscription.get();
-            return subscriptionMapper.toResponse(updateSubscription(subscription, request));
-        }
-        throw new EntityNotFoundException("Subscription with ID " + id + " not found.");
+        Subscription subscription = repository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Subscription with ID " + id + " not found."));
+        return mapper.toResponse(updateSubscription(subscription, request));
+
     }
 
     private Subscription updateSubscription(Subscription subscription, SubscriptionRequest request) {
         subscription.setName(request.getName());
         subscription.setPrice(request.getPrice());
         subscription.setMonthlyDuration(request.getMonthlyDuration());
-        subscriptionRepository.save(subscription);
+        repository.save(subscription);
         return subscription;
     }
-
 }
