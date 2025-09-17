@@ -28,18 +28,18 @@ public class SubscriptionController {
         return ResponseEntity.ok(subscriptionService.getAllSubscriptions());
     }
 
-    @GetMapping("/subscription/{id}")
+    @GetMapping("/subscriptions/{id}")
     public ResponseEntity<SubscriptionResponse> getSubscription(@PathVariable Long id) {
         return ResponseEntity.ok(subscriptionService.getSubscriptionById(id));
     }
 
-    @PutMapping("/subscription/{id}")
+    @PutMapping("/subscriptions/{id}")
     public ResponseEntity<SubscriptionResponse> updateSubscription(@PathVariable Long id,
                                            @RequestBody @Valid SubscriptionRequest subscriptionRequest) {
         return ResponseEntity.ok(subscriptionService.updateSubscriptionById(id, subscriptionRequest));
     }
 
-    @DeleteMapping("/subscription/{id}")
+    @DeleteMapping("/subscriptions/{id}")
     public ResponseEntity<SubscriptionResponse> deleteSubscription(@PathVariable Long id) {
         return ResponseEntity.ok(subscriptionService.deleteSubscriptionById(id));
     }
