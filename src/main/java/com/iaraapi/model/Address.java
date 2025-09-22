@@ -1,4 +1,4 @@
-package com.iaraapi.model.database;
+package com.iaraapi.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

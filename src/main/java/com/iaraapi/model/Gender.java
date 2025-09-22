@@ -21,7 +21,6 @@ public class Gender {
     @Column(name = "pk_id")
     private Long id;
 
-    @Column
     private String name;
 
     @CreationTimestamp

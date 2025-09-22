@@ -1,4 +1,4 @@
-package com.iaraapi.model.dto.request;
+package com.iaraapi.dto.request;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
