@@ -1,8 +1,13 @@
 package com.iaraapi.dto.request;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
 
+@Getter
+@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class FactoryRequest {
     @NotBlank(message = "CNPJ is required.")
     @Size(min = 14, max = 14, message = "CNPJ must have 14 characters")
