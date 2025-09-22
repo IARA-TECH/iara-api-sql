@@ -1,0 +1,4 @@
+package com.iaraapi.dto.response;
+
+public class UserResponse {
+}
