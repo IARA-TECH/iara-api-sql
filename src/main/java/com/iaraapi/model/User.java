@@ -1,10 +1,14 @@
-package com.iaraapi.model;
+package com.iaraapi.model.database;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
-import lombok.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Table;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.GenerationType;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -23,42 +27,23 @@ public class User {
     @Column(name="pk_uuid")
     private UUID id;
 
-    @NotBlank(message = "Name is required.")
-    @Size(max = 50, message = "Name must have a maximum of 20 characters.")
     private String name;
 
-    @NotBlank(message = "Email is required.")
-    @Size(max = 50, message = "Email must have a maximum of 50 characters.")
     private String email;
 
-    @NotBlank(message = "Password is required.")
-    @Size(min = 8, max = 20, message = "Password must have a minimum of 8 and a maximum of 20 characters.")
     private String password;
 
-    @NotNull(message = "Birthdate is required.")
     private Date birthDate;
 
-    @ManyToOne
-    @JoinColumn(name = "gender_id")
-    @NotNull(message = "Gender is required.")
-    private Gender gender;
+    private String position;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id")
-    @NotNull(message = "Role is required.")
-    private Role role;
-
-    @ManyToOne
-    @JoinColumn(name = "factory_id")
-    @NotNull(message = "Factory is required.")
-    private Factory factory;
+    private Integer accessLevel;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
 
     @UpdateTimestamp
     private LocalDateTime changedAt;
+
     private LocalDateTime deactivatedAt;
-
-
 }

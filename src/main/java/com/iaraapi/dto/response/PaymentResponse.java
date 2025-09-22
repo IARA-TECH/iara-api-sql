@@ -1,4 +1,4 @@
-package com.iaraapi.dto.response;
+package com.iaraapi.model.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,6 +12,6 @@ public class PaymentResponse {
     private Double total;
     private LocalDateTime expiresOn;
     private Boolean isExpired;
-    private UUID adminAccountUid;
-    private Long paymentMethodId;
+    private String paymentMethod;
+    private String subscription;
 }

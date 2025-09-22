@@ -1,4 +1,4 @@
-package com.iaraapi.model;
+package com.iaraapi.model.database;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

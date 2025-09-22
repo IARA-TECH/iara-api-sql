@@ -1,4 +1,4 @@
-package com.iaraapi.dto.request;
+package com.iaraapi.model.dto.request;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
@@ -29,4 +29,7 @@ public class PaymentRequest {
 
     @NotNull(message = "Payment method is required.")
     private Long paymentMethodId;
+
+    @NotNull(message = "Subscription is required.")
+    private Long subscriptionId;
 }

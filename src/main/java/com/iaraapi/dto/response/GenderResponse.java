@@ -1,4 +1,4 @@
-package com.iaraapi.dto.response;
+package com.iaraapi.model.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
