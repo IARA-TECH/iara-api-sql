@@ -1,4 +1,4 @@
-package com.iaraapi.model.dto.response;
+package com.iaraapi.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,7 +11,6 @@ import java.util.UUID;
 public class PaymentResponse {
     private Double total;
     private LocalDateTime expiresOn;
-    private Boolean isExpired;
     private String paymentMethod;
     private String subscription;
 }

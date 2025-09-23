@@ -1,7 +1,8 @@
-package com.iaraapi.model.database;
+package com.iaraapi.model;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,26 +21,31 @@ public class Payment {
     @Column(name = "pk_id")
     private Long id;
 
-    @Column(nullable = false)
     private Double total;
 
-    @Column(nullable = false)
     private LocalDateTime expiresOn;
 
-    @Column(nullable = false)
     private Boolean isExpired;
 
+    private Boolean isActive;
+
     @ManyToOne
-    @JoinColumn(name = "subscription_id",  nullable = false)
+    @JoinColumn(name = "subscription_id")
     private Subscription subscription;
 
 
     @ManyToOne
-    @JoinColumn(name = "payment_method_id", nullable = false)
+    @JoinColumn(name = "payment_method_id")
     private PaymentMethod paymentMethod;
 
+    @ManyToOne
+    @JoinColumn(name = "user_account_uuid")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "factory_id")
+    private Factory factory;
+
     @CreationTimestamp
-    private LocalDateTime paidAt;
-
-
+    private LocalDateTime startsAt;
 }
