@@ -1,7 +1,12 @@
-package com.iaraapi.model.database;
+package com.iaraapi.model;
 
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,9 +26,10 @@ public class PaymentMethod {
     @Column(name = "pk_id")
     private Long id;
 
-    @Column(nullable = false)
     private String name;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
+
+    private LocalDateTime deactivatedAt;
 }

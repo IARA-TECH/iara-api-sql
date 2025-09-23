@@ -34,7 +34,7 @@ public class Address {
     private String complement;
 
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "factory_id")
     private Factory factory;
 
     @CreationTimestamp
