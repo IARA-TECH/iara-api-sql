@@ -1,6 +1,12 @@
-package com.iaraapi.model.database;
+package com.iaraapi.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,9 +24,14 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
     private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "factory_id")
+    private Factory factory;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
+
+    private LocalDateTime deactivatedAt;
 }
