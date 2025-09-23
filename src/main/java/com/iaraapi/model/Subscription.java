@@ -1,4 +1,4 @@
-package com.iaraapi.model.database;
+package com.iaraapi.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,7 +11,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -27,19 +26,16 @@ public class Subscription {
     @Column(name = "pk_id")
     private Long id;
 
-    @Column(columnDefinition = "money", nullable = false)
     private BigDecimal price;
 
-    @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
+    private String description;
+
     private Integer monthlyDuration;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-    @UpdateTimestamp
-    private LocalDateTime changedAt;
-
+    private LocalDateTime deactivatedAt;
 }

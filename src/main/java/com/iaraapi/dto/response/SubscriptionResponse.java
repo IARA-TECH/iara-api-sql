@@ -1,4 +1,4 @@
-package com.iaraapi.model.dto.response;
+package com.iaraapi.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,4 +12,5 @@ public class SubscriptionResponse {
     private BigDecimal price;
     private String name;
     private Integer monthlyDuration;
+    private String description;
 }

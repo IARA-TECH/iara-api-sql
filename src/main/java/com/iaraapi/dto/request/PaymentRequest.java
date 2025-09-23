@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -16,7 +17,7 @@ import java.util.UUID;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class PaymentRequest {
     @NotNull(message = "Total is required.")
-    private Double total;
+    private BigDecimal total;
 
     @NotNull(message = "Expiration date is required.")
     private LocalDateTime expiresOn;

@@ -1,19 +1,16 @@
-package com.iaraapi.model.dto.request;
+package com.iaraapi.dto.request;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class SubscriptionRequest {
     @NotNull(message = "Price is required.")
@@ -21,6 +18,9 @@ public class SubscriptionRequest {
 
     @NotBlank(message = "Name is required.")
     private String name;
+
+    @NotBlank
+    private String description;
 
     @NotNull(message = "Monthly duration is required.")
     private Integer monthlyDuration;
