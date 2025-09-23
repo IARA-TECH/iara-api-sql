@@ -1,5 +1,6 @@
-package com.iaraapi.model.database;
+package com.iaraapi.dto.request;
 
+import com.iaraapi.model.AccessType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
