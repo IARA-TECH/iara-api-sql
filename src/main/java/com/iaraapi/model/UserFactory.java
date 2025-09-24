@@ -1,4 +1,4 @@
-package com.iaraapi.model.database;
+package com.iaraapi.model;
 
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;

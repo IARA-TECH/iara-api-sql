@@ -1,4 +1,4 @@
-package com.iaraapi.model.dto.request;
+package com.iaraapi.dto.request;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -20,8 +20,6 @@ public class UserRequest {
     @Size(max = 50, message = "Email must have a maximum of 50 characters.")
     private String email;
 
-    @NotBlank(message = "Password is required.")
-    @Size(max = 20, message = "Password must have a minimum of 8 and a maximum of 20 characters.")
     private String password;
 
     @NotNull(message = "Birthdate is required.")
@@ -33,4 +31,7 @@ public class UserRequest {
     @NotNull(message = "Access level is required.")
     @Min(value = 1, message = "Access level must be greater than 0.")
     private Integer accessLevel;
+
+    @NotNull(message = "Gender is required")
+    private Long genderId;
 }

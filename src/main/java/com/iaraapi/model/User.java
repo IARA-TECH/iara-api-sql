@@ -1,11 +1,6 @@
-package com.iaraapi.model.database;
+package com.iaraapi.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Table;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Data;
@@ -33,11 +28,11 @@ public class User {
 
     private String password;
 
-    private Date birthDate;
+    private Date dateOfBirth;
 
-    private String position;
-
-    private Integer accessLevel;
+    @ManyToOne
+    @JoinColumn(name = "gender_id")
+    private Gender gender;
 
     @CreationTimestamp
     private LocalDateTime createdAt;

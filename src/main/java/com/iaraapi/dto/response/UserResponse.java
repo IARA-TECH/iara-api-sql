@@ -1,4 +1,4 @@
-package com.iaraapi.model.dto.response;
+package com.iaraapi.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,5 +12,4 @@ public class UserResponse {
 
     private String email;
 
-    private String position;
 }
