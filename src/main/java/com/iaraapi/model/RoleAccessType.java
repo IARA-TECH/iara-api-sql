@@ -1,16 +1,32 @@
-package com.iaraapi.dto.request;
+package com.iaraapi.model;
 
-import com.iaraapi.model.AccessType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "role_access_type")
+@Data
 public class RoleAccessType {
-    @ManyToOne
-    @JoinColumn(nullable = false)
-    private RoleAccessType role;
+
+    @EmbeddedId
+    private RoleAccessTypeId id;
 
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @MapsId("roleId")
+    @JoinColumn(name = "role_id")
+    private Role role;
+
+    @ManyToOne
+    @MapsId("accessTypeId")
+    @JoinColumn(name = "access_type_id")
     private AccessType accessType;
 
+    private LocalDateTime createdAt;
+    private LocalDateTime deactivatedAt;
 }
