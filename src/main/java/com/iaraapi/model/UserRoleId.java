@@ -1,12 +1,18 @@
 package com.iaraapi.model;
 
 import jakarta.persistence.Embeddable;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 import java.util.Objects;
 import java.util.UUID;
 
 @Embeddable
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserRoleId {
     public Long roleId;
     public UUID userId;

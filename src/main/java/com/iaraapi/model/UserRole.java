@@ -1,13 +1,17 @@
 package com.iaraapi.model;
 
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.MapsId;
+import jakarta.persistence.*;
+import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "user_account_role")
+@Data
 public class UserRole {
+    @EmbeddedId
+    private UserRoleId id;
 
     @ManyToOne
     @MapsId("userId")

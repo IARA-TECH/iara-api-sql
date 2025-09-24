@@ -1,13 +1,8 @@
 package com.iaraapi.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Table;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Column;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Data;
@@ -16,7 +11,10 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Date;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Table(name = "user_account")
 @Entity
@@ -48,4 +46,22 @@ public class User {
     private LocalDateTime changedAt;
 
     private LocalDateTime deactivatedAt;
+
+    @OneToMany(mappedBy = "user" , cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private Set<UserRole> userRoles = new HashSet<>();
+
+    @JsonProperty("roles")
+    public Set<Role> getRoles() {
+        return userRoles.stream()
+                .map(UserRole::getRole)
+                .collect(Collectors.toSet());
+    }
+
+    @JsonProperty("factories")
+    public Set<Factory> getFactories() {
+        return userRoles.stream()
+                .map(UserRole::getFactory)
+                .collect(Collectors.toSet());
+    }
 }

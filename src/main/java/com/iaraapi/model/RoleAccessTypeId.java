@@ -1,11 +1,17 @@
 package com.iaraapi.model;
 
 import jakarta.persistence.Embeddable;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class RoleAccessTypeId implements Serializable {
     private Long roleId;
     private Long accessTypeId;

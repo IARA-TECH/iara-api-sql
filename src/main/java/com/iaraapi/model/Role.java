@@ -46,10 +46,21 @@ public class Role {
     @JsonIgnore
     private Set<RoleAccessType> roleAccessTypes = new HashSet<>();
 
-    @JsonProperty("access_types")
-    public Set<AccessType> getAccessTypes() {
-        return roleAccessTypes.stream()
-                .map(RoleAccessType::getAccessType)
+    @OneToMany(mappedBy = "role" , cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private Set<UserRole> userRoles = new HashSet<>();
+
+    @JsonProperty("users")
+    public Set<User> getUsers() {
+        return userRoles.stream()
+                .map(UserRole::getUser)
+                .collect(Collectors.toSet());
+    }
+
+    @JsonProperty("factories")
+    public Set<Factory> getFactories() {
+        return userRoles.stream()
+                .map(UserRole::getFactory)
                 .collect(Collectors.toSet());
     }
 }

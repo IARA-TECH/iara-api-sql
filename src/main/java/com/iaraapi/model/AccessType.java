@@ -1,6 +1,7 @@
 package com.iaraapi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,6 +17,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "role")
@@ -40,5 +42,12 @@ public class AccessType {
     @OneToMany(mappedBy = "accessType", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private Set<RoleAccessType> roleAccessTypes = new HashSet<>();
+
+    @JsonProperty("roles")
+    public Set<Role> getRoles() {
+        return roleAccessTypes.stream()
+                .map(RoleAccessType::getRole)
+                .collect(Collectors.toSet());
+    }
 
 }
