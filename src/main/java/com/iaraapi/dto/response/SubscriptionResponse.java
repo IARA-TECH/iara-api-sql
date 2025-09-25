@@ -12,4 +12,5 @@ public class SubscriptionResponse {
     private BigDecimal price;
     private String name;
     private Integer monthlyDuration;
+    private String description;
 }

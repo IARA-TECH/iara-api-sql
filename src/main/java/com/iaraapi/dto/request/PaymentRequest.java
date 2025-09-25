@@ -3,30 +3,29 @@ package com.iaraapi.dto.request;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import lombok.Getter;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class PaymentRequest {
     @NotNull(message = "Total is required.")
-    private Double total;
+    private BigDecimal total;
 
     @NotNull(message = "Expiration date is required.")
     private LocalDateTime expiresOn;
 
-    @NotNull(message = "Indicate if the payment has expired.")
-    private Boolean isExpired;
-
-    @NotNull(message = "Admin ID is required.")
-    private UUID adminAccountUid;
+    @NotNull(message = "User ID is required.")
+    private UUID userAccountUid;
 
     @NotNull(message = "Payment method is required.")
     private Long paymentMethodId;
+
+    @NotNull(message = "Subscription is required.")
+    private Long subscriptionId;
+
+    @NotNull(message = "Factory ID is required.")
+    private Long factoryId;
 }

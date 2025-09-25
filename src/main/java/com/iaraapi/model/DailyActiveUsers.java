@@ -1,12 +1,12 @@
 package com.iaraapi.model;
 
-
-import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.Column;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,22 +14,20 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
-
 @Entity
-@Table(name = "payment_method")
+@Table(name = "daily_active_users")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class PaymentMethod {
+public class DailyActiveUsers {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "pk_id")
     private Long id;
 
-    private String name;
-
     @CreationTimestamp
-    private LocalDateTime createdAt;
+    private LocalDateTime accessedOn;
 
-    private LocalDateTime deactivatedAt;
+    @ManyToOne
+    @JoinColumn(name = "user_account_uuid ")
+    private User user;
 }

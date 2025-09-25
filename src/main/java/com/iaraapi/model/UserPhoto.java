@@ -22,13 +22,10 @@ public class UserPhoto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Url blob is required.")
-    @Size(max = 100, message = "Url blob has a maximum of 100 characters.")
     private String urlBlob;
 
     @ManyToOne
     @JoinColumn(name = "user_account_uuid")
-    @NotNull(message = "User is required.")
     private User user;
 
     @CreationTimestamp

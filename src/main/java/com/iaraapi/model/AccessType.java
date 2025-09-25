@@ -2,17 +2,15 @@ package com.iaraapi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.JoinColumn;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.CascadeType;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -26,41 +24,30 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Role {
+public class AccessType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "factory_id")
-    private Factory factory;
+    private String description;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
 
     private LocalDateTime deactivatedAt;
 
-    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, orphanRemoval = true)
+
+    @OneToMany(mappedBy = "accessType", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private Set<RoleAccessType> roleAccessTypes = new HashSet<>();
 
-    @OneToMany(mappedBy = "role" , cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore
-    private Set<UserRole> userRoles = new HashSet<>();
-
-    @JsonProperty("users")
-    public Set<User> getUsers() {
-        return userRoles.stream()
-                .map(UserRole::getUser)
+    @JsonProperty("roles")
+    public Set<Role> getRoles() {
+        return roleAccessTypes.stream()
+                .map(RoleAccessType::getRole)
                 .collect(Collectors.toSet());
     }
 
-    @JsonProperty("factories")
-    public Set<Factory> getFactories() {
-        return userRoles.stream()
-                .map(UserRole::getFactory)
-                .collect(Collectors.toSet());
-    }
 }

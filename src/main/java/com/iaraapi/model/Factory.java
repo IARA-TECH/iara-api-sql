@@ -1,15 +1,17 @@
 package com.iaraapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 
 @Entity
@@ -23,29 +25,32 @@ public class Factory {
     @Column(name = "pk_id")
     private Long id;
 
-    @NotBlank(message = "CNPJ is required.")
-    @Size(min = 14, max = 14, message = "CNPJ must have 14 characters")
     private String cnpj;
 
-    @NotBlank(message = "Factory domain is required.")
-    @Size(max = 20, message = "Domain must have a maximum of 20 characters")
     private String domain;
 
-    @ManyToOne
-    @JoinColumn(name = "company_id")
-    @NotNull(message = "Company is required.")
-    private Company company;
-
-    @ManyToOne
-    @JoinColumn(name = "admin_account_uuid")
-    @NotNull(message = "Admin is required.")
-    private Admin admin;
-
-    @ManyToOne
-    @JoinColumn(name = "address_id")
-    @NotNull(message = "Address is required.")
-    private Address address;
+    private String description;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
+
+    private LocalDateTime deactivatedAt;
+
+    @OneToMany(mappedBy = "user" , cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private Set<UserRole> userRoles = new HashSet<>();
+
+    @JsonProperty("roles")
+    public Set<Role> getRoles() {
+        return userRoles.stream()
+                .map(UserRole::getRole)
+                .collect(Collectors.toSet());
+    }
+
+    @JsonProperty("users")
+    public Set<User> getUsers() {
+        return userRoles.stream()
+                .map(UserRole::getUser)
+                .collect(Collectors.toSet());
+    }
 }
