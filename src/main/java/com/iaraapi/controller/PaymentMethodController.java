@@ -14,35 +14,40 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/payment-methods")
 @RequiredArgsConstructor
 @CrossOrigin("*")
 public class PaymentMethodController {
     private final PaymentMethodService paymentMethodService;
 
-    @PostMapping("/payment-methods")
+    @PostMapping
     public ResponseEntity<PaymentMethodResponse> createPaymentMethod(@RequestBody PaymentMethodRequest paymentMethodRequest) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(paymentMethodService.createPaymentMethod(paymentMethodRequest));
+        return ResponseEntity.status(HttpStatus.CREATED).body(paymentMethodService.create(paymentMethodRequest));
     }
 
-    @GetMapping("/payment-methods")
+    @GetMapping
     public ResponseEntity<List<PaymentMethodResponse>> getAllPaymentMethods() {
-        return ResponseEntity.ok(paymentMethodService.getAllPaymentMethods());
+        return ResponseEntity.ok(paymentMethodService.getAll());
     }
 
-    @GetMapping("/payment-methods/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<PaymentMethodResponse> getPaymentMethod(@PathVariable Long id) {
-        return ResponseEntity.ok(paymentMethodService.getPaymentMethodById(id));
+        return ResponseEntity.ok(paymentMethodService.getById(id));
     }
 
-    @PutMapping("/payment-methods/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<PaymentMethodResponse> updatePaymentMethod(@PathVariable Long id,
                                                                      @RequestBody @Valid PaymentMethodRequest paymentMethodRequest) {
-        return ResponseEntity.ok(paymentMethodService.updatePaymentMethodById(id, paymentMethodRequest));
+        return ResponseEntity.ok(paymentMethodService.update(id, paymentMethodRequest));
     }
 
-    @DeleteMapping("/payment-methods/{id}")
-    public ResponseEntity<PaymentMethodResponse> deletePaymentMethod(@PathVariable Long id) {
-        return ResponseEntity.ok(paymentMethodService.deletePaymentMethodById(id));
+    @PatchMapping("/deactivate/{id}")
+    public ResponseEntity<PaymentMethodResponse> deactivatePaymentMethod(@PathVariable Long id) {
+        return ResponseEntity.ok(paymentMethodService.deactivateEntity(id));
+    }
+
+    @PatchMapping("/reactivate/{id}")
+    public ResponseEntity<PaymentMethodResponse> reactivatePaymentMethod(@PathVariable Long id) {
+        return ResponseEntity.ok(paymentMethodService.reactivateEntity(id));
     }
 }

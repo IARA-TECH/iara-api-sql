@@ -8,63 +8,57 @@ import com.iaraapi.repository.PaymentMethodRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 
 @Slf4j
-@RequiredArgsConstructor
 @Service
-public class PaymentMethodService {
-    private final PaymentMethodRepository repository;
+public class PaymentMethodService extends BaseService<PaymentMethod, Long, PaymentMethodRequest, PaymentMethodResponse> {
     private final PaymentMethodMapper mapper;
 
-    public List<PaymentMethodResponse> getAllPaymentMethods() {
-        log.info("[PaymentMethodService] [getAllPaymentMethods] GET ALL PAYMENT METHODS");
-        return repository.findAll()
-                .stream()
-                .map(mapper::toResponse)
-                .toList();
-
+    public PaymentMethodService(JpaRepository<PaymentMethod, Long> repository, PaymentMethodMapper mapper) {
+        super(repository, "PaymentMethod");
+        this.mapper = mapper;
     }
 
-    public PaymentMethodResponse getPaymentMethodById(Long id) {
-        log.info("[PaymentMethodService] [getPaymentMethodById] GET PAYMENT METHOD BY ID]");
-        return mapper.toResponse(repository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Payment method with ID " + id + " not found.")));
+    @Override
+    protected PaymentMethod toEntity(PaymentMethodRequest request) {
+        return mapper.toEntity(request);
     }
 
-    public PaymentMethodResponse createPaymentMethod(PaymentMethodRequest request) {
-        log.info("[PaymentMethodService] [createPaymentMethod] Payment method request {}", request);
-        PaymentMethod paymentMethod = mapper.toEntity(request);
-
-        log.info("[PaymentMethodService] [createPaymentMethod] Payment method {}", paymentMethod);
-        return mapper.toResponse(repository.save(paymentMethod));
-    }
-
-    public PaymentMethodResponse deletePaymentMethodById(Long id) {
-        log.info("[PaymentMethodService] [deletePaymentMethodById] Delete Payment method with ID {}", id);
-        PaymentMethod paymentMethod = repository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Payment method with ID " + id + " not found."));
-
-        log.info("[PaymentMethodService] [deletePaymentMethodById] Delete Payment method {}", paymentMethod);
-        repository.delete(paymentMethod);
-
+    @Override
+    protected PaymentMethodResponse toResponse(PaymentMethod paymentMethod) {
         return mapper.toResponse(paymentMethod);
     }
 
-    public PaymentMethodResponse updatePaymentMethodById(Long id, PaymentMethodRequest request) {
-        log.info("[PaymentMethodService] [updatePaymentMethodById] Update Payment method with ID {}", id);
-        PaymentMethod paymentMethod = repository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Payment method with ID " + id + " not found."));
-        log.info("[PaymentMethodService] [updatePaymentMethodById] Payment method {}", paymentMethod);
-        return mapper.toResponse(updatePaymentMethod(paymentMethod, request));
+    @Override
+    protected void updateEntity(PaymentMethod paymentMethod, PaymentMethodRequest request) {
+        paymentMethod.setName(request.getName());
     }
 
-    private PaymentMethod updatePaymentMethod(PaymentMethod paymentMethod, PaymentMethodRequest request) {
-        paymentMethod.setName(request.getName());
+    @Override
+    public PaymentMethodResponse deactivateEntity(Long id) {
+        log.info("[PaymentMethodService] [deactivateEntity] DEACTIVATE PAYMENT METHOD WITH ID {}", id);
+        PaymentMethod paymentMethod = repository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("PaymentMethod with ID " + id + " not found."));
+
+        paymentMethod.setDeactivatedAt(LocalDateTime.now());
         repository.save(paymentMethod);
-        return paymentMethod;
+        return toResponse(paymentMethod);
+    }
+
+    @Override
+    public PaymentMethodResponse reactivateEntity(Long id) {
+        log.info("[PaymentMethodService] [reactivateEntity] REACTIVATE PAYMENT METHOD WITH ID {}", id);
+        PaymentMethod paymentMethod = repository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("PaymentMethod with ID " + id + " not found."));
+
+        paymentMethod.setDeactivatedAt(null);
+        repository.save(paymentMethod);
+        return toResponse(paymentMethod);
     }
 }

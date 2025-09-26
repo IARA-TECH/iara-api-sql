@@ -25,52 +25,6 @@ public class SubscriptionService extends BaseService<Subscription, Long, Subscri
         this.mapper = mapper;
     }
 
-//    @Override
-//    public List<SubscriptionResponse> getAll() {
-//        return super.getAll();
-//    }
-//
-//    public SubscriptionResponse getSubscriptionById(Long id) {
-//        log.info("[SubscriptionService] [getSubscriptionById] GET SUBSCRIPTION BY ID {}", id);
-//        return mapper.toResponse(repository.findById(id)
-//                .orElseThrow(() -> new EntityNotFoundException("Subscription with ID " + id + " not found.")));
-//    }
-//
-//    public SubscriptionResponse createSubscription(SubscriptionRequest request) {
-//        log.info("[SubscriptionService] [createSubscription] Subscription request {}", request);
-//        Subscription subscription = mapper.toEntity(request);
-//
-//        log.info("[SubscriptionService] [createSubscription] Subscription {}", subscription);
-//        return mapper.toResponse(repository.save(subscription));
-//    }
-//
-//    public SubscriptionResponse deleteSubscriptionById(Long id) {
-//        log.info("[SubscriptionService] [deleteSubscriptionById] Delete Subscription with ID {}", id);
-//        Subscription subscription = repository.findById(id)
-//                .orElseThrow(() -> new EntityNotFoundException("Subscription with ID "
-//                        + id + " not found"));
-//
-//        log.info("[SubscriptionService] [deleteSubscriptionById] Delete Subscription {}", subscription);
-//        repository.delete(subscription);
-//
-//        return mapper.toResponse(subscription);
-//    }
-//
-//    public SubscriptionResponse updateSubscriptionById(Long id, SubscriptionRequest request) {
-//        Subscription subscription = repository.findById(id)
-//                .orElseThrow(() -> new EntityNotFoundException("Subscription with ID " + id + " not found."));
-//        return mapper.toResponse(updateSubscription(subscription, request));
-//
-//    }
-//
-//    private Subscription updateSubscription(Subscription subscription, SubscriptionRequest request) {
-//        subscription.setName(request.getName());
-//        subscription.setDescription(request.getDescription());
-//        subscription.setPrice(request.getPrice());
-//        subscription.setMonthlyDuration(request.getMonthlyDuration());
-//        return repository.save(subscription);
-//    }
-
     @Override
     protected Subscription toEntity(SubscriptionRequest request) {
         return mapper.toEntity(request);
@@ -87,25 +41,26 @@ public class SubscriptionService extends BaseService<Subscription, Long, Subscri
         subscription.setDescription(request.getDescription());
         subscription.setPrice(request.getPrice());
         subscription.setMonthlyDuration(request.getMonthlyDuration());
-        repository.save(subscription);
     }
 
     @Override
     public SubscriptionResponse deactivateEntity(Long id) {
-        log.info("[SubscriptionService] [getSubscriptionById] DEACTIVATE SUBSCRIPTION BY ID {}", id);
+        log.info("[SubscriptionService] [deactivateEntity] DEACTIVATE SUBSCRIPTION WITH ID {}", id);
         Subscription subscription = repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Subscription with ID " + id + " not found."));
 
         subscription.setDeactivatedAt(LocalDateTime.now());
+        repository.save(subscription);
         return toResponse(subscription);
     }
 
     @Override
     public SubscriptionResponse reactivateEntity(Long id) {
-        log.info("[SubscriptionService] [getSubscriptionById] REACTIVATE SUBSCRIPTION BY ID {}", id);
+        log.info("[SubscriptionService] [reactivateEntity] REACTIVATE SUBSCRIPTION WITH ID {}", id);
         Subscription subscription = repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Subscription with ID " + id + " not found."));
         subscription.setDeactivatedAt(null);
+        repository.save(subscription);
         return toResponse(subscription);
     }
 }
