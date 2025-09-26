@@ -12,35 +12,40 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/subscriptions")
 @RequiredArgsConstructor
 @CrossOrigin("*")
 public class SubscriptionController {
     private final SubscriptionService subscriptionService;
 
-    @PostMapping("/subscriptions")
+    @PostMapping
     public ResponseEntity<SubscriptionResponse> createSubscription(@RequestBody @Valid SubscriptionRequest subscriptionRequest) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(subscriptionService.createSubscription(subscriptionRequest));
+        return ResponseEntity.status(HttpStatus.CREATED).body(subscriptionService.create(subscriptionRequest));
     }
 
-    @GetMapping("/subscriptions")
+    @GetMapping
     public ResponseEntity<List<SubscriptionResponse>> getAllSubscriptions() {
-        return ResponseEntity.ok(subscriptionService.getAllSubscriptions());
+        return ResponseEntity.ok(subscriptionService.getAll());
     }
 
-    @GetMapping("/subscriptions/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<SubscriptionResponse> getSubscription(@PathVariable Long id) {
-        return ResponseEntity.ok(subscriptionService.getSubscriptionById(id));
+        return ResponseEntity.ok(subscriptionService.getById(id));
     }
 
-    @PutMapping("/subscriptions/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<SubscriptionResponse> updateSubscription(@PathVariable Long id,
                                            @RequestBody @Valid SubscriptionRequest subscriptionRequest) {
-        return ResponseEntity.ok(subscriptionService.updateSubscriptionById(id, subscriptionRequest));
+        return ResponseEntity.ok(subscriptionService.update(id, subscriptionRequest));
     }
 
-    @DeleteMapping("/subscriptions/{id}")
-    public ResponseEntity<SubscriptionResponse> deleteSubscription(@PathVariable Long id) {
-        return ResponseEntity.ok(subscriptionService.deleteSubscriptionById(id));
+    @PatchMapping("/deactivate/{id}")
+    public ResponseEntity<SubscriptionResponse> deactivateSubscription(@PathVariable Long id) {
+        return ResponseEntity.ok(subscriptionService.deactivateEntity(id));
+    }
+
+    @PatchMapping("/reactivate/{id}")
+    public ResponseEntity<SubscriptionResponse> reactivateSubscription(@PathVariable Long id) {
+        return ResponseEntity.ok(subscriptionService.reactivateEntity(id));
     }
 }

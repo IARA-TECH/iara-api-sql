@@ -36,7 +36,7 @@ public class Factory {
 
     private LocalDateTime deactivatedAt;
 
-    @OneToMany(mappedBy = "user" , cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "factory" , cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private Set<UserRole> userRoles = new HashSet<>();
 
