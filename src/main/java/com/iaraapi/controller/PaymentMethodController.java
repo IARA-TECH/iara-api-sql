@@ -21,7 +21,7 @@ public class PaymentMethodController {
     private final PaymentMethodService paymentMethodService;
 
     @PostMapping
-    public ResponseEntity<PaymentMethodResponse> createPaymentMethod(@RequestBody PaymentMethodRequest paymentMethodRequest) {
+    public ResponseEntity<PaymentMethodResponse> createPaymentMethod(@RequestBody @Valid PaymentMethodRequest paymentMethodRequest) {
         return ResponseEntity.status(HttpStatus.CREATED).body(paymentMethodService.create(paymentMethodRequest));
     }
 
