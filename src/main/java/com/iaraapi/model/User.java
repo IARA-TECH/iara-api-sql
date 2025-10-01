@@ -57,11 +57,4 @@ public class User {
                 .map(UserRole::getRole)
                 .collect(Collectors.toSet());
     }
-
-    @JsonProperty("factories")
-    public Set<Factory> getFactories() {
-        return userRoles.stream()
-                .map(UserRole::getFactory)
-                .collect(Collectors.toSet());
-    }
 }

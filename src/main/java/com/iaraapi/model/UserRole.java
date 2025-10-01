@@ -19,11 +19,6 @@ public class UserRole {
     User user;
 
     @ManyToOne
-    @MapsId("factoryId")
-    @JoinColumn(name = "factory_id")
-    Factory factory;
-
-    @ManyToOne
     @MapsId("roleId")
     @JoinColumn(name = "role_id")
     Role role;
