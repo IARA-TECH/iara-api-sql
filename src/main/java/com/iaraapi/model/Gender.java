@@ -28,4 +28,6 @@ public class Gender {
 
     @CreationTimestamp
     private LocalDateTime createdAt;
+
+    private LocalDateTime deactivatedAt;
 }
