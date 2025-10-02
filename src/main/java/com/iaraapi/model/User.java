@@ -35,9 +35,15 @@ public class User {
 
     private Date dateOfBirth;
 
+    private UUID userManagerId;
+
     @ManyToOne
     @JoinColumn(name = "gender_id")
     private Gender gender;
+
+    @ManyToOne
+    @JoinColumn(name = "factory_id")
+    private Factory factory;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
@@ -49,12 +55,12 @@ public class User {
 
     @OneToMany(mappedBy = "user" , cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
-    private Set<UserRole> userRoles = new HashSet<>();
+    private Set<UserAccessType> userAccessTypes = new HashSet<>();
 
     @JsonProperty("roles")
-    public Set<Role> getRoles() {
-        return userRoles.stream()
-                .map(UserRole::getRole)
+    public Set<AccessType> accessTypes() {
+        return userAccessTypes.stream()
+                .map(UserAccessType::getAccessType)
                 .collect(Collectors.toSet());
     }
 }
