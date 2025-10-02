@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -30,7 +31,9 @@ public class Payment {
 
     private BigDecimal total;
 
-    private LocalDateTime expiresOn;
+    private LocalDate startsOn;
+
+    private LocalDate expiresOn;
 
     private Boolean isExpired;
 
@@ -54,5 +57,5 @@ public class Payment {
     private Factory factory;
 
     @CreationTimestamp
-    private LocalDateTime startsAt;
+    private LocalDateTime paidAt;
 }
