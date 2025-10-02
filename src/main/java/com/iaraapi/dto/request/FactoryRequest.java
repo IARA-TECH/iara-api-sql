@@ -9,6 +9,10 @@ import lombok.Getter;
 @Getter
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class FactoryRequest {
+    @NotBlank(message = "Name is required")
+    @Size(max = 50, message = "Name must have a maximum of 50 characters")
+    private String name;
+
     @NotBlank(message = "CNPJ is required.")
     @Size(min = 14, max = 14, message = "CNPJ must have 14 characters")
     private String cnpj;
