@@ -6,7 +6,7 @@ import com.iaraapi.model.AccessType;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface AccessTypeMapper {
     @Mapping(target = "id", ignore = true)
     AccessType toEntity(AccessTypeRequest accessTypeRequest);

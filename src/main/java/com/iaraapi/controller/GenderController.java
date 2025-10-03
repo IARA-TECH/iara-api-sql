@@ -43,7 +43,7 @@ public class GenderController {
         return ResponseEntity.ok(genderService.deactivateEntity(id));
     }
 
-    @PatchMapping("reactivate/{id}")
+    @PatchMapping("/reactivate/{id}")
     public ResponseEntity<GenderResponse> reactivateGender(@PathVariable Long id) {
         return ResponseEntity.ok(genderService.reactivateEntity(id));
     }
