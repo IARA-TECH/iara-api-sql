@@ -57,7 +57,7 @@ public class User {
     @JsonIgnore
     private Set<UserAccessType> userAccessTypes = new HashSet<>();
 
-    @JsonProperty("roles")
+    @JsonProperty("access_types")
     public Set<AccessType> accessTypes() {
         return userAccessTypes.stream()
                 .map(UserAccessType::getAccessType)

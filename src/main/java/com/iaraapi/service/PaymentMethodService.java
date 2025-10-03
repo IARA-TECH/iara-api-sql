@@ -4,15 +4,12 @@ import com.iaraapi.dto.request.PaymentMethodRequest;
 import com.iaraapi.dto.response.PaymentMethodResponse;
 import com.iaraapi.mapper.PaymentMethodMapper;
 import com.iaraapi.model.PaymentMethod;
-import com.iaraapi.repository.PaymentMethodRepository;
 import jakarta.persistence.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 
 @Slf4j
