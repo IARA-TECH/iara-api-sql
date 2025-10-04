@@ -20,7 +20,7 @@ public class AddressRequest {
 
     @NotBlank(message = "Neighbourhood is required.")
     @Size(max = 50, message = "Neighbourhood must have a maximum of 50 characters.")
-    private String neighbourhood;
+    private String neighborhood;
 
     @NotBlank(message = "CEP is required.")
     @Size(min = 8, max = 8, message = "CEP has only 8 characters.")
@@ -34,7 +34,7 @@ public class AddressRequest {
     private String street;
 
     @NotBlank(message = "Complement is required.")
-    @Size(max = 20, message = "Complement must have a maximum of 30 characters.")
+    @Size(max = 255, message = "Complement must have a maximum of 255 characters.")
     private String complement;
 
     @NotNull(message = "Factory is required.")

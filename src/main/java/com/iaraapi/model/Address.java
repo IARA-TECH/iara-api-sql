@@ -23,7 +23,7 @@ public class Address {
 
     private String city;
 
-    private String neighbourhood;
+    private String neighborhood;
 
     private String cep;
     
@@ -40,4 +40,5 @@ public class Address {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
+    private LocalDateTime deactivatedAt;
 }
