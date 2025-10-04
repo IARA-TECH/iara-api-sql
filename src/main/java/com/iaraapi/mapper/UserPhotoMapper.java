@@ -10,7 +10,7 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface UserPhotoMapper {
     @Mapping(target = "id", ignore = true)
-    @Mapping(source = "user.id", target = "user.id")
+    @Mapping(source = "user", target = "user")
     UserPhoto toEntity(UserPhotoRequest request, User user);
 
     @Mapping(source = "user.id", target = "userId")

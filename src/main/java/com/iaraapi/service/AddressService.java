@@ -50,7 +50,7 @@ public class AddressService extends BaseService<Address, Long, AddressRequest, A
 
     @Override
     public AddressResponse deactivateEntity(Long id) {
-        log.info("[AddressService] [deactivateEntity] DEACTIVATE ACCESS TYPE WITH ID {}", id);
+        log.info("[AddressService] [deactivateEntity] DEACTIVATE ADDRESS WITH ID {}", id);
         Address address = repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Address with ID " + id + " not found."));
 
@@ -61,7 +61,7 @@ public class AddressService extends BaseService<Address, Long, AddressRequest, A
 
     @Override
     public AddressResponse reactivateEntity(Long id) {
-        log.info("[AddressService] [reactivateEntity] DEACTIVATE ACCESS TYPE WITH ID {}", id);
+        log.info("[AddressService] [reactivateEntity] DEACTIVATE ADDRESS WITH ID {}", id);
         Address address = repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Address with ID " + id + " not found."));
 
