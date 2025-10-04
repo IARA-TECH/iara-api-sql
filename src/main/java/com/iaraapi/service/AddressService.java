@@ -4,7 +4,9 @@ import com.iaraapi.dto.request.AddressRequest;
 import com.iaraapi.dto.response.AddressResponse;
 import com.iaraapi.mapper.AddressMapper;
 import com.iaraapi.model.Address;
+import com.iaraapi.model.Factory;
 import com.iaraapi.repository.AddressRepository;
+import com.iaraapi.repository.FactoryRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -15,20 +17,24 @@ import java.time.LocalDateTime;
 @Slf4j
 public class AddressService extends BaseService<Address, Long, AddressRequest, AddressResponse> {
     private AddressMapper mapper;
+    private FactoryRepository factoryRepository;
 
-    public AddressService(AddressRepository repository, AddressMapper mapper) {
+    public AddressService(AddressRepository repository, AddressMapper mapper, FactoryRepository factoryRepository) {
         super(repository, "Address");
         this.mapper = mapper;
+        this.factoryRepository = factoryRepository;
     }
 
     @Override
     protected Address toEntity(AddressRequest request) {
-        return mapper.toEntity(request);
+        Factory factory = factoryRepository.findById(request.getFactoryId())
+                .orElseThrow(() -> new EntityNotFoundException("Factory with id" + request.getFactoryId() + " not found"));
+        return mapper.toEntity(request, factory);
     }
 
     @Override
     protected AddressResponse toResponse(Address address) {
-        return mapper.toResponse(address, address.getFactory().getName());
+        return mapper.toResponse(address);
     }
 
     @Override
