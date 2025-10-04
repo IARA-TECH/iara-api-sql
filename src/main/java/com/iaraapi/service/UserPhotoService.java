@@ -8,9 +8,12 @@ import com.iaraapi.model.UserPhoto;
 import com.iaraapi.repository.UserPhotoRepository;
 import com.iaraapi.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
+
+@Service
 public class UserPhotoService extends BaseService<UserPhoto, Long, UserPhotoRequest, UserPhotoResponse> {
     private final UserPhotoMapper mapper;
     private final UserRepository userRepository;
