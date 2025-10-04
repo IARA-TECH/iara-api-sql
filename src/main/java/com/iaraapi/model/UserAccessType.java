@@ -1,26 +1,22 @@
 package com.iaraapi.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "role_access_type")
+@Table(name = "user_access_type")
 @Data
-public class RoleAccessType {
+public class UserAccessType {
 
     @EmbeddedId
-    private RoleAccessTypeId id;
+    private UserAccessTypeId id;
 
     @ManyToOne
-    @MapsId("roleId")
-    @JoinColumn(name = "role_id")
-    private Role role;
+    @MapsId("userId")
+    @JoinColumn(name = "user_account_uuid")
+    private User user;
 
     @ManyToOne
     @MapsId("accessTypeId")

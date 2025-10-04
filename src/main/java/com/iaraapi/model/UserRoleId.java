@@ -16,7 +16,6 @@ import java.util.UUID;
 public class UserRoleId {
     public Long roleId;
     public UUID userId;
-    public Long factoryId;
 
     @Override
     public boolean equals(Object o) {
@@ -24,8 +23,7 @@ public class UserRoleId {
         if (isUserRoleId(o)) return false;
         UserRoleId that = (UserRoleId) o;
         return Objects.equals(roleId, that.roleId) &&
-                Objects.equals(userId, that.userId) &&
-                Objects.equals(factoryId, that.factoryId);
+                Objects.equals(userId, that.userId);
     }
 
     private boolean isUserRoleId(Object o) {
@@ -38,6 +36,6 @@ public class UserRoleId {
 
     @Override
     public int hashCode() {
-        return Objects.hash(roleId, userId, factoryId);
+        return Objects.hash(roleId, userId);
     }
 }

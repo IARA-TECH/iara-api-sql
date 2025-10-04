@@ -25,6 +25,8 @@ public class Factory {
     @Column(name = "pk_id")
     private Long id;
 
+    private String name;
+
     private String cnpj;
 
     private String domain;
@@ -35,22 +37,4 @@ public class Factory {
     private LocalDateTime createdAt;
 
     private LocalDateTime deactivatedAt;
-
-    @OneToMany(mappedBy = "factory" , cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore
-    private Set<UserRole> userRoles = new HashSet<>();
-
-    @JsonProperty("roles")
-    public Set<Role> getRoles() {
-        return userRoles.stream()
-                .map(UserRole::getRole)
-                .collect(Collectors.toSet());
-    }
-
-    @JsonProperty("users")
-    public Set<User> getUsers() {
-        return userRoles.stream()
-                .map(UserRole::getUser)
-                .collect(Collectors.toSet());
-    }
 }

@@ -7,26 +7,27 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.UUID;
 
 @Embeddable
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RoleAccessTypeId implements Serializable {
-    private Long roleId;
+public class UserAccessTypeId implements Serializable {
+    private UUID userId;
     private Long accessTypeId;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof RoleAccessTypeId)) return false;
-        RoleAccessTypeId that = (RoleAccessTypeId) o;
-        return Objects.equals(roleId, that.roleId) &&
+        if (!(o instanceof UserAccessTypeId)) return false;
+        UserAccessTypeId that = (UserAccessTypeId) o;
+        return Objects.equals(userId, that.userId) &&
                 Objects.equals(accessTypeId, that.accessTypeId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(roleId, accessTypeId);
+        return Objects.hash(userId, accessTypeId);
     }
 }

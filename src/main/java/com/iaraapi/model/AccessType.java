@@ -20,7 +20,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Entity
-@Table(name = "role")
+@Table(name = "access_type")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -38,16 +38,5 @@ public class AccessType {
 
     private LocalDateTime deactivatedAt;
 
-
-    @OneToMany(mappedBy = "accessType", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore
-    private Set<RoleAccessType> roleAccessTypes = new HashSet<>();
-
-    @JsonProperty("roles")
-    public Set<Role> getRoles() {
-        return roleAccessTypes.stream()
-                .map(RoleAccessType::getRole)
-                .collect(Collectors.toSet());
-    }
 
 }
