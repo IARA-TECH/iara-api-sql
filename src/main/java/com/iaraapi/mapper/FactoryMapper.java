@@ -6,7 +6,7 @@ import com.iaraapi.model.Factory;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface FactoryMapper {
     @Mapping(target = "id", ignore = true)
     Factory toEntity(FactoryRequest request);
