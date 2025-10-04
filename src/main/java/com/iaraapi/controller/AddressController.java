@@ -46,4 +46,5 @@ public class AddressController {
     public ResponseEntity<AddressResponse> reactivateAddressType(@PathVariable Long id) {
         return ResponseEntity.ok(addressService.reactivateEntity(id));
     }
+
 }
