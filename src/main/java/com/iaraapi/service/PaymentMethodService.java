@@ -41,7 +41,7 @@ public class PaymentMethodService extends BaseService<PaymentMethod, Long, Payme
     public PaymentMethodResponse deactivateEntity(Long id) {
         log.info("[PaymentMethodService] [deactivateEntity] DEACTIVATE PAYMENT METHOD WITH ID {}", id);
         PaymentMethod paymentMethod = repository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("PaymentMethod with ID " + id + " not found."));
+                .orElseThrow(() -> new EntityNotFoundException("Payment method with ID " + id + " not found."));
 
         paymentMethod.setDeactivatedAt(LocalDateTime.now());
         repository.save(paymentMethod);
@@ -52,7 +52,7 @@ public class PaymentMethodService extends BaseService<PaymentMethod, Long, Payme
     public PaymentMethodResponse reactivateEntity(Long id) {
         log.info("[PaymentMethodService] [reactivateEntity] REACTIVATE PAYMENT METHOD WITH ID {}", id);
         PaymentMethod paymentMethod = repository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("PaymentMethod with ID " + id + " not found."));
+                .orElseThrow(() -> new EntityNotFoundException("Payment method with ID " + id + " not found."));
 
         paymentMethod.setDeactivatedAt(null);
         repository.save(paymentMethod);

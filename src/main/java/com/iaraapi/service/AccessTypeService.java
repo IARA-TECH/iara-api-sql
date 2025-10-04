@@ -50,9 +50,9 @@ public class AccessTypeService extends BaseService<AccessType, Long, AccessTypeR
 
     @Override
     public AccessTypeResponse reactivateEntity(Long id) {
-        log.info("[PaymentMethodService] [reactivateEntity] REACTIVATE PAYMENT METHOD WITH ID {}", id);
+        log.info("[AccessTypeService] [reactivateEntity] REACTIVATE ACCESS TYPE WITH ID {}", id);
         AccessType accessType = repository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("PaymentMethod with ID " + id + " not found."));
+                .orElseThrow(() -> new EntityNotFoundException("Access type with ID " + id + " not found."));
 
         accessType.setDeactivatedAt(null);
         repository.save(accessType);
