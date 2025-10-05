@@ -4,28 +4,19 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
+
 import java.util.UUID;
 
 @Getter
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class PaymentRequest {
-    @NotNull(message = "Total is required.")
-    private BigDecimal total;
 
-    @NotNull(message = "Expiration date is required.")
-    private LocalDateTime expiresOn;
-
-    @NotNull(message = "User ID is required.")
+    @NotNull(message = "User Account UUID is required.")
     private UUID userAccountUid;
 
-    @NotNull(message = "Payment method is required.")
-    private Long paymentMethodId;
-
-    @NotNull(message = "Subscription is required.")
+    @NotNull(message = "Subscription ID is required.")
     private Long subscriptionId;
 
-    @NotNull(message = "Factory ID is required.")
-    private Long factoryId;
+    @NotNull(message = "Payment Method ID is required.")
+    private Long paymentMethodId;
 }

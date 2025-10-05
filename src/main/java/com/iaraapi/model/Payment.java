@@ -52,10 +52,6 @@ public class Payment {
     @JoinColumn(name = "user_account_uuid")
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "factory_id")
-    private Factory factory;
-
     @CreationTimestamp
     private LocalDateTime paidAt;
 }

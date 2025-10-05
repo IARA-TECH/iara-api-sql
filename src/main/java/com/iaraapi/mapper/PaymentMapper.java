@@ -13,12 +13,11 @@ public interface PaymentMapper {
     @Mapping(source = "subscription", target = "subscription")
     @Mapping(source = "paymentMethod", target = "paymentMethod")
     @Mapping(source = "user", target = "user")
-    @Mapping(source = "factory", target = "factory")
-    Payment toEntity(PaymentRequest request, Subscription subscription, PaymentMethod paymentMethod,
-                     User user, Factory factory);
+    Payment toEntity(PaymentRequest request, Subscription subscription,
+                     PaymentMethod paymentMethod, User user);
 
 
-    @Mapping(source = "subscription.id", target = "subscriptionId")
+    @Mapping(source = "subscription.name", target = "subscriptionName")
     @Mapping(source = "paymentMethod.name", target = "paymentMethodName")
     @Mapping(source = "user.name", target = "userName")
     @Mapping(source = "factory.name", target = "factoryName")

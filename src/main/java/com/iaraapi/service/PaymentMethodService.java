@@ -4,6 +4,7 @@ import com.iaraapi.dto.request.PaymentMethodRequest;
 import com.iaraapi.dto.response.PaymentMethodResponse;
 import com.iaraapi.mapper.PaymentMethodMapper;
 import com.iaraapi.model.PaymentMethod;
+import com.iaraapi.repository.PaymentMethodRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,7 +18,7 @@ import java.time.LocalDateTime;
 public class PaymentMethodService extends BaseService<PaymentMethod, Long, PaymentMethodRequest, PaymentMethodResponse> {
     private final PaymentMethodMapper mapper;
 
-    public PaymentMethodService(JpaRepository<PaymentMethod, Long> repository, PaymentMethodMapper mapper) {
+    public PaymentMethodService(PaymentMethodRepository repository, PaymentMethodMapper mapper) {
         super(repository, "PaymentMethod");
         this.mapper = mapper;
     }
