@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 
 @Service
 @Slf4j
-public class AddressService extends BaseService<Address, Long, AddressRequest, AddressResponse> {
+public class AddressService extends BaseService<Address, Integer, AddressRequest, AddressResponse> {
     private AddressMapper mapper;
     private FactoryRepository factoryRepository;
 
@@ -49,8 +49,8 @@ public class AddressService extends BaseService<Address, Long, AddressRequest, A
     }
 
     @Override
-    public AddressResponse deactivateEntity(Long id) {
-        log.info("[AddressService] [deactivateEntity] DEACTIVATE ACCESS TYPE WITH ID {}", id);
+    public AddressResponse deactivateEntity(Integer id) {
+        log.info("[AddressService] [deactivateEntity] DEACTIVATE ADDRESS WITH ID {}", id);
         Address address = repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Address with ID " + id + " not found."));
 
@@ -60,8 +60,8 @@ public class AddressService extends BaseService<Address, Long, AddressRequest, A
     }
 
     @Override
-    public AddressResponse reactivateEntity(Long id) {
-        log.info("[AddressService] [reactivateEntity] DEACTIVATE ACCESS TYPE WITH ID {}", id);
+    public AddressResponse reactivateEntity(Integer id) {
+        log.info("[AddressService] [reactivateEntity] DEACTIVATE ADDRESS WITH ID {}", id);
         Address address = repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Address with ID " + id + " not found."));
 
