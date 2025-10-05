@@ -69,7 +69,7 @@ public class PaymentService extends BaseService<Payment, Integer, PaymentRequest
 
         } catch (Exception e) {
             log.error("[PaymentService] [create] ERROR CREATING PAYMENT: {}", e.getMessage());
-            throw new RuntimeException("Error creating payment: ");
+            throw new RuntimeException("Error creating payment.");
         }
     }
 

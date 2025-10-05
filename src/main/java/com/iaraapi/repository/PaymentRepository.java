@@ -2,7 +2,7 @@ package com.iaraapi.repository;
 
 import com.iaraapi.model.Payment;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
@@ -11,11 +11,11 @@ import java.util.UUID;
 
 @Repository
 public interface PaymentRepository extends JpaRepository<Payment, Integer> {
-    @Query(value = "CALL create_payment(:userUuid, :subscriptionId, :paymentMethodId)", nativeQuery = true)
+    @Procedure(procedureName = "create_payment")
     void createPayment(
-            @Param("userUuid") UUID userUuid,
-            @Param("subscriptionId") Integer subscriptionId,
-            @Param("paymentMethodId") Integer paymentMethodId
+            @Param("input_user_account_uuid") UUID userUuid,
+            @Param("input_subscription_id") Integer subscriptionId,
+            @Param("input_payment_method_id") Integer paymentMethodId
     );
 
     Optional<Payment> findTopByUser_IdOrderByPaidAtDesc(UUID userUuid);
