@@ -35,6 +35,7 @@ public class User {
 
     private Date dateOfBirth;
 
+    @Column(name = "user_manager_uuid")
     private UUID userManagerId;
 
     @ManyToOne
@@ -58,7 +59,7 @@ public class User {
     private Set<UserAccessType> userAccessTypes = new HashSet<>();
 
     @JsonProperty("access_types")
-    public Set<AccessType> accessTypes() {
+    public Set<AccessType> getAccessTypes() {
         return userAccessTypes.stream()
                 .map(UserAccessType::getAccessType)
                 .collect(Collectors.toSet());
