@@ -21,12 +21,11 @@ public class UserPhotoService extends BaseService<UserPhoto, Long, UserPhotoRequ
     private final UserRepository userRepository;
     private final UserPhotoRepository userPhotoRepository;
 
-    public UserPhotoService(UserPhotoRepository repository, UserPhotoMapper mapper,
-                            UserRepository userRepository, UserPhotoRepository userPhotoRepository) {
+    public UserPhotoService(UserPhotoRepository repository, UserPhotoMapper mapper, UserRepository userRepository) {
         super(repository, "UserPhoto");
         this.mapper = mapper;
         this.userRepository = userRepository;
-        this.userPhotoRepository = userPhotoRepository;
+        this.userPhotoRepository = repository;
     }
 
 
