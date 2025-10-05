@@ -30,12 +30,12 @@ public class UserPhotoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserPhotoResponse> getUserPhoto(@PathVariable Long id) {
+    public ResponseEntity<UserPhotoResponse> getUserPhoto(@PathVariable Integer id) {
         return ResponseEntity.ok(userPhotoService.getById(id));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserPhotoResponse> updateUserPhoto(@PathVariable Long id, @RequestBody @Valid UserPhotoRequest userPhotoRequest) {
+    public ResponseEntity<UserPhotoResponse> updateUserPhoto(@PathVariable Integer id, @RequestBody @Valid UserPhotoRequest userPhotoRequest) {
         return ResponseEntity.ok(userPhotoService.update(id, userPhotoRequest));
     }
 }

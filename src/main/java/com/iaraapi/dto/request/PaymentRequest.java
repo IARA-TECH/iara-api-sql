@@ -15,8 +15,8 @@ public class PaymentRequest {
     private UUID userAccountUid;
 
     @NotNull(message = "Subscription ID is required.")
-    private Long subscriptionId;
+    private Integer subscriptionId;
 
     @NotNull(message = "Payment Method ID is required.")
-    private Long paymentMethodId;
+    private Integer paymentMethodId;
 }

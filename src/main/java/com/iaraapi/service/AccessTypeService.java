@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 
 @Slf4j
 @Service
-public class AccessTypeService extends BaseService<AccessType, Long, AccessTypeRequest, AccessTypeResponse> {
+public class AccessTypeService extends BaseService<AccessType, Integer, AccessTypeRequest, AccessTypeResponse> {
     private final AccessTypeMapper mapper;
 
     public AccessTypeService(AccessTypeRepository repository, AccessTypeMapper mapper) {
@@ -38,7 +38,7 @@ public class AccessTypeService extends BaseService<AccessType, Long, AccessTypeR
     }
 
     @Override
-    public AccessTypeResponse deactivateEntity(Long id) {
+    public AccessTypeResponse deactivateEntity(Integer id) {
         log.info("[AccessTypeService] [deactivateEntity] DEACTIVATE ACCESS TYPE WITH ID {}", id);
         AccessType accessType = repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Access Type with ID " + id + " not found."));
@@ -49,7 +49,7 @@ public class AccessTypeService extends BaseService<AccessType, Long, AccessTypeR
     }
 
     @Override
-    public AccessTypeResponse reactivateEntity(Long id) {
+    public AccessTypeResponse reactivateEntity(Integer id) {
         log.info("[AccessTypeService] [reactivateEntity] REACTIVATE ACCESS TYPE WITH ID {}", id);
         AccessType accessType = repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Access type with ID " + id + " not found."));

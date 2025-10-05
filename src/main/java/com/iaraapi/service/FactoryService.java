@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 
 @Service
 @Slf4j
-public class FactoryService extends BaseService<Factory, Long, FactoryRequest, FactoryResponse> {
+public class FactoryService extends BaseService<Factory, Integer, FactoryRequest, FactoryResponse> {
 
     private final FactoryMapper mapper;
 
@@ -40,7 +40,7 @@ public class FactoryService extends BaseService<Factory, Long, FactoryRequest, F
     }
 
     @Override
-    public FactoryResponse deactivateEntity(Long id) {
+    public FactoryResponse deactivateEntity(Integer id) {
         log.info("[FactoryService] [deactivateEntity] DEACTIVATE FACTORY WITH ID {}", id);
         Factory factory = repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Factory with ID " + id + " not found."));
@@ -51,7 +51,7 @@ public class FactoryService extends BaseService<Factory, Long, FactoryRequest, F
     }
 
     @Override
-    public FactoryResponse reactivateEntity(Long id) {
+    public FactoryResponse reactivateEntity(Integer id) {
         log.info("[FactoryService] [reactivateEntity] REACTIVATE FACTORY WITH ID {}", id);
         Factory factory = repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Factory with ID " + id + " not found."));

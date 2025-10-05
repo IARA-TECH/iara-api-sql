@@ -31,23 +31,23 @@ public class PaymentMethodController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PaymentMethodResponse> getPaymentMethod(@PathVariable Long id) {
+    public ResponseEntity<PaymentMethodResponse> getPaymentMethod(@PathVariable Integer id) {
         return ResponseEntity.ok(paymentMethodService.getById(id));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PaymentMethodResponse> updatePaymentMethod(@PathVariable Long id,
+    public ResponseEntity<PaymentMethodResponse> updatePaymentMethod(@PathVariable Integer id,
                                                                      @RequestBody @Valid PaymentMethodRequest paymentMethodRequest) {
         return ResponseEntity.ok(paymentMethodService.update(id, paymentMethodRequest));
     }
 
     @PatchMapping("/deactivate/{id}")
-    public ResponseEntity<PaymentMethodResponse> deactivatePaymentMethod(@PathVariable Long id) {
+    public ResponseEntity<PaymentMethodResponse> deactivatePaymentMethod(@PathVariable Integer id) {
         return ResponseEntity.ok(paymentMethodService.deactivateEntity(id));
     }
 
     @PatchMapping("/reactivate/{id}")
-    public ResponseEntity<PaymentMethodResponse> reactivatePaymentMethod(@PathVariable Long id) {
+    public ResponseEntity<PaymentMethodResponse> reactivatePaymentMethod(@PathVariable Integer id) {
         return ResponseEntity.ok(paymentMethodService.reactivateEntity(id));
     }
 }

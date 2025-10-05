@@ -15,7 +15,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class UserAccessTypeId implements Serializable {
     private UUID userId;
-    private Long accessTypeId;
+    private Integer accessTypeId;
 
     @Override
     public boolean equals(Object o) {

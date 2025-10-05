@@ -10,13 +10,13 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface PaymentRepository extends JpaRepository<Payment, Long> {
+public interface PaymentRepository extends JpaRepository<Payment, Integer> {
     @Query(value = "CALL create_payment(:userUuid, :subscriptionId, :paymentMethodId)", nativeQuery = true)
     void createPayment(
             @Param("userUuid") UUID userUuid,
-            @Param("subscriptionId") Long subscriptionId,
-            @Param("paymentMethodId") Long paymentMethodId
+            @Param("subscriptionId") Integer subscriptionId,
+            @Param("paymentMethodId") Integer paymentMethodId
     );
 
-    Optional<Payment> findTopByUserAccountUuidOrderByPaidAtDesc(UUID userUuid);
+    Optional<Payment> findTopByUser_IdOrderByPaidAtDesc(UUID userUuid);
 }

@@ -20,7 +20,7 @@ import java.util.UUID;
 
 @Slf4j
 @Service
-public class PaymentService extends BaseService<Payment, Long, PaymentRequest, PaymentResponse> {
+public class PaymentService extends BaseService<Payment, Integer, PaymentRequest, PaymentResponse> {
 
     private final PaymentMapper mapper;
     private final PaymentRepository paymentRepository;
@@ -62,7 +62,7 @@ public class PaymentService extends BaseService<Payment, Long, PaymentRequest, P
                     request.getPaymentMethodId());
 
             Payment payment = paymentRepository
-                    .findTopByUserAccountUuidOrderByPaidAtDesc(request.getUserAccountUid())
+                    .findTopByUser_IdOrderByPaidAtDesc(request.getUserAccountUid())
                     .orElseThrow(() -> new EntityNotFoundException("Failed to retrieve the created payment."));
 
             return toResponse(payment);
@@ -74,7 +74,7 @@ public class PaymentService extends BaseService<Payment, Long, PaymentRequest, P
     }
 
     @Override
-    public PaymentResponse update(Long id, PaymentRequest request) {
+    public PaymentResponse update(Integer id, PaymentRequest request) {
         log.info("[PaymentService] [update] UPDATE WITH ID {}", id);
 
         Payment payment = paymentRepository.findById(id)
@@ -103,7 +103,7 @@ public class PaymentService extends BaseService<Payment, Long, PaymentRequest, P
 
 
     @Override
-    public PaymentResponse deactivateEntity(Long id) {
+    public PaymentResponse deactivateEntity(Integer id) {
         log.info("[PaymentService] [deactivateEntity] DEACTIVATE PAYMENT WITH ID {}", id);
         Payment payment = repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Payment with ID " + id + " not found."));
@@ -117,7 +117,7 @@ public class PaymentService extends BaseService<Payment, Long, PaymentRequest, P
     }
 
     @Override
-    public PaymentResponse reactivateEntity(Long id) {
+    public PaymentResponse reactivateEntity(Integer id) {
         log.info("[PaymentService] [reactivateEntity] REACTIVATE PAYMENT WITH ID {}", id);
         Payment payment = repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Payment with ID " + id + " not found."));
@@ -135,13 +135,13 @@ public class PaymentService extends BaseService<Payment, Long, PaymentRequest, P
                 .orElseThrow(() -> new EntityNotFoundException("User with ID " + id + " not found"));
     }
 
-    private Subscription getSubscription(Long id) {
+    private Subscription getSubscription(Integer id) {
         return subscriptionRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Subscription with ID " +
                         id + " not found"));
     }
 
-    private PaymentMethod getPaymentMethod(Long id) {
+    private PaymentMethod getPaymentMethod(Integer id) {
         return paymentMethodRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Payment method with ID " +
                         id + " not Found"));

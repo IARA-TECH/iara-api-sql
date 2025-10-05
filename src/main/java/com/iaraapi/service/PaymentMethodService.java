@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 
 @Slf4j
 @Service
-public class PaymentMethodService extends BaseService<PaymentMethod, Long, PaymentMethodRequest, PaymentMethodResponse> {
+public class PaymentMethodService extends BaseService<PaymentMethod, Integer, PaymentMethodRequest, PaymentMethodResponse> {
     private final PaymentMethodMapper mapper;
 
     public PaymentMethodService(PaymentMethodRepository repository, PaymentMethodMapper mapper) {
@@ -39,7 +39,7 @@ public class PaymentMethodService extends BaseService<PaymentMethod, Long, Payme
     }
 
     @Override
-    public PaymentMethodResponse deactivateEntity(Long id) {
+    public PaymentMethodResponse deactivateEntity(Integer id) {
         log.info("[PaymentMethodService] [deactivateEntity] DEACTIVATE PAYMENT METHOD WITH ID {}", id);
         PaymentMethod paymentMethod = repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Payment method with ID " + id + " not found."));
@@ -50,7 +50,7 @@ public class PaymentMethodService extends BaseService<PaymentMethod, Long, Payme
     }
 
     @Override
-    public PaymentMethodResponse reactivateEntity(Long id) {
+    public PaymentMethodResponse reactivateEntity(Integer id) {
         log.info("[PaymentMethodService] [reactivateEntity] REACTIVATE PAYMENT METHOD WITH ID {}", id);
         PaymentMethod paymentMethod = repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Payment method with ID " + id + " not found."));

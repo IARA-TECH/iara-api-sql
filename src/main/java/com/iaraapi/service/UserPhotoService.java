@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 
 
 @Service
-public class UserPhotoService extends BaseService<UserPhoto, Long, UserPhotoRequest, UserPhotoResponse> {
+public class UserPhotoService extends BaseService<UserPhoto, Integer, UserPhotoRequest, UserPhotoResponse> {
     private final UserPhotoMapper mapper;
     private final UserRepository userRepository;
 
@@ -44,12 +44,12 @@ public class UserPhotoService extends BaseService<UserPhoto, Long, UserPhotoRequ
     }
 
     @Override
-    public UserPhotoResponse deactivateEntity(Long aLong) {
+    public UserPhotoResponse deactivateEntity(Integer aInteger) {
         return null;
     }
 
     @Override
-    public UserPhotoResponse reactivateEntity(Long aLong) {
+    public UserPhotoResponse reactivateEntity(Integer aInteger) {
         return null;
     }
 }

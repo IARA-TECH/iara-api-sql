@@ -30,23 +30,23 @@ public class FactoryController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<FactoryResponse> getFactory(@PathVariable Long id) {
+    public ResponseEntity<FactoryResponse> getFactory(@PathVariable Integer id) {
         return ResponseEntity.ok(factoryService.getById(id));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<FactoryResponse> updateFactory(@PathVariable Long id,
+    public ResponseEntity<FactoryResponse> updateFactory(@PathVariable Integer id,
                                                          @RequestBody @Valid FactoryRequest factoryRequest) {
         return ResponseEntity.ok(factoryService.update(id, factoryRequest));
     }
 
     @PatchMapping("/deactivate/{id}")
-    public ResponseEntity<FactoryResponse> deactivateFactory(@PathVariable Long id) {
+    public ResponseEntity<FactoryResponse> deactivateFactory(@PathVariable Integer id) {
         return ResponseEntity.ok(factoryService.deactivateEntity(id));
     }
 
     @PatchMapping("/reactivate/{id}")
-    public ResponseEntity<FactoryResponse> reactivateFactory(@PathVariable Long id) {
+    public ResponseEntity<FactoryResponse> reactivateFactory(@PathVariable Integer id) {
         return ResponseEntity.ok(factoryService.reactivateEntity(id));
     }
 }
