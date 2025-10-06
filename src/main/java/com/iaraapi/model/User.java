@@ -23,9 +23,8 @@ import java.util.stream.Collectors;
 @Data
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="pk_uuid")
-    private UUID id;
+    @Column(name = "pk_uuid", updatable = false, nullable = false)
+    private UUID id = UUID.randomUUID();
 
     private String name;
 

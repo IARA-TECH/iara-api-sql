@@ -15,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -88,6 +89,8 @@ public class UserService extends BaseService<User, UUID, UserRequest, UserRespon
         user.setGender(getGender(request.getGenderId()));
 
         user.setFactory(getFactory(request.getFactoryId()));
+
+        user.setChangedAt(LocalDateTime.now());
     }
 
 
@@ -125,11 +128,18 @@ public class UserService extends BaseService<User, UUID, UserRequest, UserRespon
         return mapper.toResponse(user, getUserManagerName(user));
     }
 
-    private String getUserManagerName(User user) {
-        User userManager = userRepository.findById(user.getUserManagerId())
-                .orElseThrow(() -> new EntityNotFoundException("User with ID " + user.getUserManagerId() + " not found."));
+    public List<UserResponse> getUsersByFactory(Integer factoryId) {
+        return userRepository.findUserAccountsByFactory(factoryId)
+                .stream()
+                .map(this::toResponse)
+                .toList();
+    }
 
-        return userManager.getName();
+    private String getUserManagerName(User user) {
+        if (user.getUserManagerId() == null) return null;
+        return userRepository.findById(user.getUserManagerId())
+                .map(User::getName)
+                .orElseThrow(() -> new EntityNotFoundException("User with ID " + user.getUserManagerId() + " not found."));
     }
 
     private Gender getGender(Integer id) {
