@@ -16,7 +16,7 @@ import java.util.UUID;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class UserPhotoRequest {
     @NotBlank(message = "Url blob is required.")
-    @Size(max = 100, message = "Url blob has a maximum of 100 characters.")
+    @Size(max = 255, message = "Url blob has a maximum of 255 characters.")
     private String urlBlob;
 
     @NotNull(message = "User is required.")
