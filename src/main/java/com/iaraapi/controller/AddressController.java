@@ -28,22 +28,22 @@ public class AddressController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AddressResponse> getAddressType(@PathVariable Long id) {
+    public ResponseEntity<AddressResponse> getAddressType(@PathVariable Integer id) {
         return ResponseEntity.ok(addressService.getById(id));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AddressResponse> updateAddressType(@PathVariable Long id, @RequestBody @Valid AddressRequest addressRequest) {
+    public ResponseEntity<AddressResponse> updateAddressType(@PathVariable Integer id, @RequestBody @Valid AddressRequest addressRequest) {
         return ResponseEntity.ok(addressService.update(id, addressRequest));
     }
 
     @PatchMapping("/deactivate/{id}")
-    public ResponseEntity<AddressResponse> deactivateAddressType(@PathVariable Long id) {
+    public ResponseEntity<AddressResponse> deactivateAddressType(@PathVariable Integer id) {
         return ResponseEntity.ok(addressService.deactivateEntity(id));
     }
 
     @PatchMapping("/reactivate/{id}")
-    public ResponseEntity<AddressResponse> reactivateAddressType(@PathVariable Long id) {
+    public ResponseEntity<AddressResponse> reactivateAddressType(@PathVariable Integer id) {
         return ResponseEntity.ok(addressService.reactivateEntity(id));
     }
 

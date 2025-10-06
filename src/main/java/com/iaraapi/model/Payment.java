@@ -27,7 +27,7 @@ public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "pk_id")
-    private Long id;
+    private Integer id;
 
     private BigDecimal total;
 
@@ -51,10 +51,6 @@ public class Payment {
     @ManyToOne
     @JoinColumn(name = "user_account_uuid")
     private User user;
-
-    @ManyToOne
-    @JoinColumn(name = "factory_id")
-    private Factory factory;
 
     @CreationTimestamp
     private LocalDateTime paidAt;

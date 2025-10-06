@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 public class AccessType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     private String name;
 

@@ -33,5 +33,5 @@ public class UserRequest {
     private Integer accessLevel;
 
     @NotNull(message = "Gender is required")
-    private Long genderId;
+    private Integer genderId;
 }
