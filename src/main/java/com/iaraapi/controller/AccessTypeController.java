@@ -29,22 +29,22 @@ public class AccessTypeController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AccessTypeResponse> getAccessType(@PathVariable Long id) {
+    public ResponseEntity<AccessTypeResponse> getAccessType(@PathVariable Integer id) {
         return ResponseEntity.ok(accessTypeService.getById(id));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AccessTypeResponse> updateAccessType(@PathVariable Long id, @RequestBody @Valid AccessTypeRequest accessTypeRequest) {
+    public ResponseEntity<AccessTypeResponse> updateAccessType(@PathVariable Integer id, @RequestBody @Valid AccessTypeRequest accessTypeRequest) {
         return ResponseEntity.ok(accessTypeService.update(id, accessTypeRequest));
     }
 
     @PatchMapping("/deactivate/{id}")
-    public ResponseEntity<AccessTypeResponse> deactivateAccessType(@PathVariable Long id) {
+    public ResponseEntity<AccessTypeResponse> deactivateAccessType(@PathVariable Integer id) {
         return ResponseEntity.ok(accessTypeService.deactivateEntity(id));
     }
 
     @PatchMapping("/reactivate/{id}")
-    public ResponseEntity<AccessTypeResponse> reactivateAccessType(@PathVariable Long id) {
+    public ResponseEntity<AccessTypeResponse> reactivateAccessType(@PathVariable Integer id) {
         return ResponseEntity.ok(accessTypeService.reactivateEntity(id));
     }
 }

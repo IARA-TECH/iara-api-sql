@@ -38,6 +38,6 @@ public class AddressRequest {
     private String complement;
 
     @NotNull(message = "Factory is required.")
-    private Long factoryId;
+    private Integer factoryId;
 
 }

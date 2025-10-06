@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 public class UserPhoto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     private String urlBlob;
 
