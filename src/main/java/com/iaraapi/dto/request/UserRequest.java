@@ -1,6 +1,5 @@
 package com.iaraapi.dto.request;
 
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -26,12 +25,11 @@ public class UserRequest {
     @NotNull(message = "Birthdate is required.")
     private Date dateOfBirth;
 
-    @NotNull(message = "User manager is required.")
     private UUID userManagerId;
 
     @NotNull(message = "Factory is required.")
     private Integer factoryId;
 
     @NotNull(message = "Gender is required.")
-    private Long genderId;
+    private Integer genderId;
 }
