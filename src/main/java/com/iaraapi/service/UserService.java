@@ -113,6 +113,18 @@ public class UserService extends BaseService<User, UUID, UserRequest, UserRespon
         return toResponse(user);
     }
 
+    public UserResponse getUserByEmail(String email) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new EntityNotFoundException("User with email " + email + " not found."));
+        return mapper.toResponse(user, getUserManagerName(user));
+    }
+
+    public UserResponse getUserByName(String name) {
+        User user = userRepository.findByName(name)
+                .orElseThrow(() -> new EntityNotFoundException("User with name " + name + " not found."));
+        return mapper.toResponse(user, getUserManagerName(user));
+    }
+
     private String getUserManagerName(User user) {
         User userManager = userRepository.findById(user.getUserManagerId())
                 .orElseThrow(() -> new EntityNotFoundException("User with ID " + user.getUserManagerId() + " not found."));
