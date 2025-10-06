@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 
 @Slf4j
 @Service
-public class GenderService extends BaseService<Gender, Long, GenderRequest, GenderResponse> {
+public class GenderService extends BaseService<Gender, Integer, GenderRequest, GenderResponse> {
     private final GenderMapper mapper;
 
     public GenderService(GenderRepository repository, GenderMapper mapper) {
@@ -39,7 +39,7 @@ public class GenderService extends BaseService<Gender, Long, GenderRequest, Gend
     }
 
     @Override
-    public GenderResponse deactivateEntity(Long id) {
+    public GenderResponse deactivateEntity(Integer id) {
         log.info("[GenderService] [deactivateEntity] DEACTIVATE GENDER WITH ID {}", id);
         Gender gender = repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Gender with ID " + id + " not found."));
@@ -50,7 +50,7 @@ public class GenderService extends BaseService<Gender, Long, GenderRequest, Gend
     }
 
     @Override
-    public GenderResponse reactivateEntity(Long id) {
+    public GenderResponse reactivateEntity(Integer id) {
         log.info("[GenderService] [reactivateEntity] REACTIVATE GENDER WITH ID {}", id);
         Gender gender = repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Gender with ID " + id + " not found."));

@@ -29,22 +29,22 @@ public class GenderController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<GenderResponse> getGender(@PathVariable Long id) {
+    public ResponseEntity<GenderResponse> getGender(@PathVariable Integer id) {
         return ResponseEntity.ok(genderService.getById(id));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<GenderResponse> updateGender(@PathVariable Long id, @RequestBody @Valid GenderRequest genderRequest) {
+    public ResponseEntity<GenderResponse> updateGender(@PathVariable Integer id, @RequestBody @Valid GenderRequest genderRequest) {
         return ResponseEntity.ok(genderService.update(id, genderRequest));
     }
 
     @PatchMapping("/deactivate/{id}")
-    public ResponseEntity<GenderResponse> deactivateGender(@PathVariable Long id) {
+    public ResponseEntity<GenderResponse> deactivateGender(@PathVariable Integer id) {
         return ResponseEntity.ok(genderService.deactivateEntity(id));
     }
 
     @PatchMapping("/reactivate/{id}")
-    public ResponseEntity<GenderResponse> reactivateGender(@PathVariable Long id) {
+    public ResponseEntity<GenderResponse> reactivateGender(@PathVariable Integer id) {
         return ResponseEntity.ok(genderService.reactivateEntity(id));
     }
 

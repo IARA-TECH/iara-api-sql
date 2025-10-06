@@ -29,23 +29,23 @@ public class SubscriptionController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<SubscriptionResponse> getSubscription(@PathVariable Long id) {
+    public ResponseEntity<SubscriptionResponse> getSubscription(@PathVariable Integer id) {
         return ResponseEntity.ok(subscriptionService.getById(id));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<SubscriptionResponse> updateSubscription(@PathVariable Long id,
+    public ResponseEntity<SubscriptionResponse> updateSubscription(@PathVariable Integer id,
                                            @RequestBody @Valid SubscriptionRequest subscriptionRequest) {
         return ResponseEntity.ok(subscriptionService.update(id, subscriptionRequest));
     }
 
     @PatchMapping("/deactivate/{id}")
-    public ResponseEntity<SubscriptionResponse> deactivateSubscription(@PathVariable Long id) {
+    public ResponseEntity<SubscriptionResponse> deactivateSubscription(@PathVariable Integer id) {
         return ResponseEntity.ok(subscriptionService.deactivateEntity(id));
     }
 
     @PatchMapping("/reactivate/{id}")
-    public ResponseEntity<SubscriptionResponse> reactivateSubscription(@PathVariable Long id) {
+    public ResponseEntity<SubscriptionResponse> reactivateSubscription(@PathVariable Integer id) {
         return ResponseEntity.ok(subscriptionService.reactivateEntity(id));
     }
 }

@@ -17,10 +17,10 @@ import java.util.Optional;
 
 @Slf4j
 @Service
-public class SubscriptionService extends BaseService<Subscription, Long, SubscriptionRequest, SubscriptionResponse> {
+public class SubscriptionService extends BaseService<Subscription, Integer, SubscriptionRequest, SubscriptionResponse> {
     private final SubscriptionMapper mapper;
 
-    public SubscriptionService(JpaRepository<Subscription, Long> repository, SubscriptionMapper mapper) {
+    public SubscriptionService(JpaRepository<Subscription, Integer> repository, SubscriptionMapper mapper) {
         super(repository, "Subscription");
         this.mapper = mapper;
     }
@@ -44,7 +44,7 @@ public class SubscriptionService extends BaseService<Subscription, Long, Subscri
     }
 
     @Override
-    public SubscriptionResponse deactivateEntity(Long id) {
+    public SubscriptionResponse deactivateEntity(Integer id) {
         log.info("[SubscriptionService] [deactivateEntity] DEACTIVATE SUBSCRIPTION WITH ID {}", id);
         Subscription subscription = repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Subscription with ID " + id + " not found."));
@@ -55,7 +55,7 @@ public class SubscriptionService extends BaseService<Subscription, Long, Subscri
     }
 
     @Override
-    public SubscriptionResponse reactivateEntity(Long id) {
+    public SubscriptionResponse reactivateEntity(Integer id) {
         log.info("[SubscriptionService] [reactivateEntity] REACTIVATE SUBSCRIPTION WITH ID {}", id);
         Subscription subscription = repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Subscription with ID " + id + " not found."));
