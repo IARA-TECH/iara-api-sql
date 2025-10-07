@@ -1,6 +1,7 @@
 package com.iaraapi.service;
 
 import com.iaraapi.dto.request.UserRequest;
+import com.iaraapi.dto.response.UserFactoryResponse;
 import com.iaraapi.dto.response.UserResponse;
 import com.iaraapi.mapper.UserMapper;
 import com.iaraapi.model.Factory;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -52,7 +54,7 @@ public class UserService extends BaseService<User, UUID, UserRequest, UserRespon
                     request.getUserManagerId()
             );
 
-            User user = userRepository.findByEmail(request.getEmail())
+            User user = userRepository.findByEmailIgnoreCase(request.getEmail())
                     .orElseThrow(() -> new EntityNotFoundException("User not found after creation"));
 
             return toResponse(user);
@@ -117,23 +119,28 @@ public class UserService extends BaseService<User, UUID, UserRequest, UserRespon
     }
 
     public UserResponse getUserByEmail(String email) {
-        User user = userRepository.findByEmail(email)
+        User user = userRepository.findByEmailIgnoreCase(email)
                 .orElseThrow(() -> new EntityNotFoundException("User with email " + email + " not found."));
-        return mapper.toResponse(user, getUserManagerName(user));
+        return toResponse(user);
     }
 
-    public UserResponse getUserByName(String name) {
-        User user = userRepository.findByName(name)
+    public List<UserResponse> getUserByName(String name) {
+        List<User> users = userRepository.findByNameContainsIgnoreCase(name)
                 .orElseThrow(() -> new EntityNotFoundException("User with name " + name + " not found."));
-        return mapper.toResponse(user, getUserManagerName(user));
-    }
 
-    public List<UserResponse> getUsersByFactory(Integer factoryId) {
-        return userRepository.findUserAccountsByFactory(factoryId)
-                .stream()
+        if (users.isEmpty()) {
+            throw new EntityNotFoundException("User with name " + name + " not found.");
+        }
+
+        return users.stream()
                 .map(this::toResponse)
                 .toList();
     }
+
+    public List<UserFactoryResponse> getUsersByFactory(Integer factoryId) {
+        return userRepository.findUserAccountsByFactory(factoryId);
+    }
+
 
     private String getUserManagerName(User user) {
         if (user.getUserManagerId() == null) return null;

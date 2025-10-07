@@ -1,7 +1,9 @@
 package com.iaraapi.controller;
 
 import com.iaraapi.dto.request.EmailRequest;
+import com.iaraapi.dto.request.NameRequest;
 import com.iaraapi.dto.request.UserRequest;
+import com.iaraapi.dto.response.UserFactoryResponse;
 import com.iaraapi.dto.response.UserResponse;
 import com.iaraapi.service.UserService;
 import jakarta.validation.Valid;
@@ -37,17 +39,17 @@ public class UserController {
     }
 
     @PostMapping("/by-email")
-    public ResponseEntity<UserResponse> getUserByEmail(@RequestBody EmailRequest request) {
+    public ResponseEntity<UserResponse> getUserByEmail(@RequestBody @Valid EmailRequest request) {
         return ResponseEntity.ok(userService.getUserByEmail(request.getEmail()));
     }
 
     @PostMapping("/by-name")
-    public ResponseEntity<UserResponse> getUserByName(@RequestBody UserRequest request) {
+    public ResponseEntity<List<UserResponse>> getUserByName(@RequestBody @Valid NameRequest request) {
         return ResponseEntity.ok(userService.getUserByName(request.getName()));
     }
 
     @GetMapping("by-factory/{factoryId}")
-    public ResponseEntity<List<UserResponse>> getUsersByFactory(@PathVariable Integer factoryId) {
+    public ResponseEntity<List<UserFactoryResponse>> getUsersByFactory(@PathVariable Integer factoryId) {
         return ResponseEntity.ok(userService.getUsersByFactory(factoryId));
     }
 

@@ -1,5 +1,6 @@
 package com.iaraapi.repository;
 
+import com.iaraapi.dto.response.UserFactoryResponse;
 import com.iaraapi.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -26,11 +27,24 @@ public interface UserRepository extends JpaRepository<User, UUID> {
     );
 
 
-    @Query(value = "SELECT * FROM get_user_accounts_by_factory(:factoryId)", nativeQuery = true)
-    List<User> findUserAccountsByFactory(@Param("factoryId") Integer factoryId);
 
+    @Query(value = """
+        SELECT 
+            u.pk_uuid       AS id,
+            u.created_at    AS createdAt,
+            u.changed_at    AS changedAt,
+            u.deactivated_at AS deactivatedAt,
+            u.name          AS name,
+            u.email         AS email,
+            u.date_of_birth AS dateOfBirth,
+            u.gender_id     AS genderId,
+            u.gender        AS gender
+        FROM get_user_accounts_by_factory(:factoryId) u
+        """,
+            nativeQuery = true)
+    List<UserFactoryResponse> findUserAccountsByFactory(@Param("factoryId") Integer factoryId);
 
-    Optional<User> findByEmail(String email);
+    Optional<User> findByEmailIgnoreCase(String email);
 
-    Optional<User> findByName(String name);
+    Optional<List<User>> findByNameContainsIgnoreCase(String name);
 }
