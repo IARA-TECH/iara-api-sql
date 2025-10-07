@@ -25,7 +25,7 @@ public class UserPhotoService extends BaseService<UserPhoto, Integer, UserPhotoR
         super(repository, "UserPhoto");
         this.mapper = mapper;
         this.userRepository = userRepository;
-        this.userPhotoRepository = userPhotoRepository;
+        this.userPhotoRepository = repository;
     }
 
 
