@@ -1,6 +1,5 @@
 package com.iaraapi.dto.request;
 
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -8,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.sql.Date;
+import java.util.UUID;
 
 @Getter
 @AllArgsConstructor
@@ -23,15 +23,13 @@ public class UserRequest {
     private String password;
 
     @NotNull(message = "Birthdate is required.")
-    private Date birthDate;
+    private Date dateOfBirth;
 
-    @NotNull(message = "Position is required")
-    private String position;
+    private UUID userManagerId;
 
-    @NotNull(message = "Access level is required.")
-    @Min(value = 1, message = "Access level must be greater than 0.")
-    private Integer accessLevel;
+    @NotNull(message = "Factory is required.")
+    private Integer factoryId;
 
-    @NotNull(message = "Gender is required")
+    @NotNull(message = "Gender is required.")
     private Integer genderId;
 }
