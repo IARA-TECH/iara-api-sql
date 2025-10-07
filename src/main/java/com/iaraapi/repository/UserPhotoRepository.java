@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface UserPhotoRepository extends JpaRepository<UserPhoto,Long> {
+public interface UserPhotoRepository extends JpaRepository<UserPhoto,Integer> {
     @Procedure(value  = "create_user_account_photo")
     void createUserAccountPhoto(
             @Param("input_user_account_uuid") UUID userAccountUuid,
