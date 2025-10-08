@@ -4,16 +4,13 @@ import com.iaraapi.dto.response.SubscriptionResponse;
 import com.iaraapi.mapper.SubscriptionMapper;
 import com.iaraapi.model.Subscription;
 import com.iaraapi.dto.request.SubscriptionRequest;
-import com.iaraapi.repository.SubscriptionRepository;
 import jakarta.persistence.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @Service
@@ -44,6 +41,7 @@ public class SubscriptionService extends BaseService<Subscription, Integer, Subs
     }
 
     @Override
+    @Transactional
     public SubscriptionResponse deactivateEntity(Integer id) {
         log.info("[SubscriptionService] [deactivateEntity] DEACTIVATE SUBSCRIPTION WITH ID {}", id);
         Subscription subscription = repository.findById(id)
@@ -55,6 +53,7 @@ public class SubscriptionService extends BaseService<Subscription, Integer, Subs
     }
 
     @Override
+    @Transactional
     public SubscriptionResponse reactivateEntity(Integer id) {
         log.info("[SubscriptionService] [reactivateEntity] REACTIVATE SUBSCRIPTION WITH ID {}", id);
         Subscription subscription = repository.findById(id)

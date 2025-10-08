@@ -6,6 +6,7 @@ import com.iaraapi.mapper.FactoryMapper;
 import com.iaraapi.model.Factory;
 import com.iaraapi.repository.FactoryRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -40,6 +41,7 @@ public class FactoryService extends BaseService<Factory, Integer, FactoryRequest
     }
 
     @Override
+    @Transactional
     public FactoryResponse deactivateEntity(Integer id) {
         log.info("[FactoryService] [deactivateEntity] DEACTIVATE FACTORY WITH ID {}", id);
         Factory factory = repository.findById(id)
@@ -51,6 +53,7 @@ public class FactoryService extends BaseService<Factory, Integer, FactoryRequest
     }
 
     @Override
+    @Transactional
     public FactoryResponse reactivateEntity(Integer id) {
         log.info("[FactoryService] [reactivateEntity] REACTIVATE FACTORY WITH ID {}", id);
         Factory factory = repository.findById(id)

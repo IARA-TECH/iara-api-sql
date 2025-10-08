@@ -6,6 +6,7 @@ import com.iaraapi.mapper.GenderMapper;
 import com.iaraapi.model.Gender;
 import com.iaraapi.repository.GenderRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -39,6 +40,7 @@ public class GenderService extends BaseService<Gender, Integer, GenderRequest, G
     }
 
     @Override
+    @Transactional
     public GenderResponse deactivateEntity(Integer id) {
         log.info("[GenderService] [deactivateEntity] DEACTIVATE GENDER WITH ID {}", id);
         Gender gender = repository.findById(id)
@@ -50,6 +52,7 @@ public class GenderService extends BaseService<Gender, Integer, GenderRequest, G
     }
 
     @Override
+    @Transactional
     public GenderResponse reactivateEntity(Integer id) {
         log.info("[GenderService] [reactivateEntity] REACTIVATE GENDER WITH ID {}", id);
         Gender gender = repository.findById(id)

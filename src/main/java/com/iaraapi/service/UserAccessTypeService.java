@@ -6,6 +6,7 @@ import com.iaraapi.mapper.UserAccessTypeMapper;
 import com.iaraapi.model.*;
 import com.iaraapi.repository.*;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -25,7 +25,7 @@ public class UserAccessTypeService {
     private final AccessTypeRepository accessTypeRepository;
     private final UserAccessTypeMapper mapper;
 
-
+    @Transactional
     public UserAccessTypeResponse create(UserAccessTypeRequest request) {
         log.info("[UserAccessTypeService] [create] Creating relation user={} accessType={}", request.getUserId(), request.getAccessTypeId());
 
@@ -55,7 +55,7 @@ public class UserAccessTypeService {
                 .toList();
     }
 
-
+    @Transactional
     public UserAccessTypeResponse deactivate(UUID userId, Integer accessTypeId) {
         log.info("[UserAccessTypeService] [deactivate] Deactivating relation user={} accessType={}", userId, accessTypeId);
 
@@ -68,6 +68,7 @@ public class UserAccessTypeService {
         return mapper.toResponse(repository.save(entity));
     }
 
+    @Transactional
     public UserAccessTypeResponse reactivate(UUID userId, Integer accessTypeId) {
         log.info("[UserAccessTypeService] [reactivate] Reactivating relation user={} accessType={}", userId, accessTypeId);
 
