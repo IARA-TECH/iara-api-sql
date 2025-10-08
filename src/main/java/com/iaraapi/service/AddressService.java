@@ -8,6 +8,7 @@ import com.iaraapi.model.Factory;
 import com.iaraapi.repository.AddressRepository;
 import com.iaraapi.repository.FactoryRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +17,8 @@ import java.time.LocalDateTime;
 @Service
 @Slf4j
 public class AddressService extends BaseService<Address, Integer, AddressRequest, AddressResponse> {
-    private AddressMapper mapper;
-    private FactoryRepository factoryRepository;
+    private final AddressMapper mapper;
+    private final FactoryRepository factoryRepository;
 
     public AddressService(AddressRepository repository, AddressMapper mapper, FactoryRepository factoryRepository) {
         super(repository, "Address");
@@ -49,6 +50,7 @@ public class AddressService extends BaseService<Address, Integer, AddressRequest
     }
 
     @Override
+    @Transactional
     public AddressResponse deactivateEntity(Integer id) {
         log.info("[AddressService] [deactivateEntity] DEACTIVATE ADDRESS WITH ID {}", id);
         Address address = repository.findById(id)
@@ -60,6 +62,7 @@ public class AddressService extends BaseService<Address, Integer, AddressRequest
     }
 
     @Override
+    @Transactional
     public AddressResponse reactivateEntity(Integer id) {
         log.info("[AddressService] [reactivateEntity] DEACTIVATE ADDRESS WITH ID {}", id);
         Address address = repository.findById(id)
