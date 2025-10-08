@@ -28,6 +28,6 @@ public class DailyActiveUsers {
     private LocalDateTime accessedOn;
 
     @ManyToOne
-    @JoinColumn(name = "user_account_uuid ")
+    @JoinColumn(name = "user_account_uuid")
     private User user;
 }
