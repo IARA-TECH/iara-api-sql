@@ -8,6 +8,7 @@ import com.iaraapi.model.UserPhoto;
 import com.iaraapi.repository.UserPhotoRepository;
 import com.iaraapi.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -37,6 +38,7 @@ public class UserPhotoService extends BaseService<UserPhoto, Integer, UserPhotoR
     }
 
     @Override
+    @Transactional
     public UserPhotoResponse create(UserPhotoRequest request) {
         log.info("[UserAccountPhotoService] Creating photo for user {}", request.getUserId());
         try {
