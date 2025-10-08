@@ -12,6 +12,7 @@ import com.iaraapi.repository.GenderRepository;
 import com.iaraapi.repository.UserRepository;
 import com.iaraapi.util.PasswordUtil;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +39,7 @@ public class UserService extends BaseService<User, UUID, UserRequest, UserRespon
     }
 
     @Override
+    @Transactional
     public UserResponse create(UserRequest request) {
         log.info("[UserService] Creating user {}", request.getName());
 
@@ -97,6 +99,7 @@ public class UserService extends BaseService<User, UUID, UserRequest, UserRespon
 
 
     @Override
+    @Transactional
     public UserResponse deactivateEntity(UUID id) {
         log.info("[UserService] [deactivateEntity] DEACTIVATE USER WITH ID {}", id);
         User user = repository.findById(id)
@@ -108,6 +111,7 @@ public class UserService extends BaseService<User, UUID, UserRequest, UserRespon
     }
 
     @Override
+    @Transactional
     public UserResponse reactivateEntity(UUID id) {
         log.info("[UserService] [reactivateEntity] DEACTIVATE USER WITH ID {}", id);
         User user = repository.findById(id)
