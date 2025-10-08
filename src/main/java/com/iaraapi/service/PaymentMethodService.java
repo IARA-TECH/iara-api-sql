@@ -6,6 +6,7 @@ import com.iaraapi.mapper.PaymentMethodMapper;
 import com.iaraapi.model.PaymentMethod;
 import com.iaraapi.repository.PaymentMethodRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -39,6 +40,7 @@ public class PaymentMethodService extends BaseService<PaymentMethod, Integer, Pa
     }
 
     @Override
+    @Transactional
     public PaymentMethodResponse deactivateEntity(Integer id) {
         log.info("[PaymentMethodService] [deactivateEntity] DEACTIVATE PAYMENT METHOD WITH ID {}", id);
         PaymentMethod paymentMethod = repository.findById(id)
@@ -50,6 +52,7 @@ public class PaymentMethodService extends BaseService<PaymentMethod, Integer, Pa
     }
 
     @Override
+    @Transactional
     public PaymentMethodResponse reactivateEntity(Integer id) {
         log.info("[PaymentMethodService] [reactivateEntity] REACTIVATE PAYMENT METHOD WITH ID {}", id);
         PaymentMethod paymentMethod = repository.findById(id)
