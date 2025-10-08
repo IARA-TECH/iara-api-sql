@@ -12,6 +12,7 @@ import com.iaraapi.repository.PaymentRepository;
 import com.iaraapi.repository.SubscriptionRepository;
 import com.iaraapi.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -54,6 +55,7 @@ public class PaymentService extends BaseService<Payment, Integer, PaymentRequest
     }
 
     @Override
+    @Transactional
     public PaymentResponse create(PaymentRequest request) {
         log.info("[PaymentService] [create] CREATE PAYMENT {}", request);
 
@@ -74,6 +76,7 @@ public class PaymentService extends BaseService<Payment, Integer, PaymentRequest
     }
 
     @Override
+    @Transactional
     public PaymentResponse update(Integer id, PaymentRequest request) {
         log.info("[PaymentService] [update] UPDATE WITH ID {}", id);
 
@@ -103,6 +106,7 @@ public class PaymentService extends BaseService<Payment, Integer, PaymentRequest
 
 
     @Override
+    @Transactional
     public PaymentResponse deactivateEntity(Integer id) {
         log.info("[PaymentService] [deactivateEntity] DEACTIVATE PAYMENT WITH ID {}", id);
         Payment payment = repository.findById(id)
@@ -117,6 +121,7 @@ public class PaymentService extends BaseService<Payment, Integer, PaymentRequest
     }
 
     @Override
+    @Transactional
     public PaymentResponse reactivateEntity(Integer id) {
         log.info("[PaymentService] [reactivateEntity] REACTIVATE PAYMENT WITH ID {}", id);
         Payment payment = repository.findById(id)
