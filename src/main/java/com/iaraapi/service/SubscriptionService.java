@@ -4,17 +4,13 @@ import com.iaraapi.dto.response.SubscriptionResponse;
 import com.iaraapi.mapper.SubscriptionMapper;
 import com.iaraapi.model.Subscription;
 import com.iaraapi.dto.request.SubscriptionRequest;
-import com.iaraapi.repository.SubscriptionRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @Service
