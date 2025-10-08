@@ -2,6 +2,7 @@ package com.iaraapi.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -23,6 +24,7 @@ public class UserAccessType {
     @JoinColumn(name = "access_type_id")
     private AccessType accessType;
 
+    @CreationTimestamp
     private LocalDateTime createdAt;
     private LocalDateTime deactivatedAt;
 }
