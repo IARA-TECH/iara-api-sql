@@ -6,6 +6,7 @@ import com.iaraapi.mapper.AccessTypeMapper;
 import com.iaraapi.model.AccessType;
 import com.iaraapi.repository.AccessTypeRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +39,7 @@ public class AccessTypeService extends BaseService<AccessType, Integer, AccessTy
     }
 
     @Override
+    @Transactional
     public AccessTypeResponse deactivateEntity(Integer id) {
         log.info("[AccessTypeService] [deactivateEntity] DEACTIVATE ACCESS TYPE WITH ID {}", id);
         AccessType accessType = repository.findById(id)
@@ -49,6 +51,7 @@ public class AccessTypeService extends BaseService<AccessType, Integer, AccessTy
     }
 
     @Override
+    @Transactional
     public AccessTypeResponse reactivateEntity(Integer id) {
         log.info("[AccessTypeService] [reactivateEntity] REACTIVATE ACCESS TYPE WITH ID {}", id);
         AccessType accessType = repository.findById(id)
