@@ -1,8 +1,8 @@
 package com.iaraapi.mapper;
 
-import com.iaraapi.dto.request.FactoryRequest;
-import com.iaraapi.dto.response.FactoryResponse;
-import com.iaraapi.model.Factory;
+import com.iaraapi.model.dto.request.FactoryRequest;
+import com.iaraapi.model.dto.response.FactoryResponse;
+import com.iaraapi.model.database.Factory;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

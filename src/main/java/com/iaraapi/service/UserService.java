@@ -1,12 +1,12 @@
 package com.iaraapi.service;
 
-import com.iaraapi.dto.request.UserRequest;
-import com.iaraapi.dto.response.UserFactoryResponse;
-import com.iaraapi.dto.response.UserResponse;
+import com.iaraapi.model.dto.request.UserRequest;
+import com.iaraapi.model.dto.response.UserFactoryResponse;
+import com.iaraapi.model.dto.response.UserResponse;
 import com.iaraapi.mapper.UserMapper;
-import com.iaraapi.model.Factory;
-import com.iaraapi.model.Gender;
-import com.iaraapi.model.User;
+import com.iaraapi.model.database.Factory;
+import com.iaraapi.model.database.Gender;
+import com.iaraapi.model.database.User;
 import com.iaraapi.repository.FactoryRepository;
 import com.iaraapi.repository.GenderRepository;
 import com.iaraapi.repository.UserRepository;

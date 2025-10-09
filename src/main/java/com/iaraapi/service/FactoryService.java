@@ -1,9 +1,9 @@
 package com.iaraapi.service;
 
-import com.iaraapi.dto.request.FactoryRequest;
-import com.iaraapi.dto.response.FactoryResponse;
+import com.iaraapi.model.dto.request.FactoryRequest;
+import com.iaraapi.model.dto.response.FactoryResponse;
 import com.iaraapi.mapper.FactoryMapper;
-import com.iaraapi.model.Factory;
+import com.iaraapi.model.database.Factory;
 import com.iaraapi.repository.FactoryRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;

@@ -1,8 +1,8 @@
 package com.iaraapi.mapper;
 
-import com.iaraapi.dto.request.PaymentMethodRequest;
-import com.iaraapi.dto.response.PaymentMethodResponse;
-import com.iaraapi.model.PaymentMethod;
+import com.iaraapi.model.dto.request.PaymentMethodRequest;
+import com.iaraapi.model.dto.response.PaymentMethodResponse;
+import com.iaraapi.model.database.PaymentMethod;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

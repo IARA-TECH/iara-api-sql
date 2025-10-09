@@ -1,12 +1,12 @@
 package com.iaraapi.service;
 
-import com.iaraapi.dto.request.PaymentRequest;
-import com.iaraapi.dto.response.PaymentResponse;
+import com.iaraapi.model.dto.request.PaymentRequest;
+import com.iaraapi.model.dto.response.PaymentResponse;
 import com.iaraapi.mapper.PaymentMapper;
-import com.iaraapi.model.Payment;
-import com.iaraapi.model.PaymentMethod;
-import com.iaraapi.model.Subscription;
-import com.iaraapi.model.User;
+import com.iaraapi.model.database.Payment;
+import com.iaraapi.model.database.PaymentMethod;
+import com.iaraapi.model.database.Subscription;
+import com.iaraapi.model.database.User;
 import com.iaraapi.repository.PaymentMethodRepository;
 import com.iaraapi.repository.PaymentRepository;
 import com.iaraapi.repository.SubscriptionRepository;

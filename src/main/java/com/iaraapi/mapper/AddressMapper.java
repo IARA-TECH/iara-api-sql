@@ -1,9 +1,9 @@
 package com.iaraapi.mapper;
 
-import com.iaraapi.dto.request.AddressRequest;
-import com.iaraapi.dto.response.AddressResponse;
-import com.iaraapi.model.Address;
-import com.iaraapi.model.Factory;
+import com.iaraapi.model.dto.request.AddressRequest;
+import com.iaraapi.model.dto.response.AddressResponse;
+import com.iaraapi.model.database.Address;
+import com.iaraapi.model.database.Factory;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

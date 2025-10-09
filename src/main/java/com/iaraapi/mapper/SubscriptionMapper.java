@@ -1,8 +1,8 @@
 package com.iaraapi.mapper;
 
-import com.iaraapi.dto.request.SubscriptionRequest;
-import com.iaraapi.dto.response.SubscriptionResponse;
-import com.iaraapi.model.Subscription;
+import com.iaraapi.model.dto.request.SubscriptionRequest;
+import com.iaraapi.model.dto.response.SubscriptionResponse;
+import com.iaraapi.model.database.Subscription;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

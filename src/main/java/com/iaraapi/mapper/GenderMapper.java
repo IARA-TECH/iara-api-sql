@@ -1,8 +1,8 @@
 package com.iaraapi.mapper;
 
-import com.iaraapi.dto.request.GenderRequest;
-import com.iaraapi.dto.response.GenderResponse;
-import com.iaraapi.model.Gender;
+import com.iaraapi.model.dto.request.GenderRequest;
+import com.iaraapi.model.dto.response.GenderResponse;
+import com.iaraapi.model.database.Gender;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

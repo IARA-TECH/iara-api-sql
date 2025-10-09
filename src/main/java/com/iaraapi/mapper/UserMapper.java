@@ -1,10 +1,10 @@
 package com.iaraapi.mapper;
 
-import com.iaraapi.dto.request.UserRequest;
-import com.iaraapi.dto.response.UserResponse;
-import com.iaraapi.model.Factory;
-import com.iaraapi.model.Gender;
-import com.iaraapi.model.User;
+import com.iaraapi.model.dto.request.UserRequest;
+import com.iaraapi.model.dto.response.UserResponse;
+import com.iaraapi.model.database.Factory;
+import com.iaraapi.model.database.Gender;
+import com.iaraapi.model.database.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;

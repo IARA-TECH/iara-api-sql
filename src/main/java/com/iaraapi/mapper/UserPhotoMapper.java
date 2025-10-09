@@ -1,9 +1,9 @@
 package com.iaraapi.mapper;
 
-import com.iaraapi.dto.request.UserPhotoRequest;
-import com.iaraapi.dto.response.UserPhotoResponse;
-import com.iaraapi.model.User;
-import com.iaraapi.model.UserPhoto;
+import com.iaraapi.model.dto.request.UserPhotoRequest;
+import com.iaraapi.model.dto.response.UserPhotoResponse;
+import com.iaraapi.model.database.User;
+import com.iaraapi.model.database.UserPhoto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

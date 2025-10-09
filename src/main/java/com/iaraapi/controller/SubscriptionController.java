@@ -1,7 +1,7 @@
 package com.iaraapi.controller;
 
-import com.iaraapi.dto.request.SubscriptionRequest;
-import com.iaraapi.dto.response.SubscriptionResponse;
+import com.iaraapi.model.dto.request.SubscriptionRequest;
+import com.iaraapi.model.dto.response.SubscriptionResponse;
 import com.iaraapi.service.SubscriptionService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

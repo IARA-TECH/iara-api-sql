@@ -1,10 +1,8 @@
 package com.iaraapi.controller;
 
-import com.iaraapi.dto.request.PaymentMethodRequest;
-import com.iaraapi.dto.response.PaymentMethodResponse;
-import com.iaraapi.model.PaymentMethod;
+import com.iaraapi.model.dto.request.PaymentMethodRequest;
+import com.iaraapi.model.dto.response.PaymentMethodResponse;
 import com.iaraapi.service.PaymentMethodService;
-import com.iaraapi.service.SubscriptionService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

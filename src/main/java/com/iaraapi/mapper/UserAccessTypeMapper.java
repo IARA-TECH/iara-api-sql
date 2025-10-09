@@ -1,8 +1,8 @@
 package com.iaraapi.mapper;
 
-import com.iaraapi.dto.request.UserAccessTypeRequest;
-import com.iaraapi.dto.response.UserAccessTypeResponse;
-import com.iaraapi.model.UserAccessType;
+import com.iaraapi.model.dto.request.UserAccessTypeRequest;
+import com.iaraapi.model.dto.response.UserAccessTypeResponse;
+import com.iaraapi.model.database.UserAccessType;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
