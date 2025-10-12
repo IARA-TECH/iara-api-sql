@@ -1,5 +1,6 @@
 package com.iaraapi.controller;
 
+import com.iaraapi.controller.contract.PaymentContract;
 import com.iaraapi.dto.request.PaymentRequest;
 import com.iaraapi.dto.response.PaymentResponse;
 import com.iaraapi.service.PaymentService;
@@ -15,7 +16,7 @@ import java.util.List;
 @RequestMapping("api/v1/payments")
 @RequiredArgsConstructor
 @CrossOrigin("*")
-public class PaymentController {
+public class PaymentController implements PaymentContract {
 
     private final PaymentService paymentService;
 
