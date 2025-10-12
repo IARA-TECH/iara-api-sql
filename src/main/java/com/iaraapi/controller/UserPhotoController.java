@@ -1,5 +1,6 @@
 package com.iaraapi.controller;
 
+import com.iaraapi.controller.contract.UserPhotoContract;
 import com.iaraapi.dto.request.UserPhotoRequest;
 import com.iaraapi.dto.response.UserPhotoResponse;
 import com.iaraapi.service.UserPhotoService;
@@ -15,7 +16,7 @@ import java.util.List;
 @RequestMapping("api/v1/user-photos")
 @RequiredArgsConstructor
 @CrossOrigin("*")
-public class UserPhotoController {
+public class UserPhotoController implements UserPhotoContract {
 
     private final UserPhotoService userPhotoService;
 
