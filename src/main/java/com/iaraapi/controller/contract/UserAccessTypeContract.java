@@ -21,7 +21,8 @@ public interface UserAccessTypeContract {
             @ApiResponse(responseCode = "200", description = "Relation created successfully",
                     content = @Content(schema = @Schema(implementation = UserAccessTypeResponse.class))),
             @ApiResponse(responseCode = "400", description = "Invalid data provided", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Data not found", content = @Content)
     })
     ResponseEntity<UserAccessTypeResponse> create(UserAccessTypeRequest request);
 
