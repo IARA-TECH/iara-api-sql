@@ -1,6 +1,5 @@
 package com.iaraapi.controller;
 
-import com.iaraapi.controller.contract.FactoryContract;
 import com.iaraapi.controller.contract.GenderContract;
 import com.iaraapi.dto.request.GenderRequest;
 import com.iaraapi.dto.response.GenderResponse;
