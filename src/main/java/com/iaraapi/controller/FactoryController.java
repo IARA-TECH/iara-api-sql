@@ -1,5 +1,6 @@
 package com.iaraapi.controller;
 
+import com.iaraapi.controller.contract.FactoryContract;
 import com.iaraapi.dto.request.FactoryRequest;
 import com.iaraapi.dto.response.FactoryResponse;
 import com.iaraapi.service.FactoryService;
@@ -15,7 +16,7 @@ import java.util.List;
 @RequestMapping("api/v1/factories")
 @RequiredArgsConstructor
 @CrossOrigin("*")
-public class FactoryController {
+public class FactoryController implements FactoryContract {
 
     private final FactoryService factoryService;
 
