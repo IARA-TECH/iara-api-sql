@@ -2,7 +2,7 @@ package com.iaraapi.service;
 
 import com.iaraapi.model.dto.request.PaymentRequest;
 import com.iaraapi.model.dto.response.PaymentResponse;
-import com.iaraapi.mapper.PaymentMapper;
+import com.iaraapi.model.mapper.PaymentMapper;
 import com.iaraapi.model.database.Payment;
 import com.iaraapi.model.database.PaymentMethod;
 import com.iaraapi.model.database.Subscription;

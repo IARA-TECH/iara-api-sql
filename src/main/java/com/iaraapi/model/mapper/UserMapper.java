@@ -1,4 +1,4 @@
-package com.iaraapi.mapper;
+package com.iaraapi.model.mapper;
 
 import com.iaraapi.model.dto.request.UserRequest;
 import com.iaraapi.model.dto.response.UserResponse;

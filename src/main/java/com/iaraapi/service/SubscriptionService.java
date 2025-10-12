@@ -1,7 +1,7 @@
 package com.iaraapi.service;
 
 import com.iaraapi.model.dto.response.SubscriptionResponse;
-import com.iaraapi.mapper.SubscriptionMapper;
+import com.iaraapi.model.mapper.SubscriptionMapper;
 import com.iaraapi.model.database.Subscription;
 import com.iaraapi.model.dto.request.SubscriptionRequest;
 import jakarta.persistence.EntityNotFoundException;

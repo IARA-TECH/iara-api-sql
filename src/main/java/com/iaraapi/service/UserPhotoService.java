@@ -2,7 +2,7 @@ package com.iaraapi.service;
 
 import com.iaraapi.model.dto.request.UserPhotoRequest;
 import com.iaraapi.model.dto.response.UserPhotoResponse;
-import com.iaraapi.mapper.UserPhotoMapper;
+import com.iaraapi.model.mapper.UserPhotoMapper;
 import com.iaraapi.model.database.User;
 import com.iaraapi.model.database.UserPhoto;
 import com.iaraapi.repository.UserPhotoRepository;

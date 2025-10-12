@@ -2,7 +2,7 @@ package com.iaraapi.service;
 
 import com.iaraapi.model.dto.request.AddressRequest;
 import com.iaraapi.model.dto.response.AddressResponse;
-import com.iaraapi.mapper.AddressMapper;
+import com.iaraapi.model.mapper.AddressMapper;
 import com.iaraapi.model.database.Address;
 import com.iaraapi.model.database.Factory;
 import com.iaraapi.repository.AddressRepository;

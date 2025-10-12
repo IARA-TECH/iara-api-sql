@@ -1,4 +1,4 @@
-package com.iaraapi.mapper;
+package com.iaraapi.model.mapper;
 
 import com.iaraapi.model.dto.request.PaymentMethodRequest;
 import com.iaraapi.model.dto.response.PaymentMethodResponse;

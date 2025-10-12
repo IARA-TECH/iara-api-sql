@@ -3,7 +3,7 @@ package com.iaraapi.service;
 import com.iaraapi.model.dto.request.UserRequest;
 import com.iaraapi.model.dto.response.UserFactoryResponse;
 import com.iaraapi.model.dto.response.UserResponse;
-import com.iaraapi.mapper.UserMapper;
+import com.iaraapi.model.mapper.UserMapper;
 import com.iaraapi.model.database.Factory;
 import com.iaraapi.model.database.Gender;
 import com.iaraapi.model.database.User;

@@ -2,7 +2,7 @@ package com.iaraapi.service;
 
 import com.iaraapi.model.dto.request.AccessTypeRequest;
 import com.iaraapi.model.dto.response.AccessTypeResponse;
-import com.iaraapi.mapper.AccessTypeMapper;
+import com.iaraapi.model.mapper.AccessTypeMapper;
 import com.iaraapi.model.database.AccessType;
 import com.iaraapi.repository.AccessTypeRepository;
 import jakarta.persistence.EntityNotFoundException;

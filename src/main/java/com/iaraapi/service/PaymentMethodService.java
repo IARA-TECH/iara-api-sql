@@ -2,7 +2,7 @@ package com.iaraapi.service;
 
 import com.iaraapi.model.dto.request.PaymentMethodRequest;
 import com.iaraapi.model.dto.response.PaymentMethodResponse;
-import com.iaraapi.mapper.PaymentMethodMapper;
+import com.iaraapi.model.mapper.PaymentMethodMapper;
 import com.iaraapi.model.database.PaymentMethod;
 import com.iaraapi.repository.PaymentMethodRepository;
 import jakarta.persistence.EntityNotFoundException;
