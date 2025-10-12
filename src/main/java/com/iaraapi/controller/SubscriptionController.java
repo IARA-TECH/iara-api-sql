@@ -1,5 +1,6 @@
 package com.iaraapi.controller;
 
+import com.iaraapi.controller.contract.SubscriptionContract;
 import com.iaraapi.dto.request.SubscriptionRequest;
 import com.iaraapi.dto.response.SubscriptionResponse;
 import com.iaraapi.service.SubscriptionService;
@@ -15,7 +16,7 @@ import java.util.List;
 @RequestMapping("/api/v1/subscriptions")
 @RequiredArgsConstructor
 @CrossOrigin("*")
-public class SubscriptionController {
+public class SubscriptionController implements SubscriptionContract {
     private final SubscriptionService subscriptionService;
 
     @PostMapping
