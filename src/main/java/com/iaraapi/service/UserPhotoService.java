@@ -64,14 +64,4 @@ public class UserPhotoService extends BaseService<UserPhoto, Integer, UserPhotoR
         userPhoto.setUrlBlob(request.getUrlBlob());
         userPhoto.setChangedAt(LocalDateTime.now());
     }
-
-    @Override
-    public UserPhotoResponse deactivateEntity(Integer id) {
-        return null;
-    }
-
-    @Override
-    public UserPhotoResponse reactivateEntity(Integer id) {
-        return null;
-    }
 }
