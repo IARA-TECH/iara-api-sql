@@ -1,5 +1,6 @@
 package com.iaraapi.controller;
 
+import com.iaraapi.controller.contract.UserContract;
 import com.iaraapi.dto.request.EmailRequest;
 import com.iaraapi.dto.request.NameRequest;
 import com.iaraapi.dto.request.UserRequest;
@@ -19,7 +20,7 @@ import java.util.UUID;
 @RequestMapping("api/v1/users")
 @RequiredArgsConstructor
 @CrossOrigin("*")
-public class UserController {
+public class UserController implements UserContract {
 
     private final UserService userService;
 
