@@ -1,6 +1,6 @@
 package com.iaraapi.repository;
 
-import com.iaraapi.model.DailyActiveUsers;
+import com.iaraapi.model.database.DailyActiveUsers;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.query.Procedure;

@@ -1,7 +1,7 @@
 package com.iaraapi.controller;
 
-import com.iaraapi.dto.request.AccessTypeRequest;
-import com.iaraapi.dto.response.AccessTypeResponse;
+import com.iaraapi.model.dto.request.AccessTypeRequest;
+import com.iaraapi.model.dto.response.AccessTypeResponse;
 import com.iaraapi.service.AccessTypeService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

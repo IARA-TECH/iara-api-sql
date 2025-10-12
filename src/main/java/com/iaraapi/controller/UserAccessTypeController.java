@@ -1,7 +1,7 @@
 package com.iaraapi.controller;
 
-import com.iaraapi.dto.request.UserAccessTypeRequest;
-import com.iaraapi.dto.response.UserAccessTypeResponse;
+import com.iaraapi.model.dto.request.UserAccessTypeRequest;
+import com.iaraapi.model.dto.response.UserAccessTypeResponse;
 import com.iaraapi.service.UserAccessTypeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

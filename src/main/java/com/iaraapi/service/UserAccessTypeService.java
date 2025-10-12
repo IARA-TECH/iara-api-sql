@@ -1,9 +1,12 @@
 package com.iaraapi.service;
 
-import com.iaraapi.dto.request.UserAccessTypeRequest;
-import com.iaraapi.dto.response.UserAccessTypeResponse;
-import com.iaraapi.mapper.UserAccessTypeMapper;
-import com.iaraapi.model.*;
+import com.iaraapi.model.dto.request.UserAccessTypeRequest;
+import com.iaraapi.model.dto.response.UserAccessTypeResponse;
+import com.iaraapi.model.mapper.UserAccessTypeMapper;
+import com.iaraapi.model.database.AccessType;
+import com.iaraapi.model.database.User;
+import com.iaraapi.model.database.UserAccessType;
+import com.iaraapi.model.database.UserAccessTypeId;
 import com.iaraapi.repository.*;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;

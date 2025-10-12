@@ -1,9 +1,9 @@
 package com.iaraapi.service;
 
-import com.iaraapi.dto.response.SubscriptionResponse;
-import com.iaraapi.mapper.SubscriptionMapper;
-import com.iaraapi.model.Subscription;
-import com.iaraapi.dto.request.SubscriptionRequest;
+import com.iaraapi.model.dto.response.SubscriptionResponse;
+import com.iaraapi.model.mapper.SubscriptionMapper;
+import com.iaraapi.model.database.Subscription;
+import com.iaraapi.model.dto.request.SubscriptionRequest;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;

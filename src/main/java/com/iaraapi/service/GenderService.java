@@ -1,9 +1,9 @@
 package com.iaraapi.service;
 
-import com.iaraapi.dto.request.GenderRequest;
-import com.iaraapi.dto.response.GenderResponse;
-import com.iaraapi.mapper.GenderMapper;
-import com.iaraapi.model.Gender;
+import com.iaraapi.model.dto.request.GenderRequest;
+import com.iaraapi.model.dto.response.GenderResponse;
+import com.iaraapi.model.mapper.GenderMapper;
+import com.iaraapi.model.database.Gender;
 import com.iaraapi.repository.GenderRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;

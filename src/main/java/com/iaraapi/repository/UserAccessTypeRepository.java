@@ -1,7 +1,7 @@
 package com.iaraapi.repository;
 
-import com.iaraapi.model.UserAccessType;
-import com.iaraapi.model.UserAccessTypeId;
+import com.iaraapi.model.database.UserAccessType;
+import com.iaraapi.model.database.UserAccessTypeId;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

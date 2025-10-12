@@ -61,4 +61,9 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(UnsupportedOperationException.class)
+    public ResponseEntity<Object> handleUnsupportedOperationException(UnsupportedOperationException ex) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+    }
+
 }
