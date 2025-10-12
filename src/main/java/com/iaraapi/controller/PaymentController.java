@@ -1,8 +1,8 @@
 package com.iaraapi.controller;
 
 import com.iaraapi.controller.contract.PaymentContract;
-import com.iaraapi.dto.request.PaymentRequest;
-import com.iaraapi.dto.response.PaymentResponse;
+import com.iaraapi.model.dto.request.PaymentRequest;
+import com.iaraapi.model.dto.response.PaymentResponse;
 import com.iaraapi.service.PaymentService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

@@ -1,7 +1,7 @@
 package com.iaraapi.controller.contract;
 
-import com.iaraapi.dto.request.FactoryRequest;
-import com.iaraapi.dto.response.FactoryResponse;
+import com.iaraapi.model.dto.request.FactoryRequest;
+import com.iaraapi.model.dto.response.FactoryResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

@@ -17,8 +17,6 @@ public abstract class BaseService<E, ID, Req, Res> {
     protected abstract E toEntity(Req request);
     protected abstract Res toResponse(E entity);
     protected abstract void updateEntity(E entity, Req request);
-    public abstract Res deactivateEntity(ID id);
-    public abstract Res reactivateEntity(ID id);
 
     public List<Res> getAll() {
         log.info("[{}Service] [getAll] GET ALL", entityName);
@@ -49,5 +47,13 @@ public abstract class BaseService<E, ID, Req, Res> {
         log.info("[{}Service] [updateById] entity = {}", entityName, entity);
         updateEntity(entity, request);
         return toResponse(repository.save(entity));
+    }
+
+    public Res deactivateEntity(ID id) {
+        throw new UnsupportedOperationException(entityName + " does not support deactivation");
+    }
+
+    public Res reactivateEntity(ID id) {
+        throw new UnsupportedOperationException(entityName + " does not support reactivation");
     }
 }

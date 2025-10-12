@@ -1,11 +1,11 @@
 package com.iaraapi.controller;
 
 import com.iaraapi.controller.contract.UserContract;
-import com.iaraapi.dto.request.EmailRequest;
-import com.iaraapi.dto.request.NameRequest;
-import com.iaraapi.dto.request.UserRequest;
-import com.iaraapi.dto.response.UserFactoryResponse;
-import com.iaraapi.dto.response.UserResponse;
+import com.iaraapi.model.dto.request.EmailRequest;
+import com.iaraapi.model.dto.request.NameRequest;
+import com.iaraapi.model.dto.request.UserRequest;
+import com.iaraapi.model.dto.response.UserFactoryResponse;
+import com.iaraapi.model.dto.response.UserResponse;
 import com.iaraapi.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

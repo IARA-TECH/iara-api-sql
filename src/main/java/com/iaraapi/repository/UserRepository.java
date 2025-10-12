@@ -1,7 +1,7 @@
 package com.iaraapi.repository;
 
-import com.iaraapi.dto.response.UserFactoryResponse;
-import com.iaraapi.model.User;
+import com.iaraapi.model.dto.response.UserFactoryResponse;
+import com.iaraapi.model.database.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.query.Procedure;

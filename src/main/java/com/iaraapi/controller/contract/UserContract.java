@@ -1,10 +1,10 @@
 package com.iaraapi.controller.contract;
 
-import com.iaraapi.dto.request.EmailRequest;
-import com.iaraapi.dto.request.NameRequest;
-import com.iaraapi.dto.request.UserRequest;
-import com.iaraapi.dto.response.UserFactoryResponse;
-import com.iaraapi.dto.response.UserResponse;
+import com.iaraapi.model.dto.request.EmailRequest;
+import com.iaraapi.model.dto.request.NameRequest;
+import com.iaraapi.model.dto.request.UserRequest;
+import com.iaraapi.model.dto.response.UserFactoryResponse;
+import com.iaraapi.model.dto.response.UserResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

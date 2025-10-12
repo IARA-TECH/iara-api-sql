@@ -1,8 +1,8 @@
 package com.iaraapi.controller;
 
 import com.iaraapi.controller.contract.AddressContract;
-import com.iaraapi.dto.request.AddressRequest;
-import com.iaraapi.dto.response.AddressResponse;
+import com.iaraapi.model.dto.request.AddressRequest;
+import com.iaraapi.model.dto.response.AddressResponse;
 import com.iaraapi.service.AddressService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

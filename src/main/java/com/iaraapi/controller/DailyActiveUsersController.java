@@ -1,8 +1,8 @@
 package com.iaraapi.controller;
 
 import com.iaraapi.controller.contract.DailyActiveUsersContract;
-import com.iaraapi.dto.request.DailyActiveUsersRequest;
-import com.iaraapi.dto.response.DailyActiveUsersResponse;
+import com.iaraapi.model.dto.request.DailyActiveUsersRequest;
+import com.iaraapi.model.dto.response.DailyActiveUsersResponse;
 import com.iaraapi.service.DailyActiveUsersService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

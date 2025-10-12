@@ -1,10 +1,10 @@
 package com.iaraapi.service;
 
-import com.iaraapi.dto.request.AddressRequest;
-import com.iaraapi.dto.response.AddressResponse;
-import com.iaraapi.mapper.AddressMapper;
-import com.iaraapi.model.Address;
-import com.iaraapi.model.Factory;
+import com.iaraapi.model.dto.request.AddressRequest;
+import com.iaraapi.model.dto.response.AddressResponse;
+import com.iaraapi.model.mapper.AddressMapper;
+import com.iaraapi.model.database.Address;
+import com.iaraapi.model.database.Factory;
 import com.iaraapi.repository.AddressRepository;
 import com.iaraapi.repository.FactoryRepository;
 import jakarta.persistence.EntityNotFoundException;

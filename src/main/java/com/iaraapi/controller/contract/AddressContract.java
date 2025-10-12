@@ -1,7 +1,7 @@
 package com.iaraapi.controller.contract;
 
-import com.iaraapi.dto.request.AddressRequest;
-import com.iaraapi.dto.response.AddressResponse;
+import com.iaraapi.model.dto.request.AddressRequest;
+import com.iaraapi.model.dto.response.AddressResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

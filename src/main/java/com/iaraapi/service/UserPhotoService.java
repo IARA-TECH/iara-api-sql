@@ -1,10 +1,10 @@
 package com.iaraapi.service;
 
-import com.iaraapi.dto.request.UserPhotoRequest;
-import com.iaraapi.dto.response.UserPhotoResponse;
-import com.iaraapi.mapper.UserPhotoMapper;
-import com.iaraapi.model.User;
-import com.iaraapi.model.UserPhoto;
+import com.iaraapi.model.dto.request.UserPhotoRequest;
+import com.iaraapi.model.dto.response.UserPhotoResponse;
+import com.iaraapi.model.mapper.UserPhotoMapper;
+import com.iaraapi.model.database.User;
+import com.iaraapi.model.database.UserPhoto;
 import com.iaraapi.repository.UserPhotoRepository;
 import com.iaraapi.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -63,15 +63,5 @@ public class UserPhotoService extends BaseService<UserPhoto, Integer, UserPhotoR
     protected void updateEntity(UserPhoto userPhoto, UserPhotoRequest request) {
         userPhoto.setUrlBlob(request.getUrlBlob());
         userPhoto.setChangedAt(LocalDateTime.now());
-    }
-
-    @Override
-    public UserPhotoResponse deactivateEntity(Integer id) {
-        return null;
-    }
-
-    @Override
-    public UserPhotoResponse reactivateEntity(Integer id) {
-        return null;
     }
 }

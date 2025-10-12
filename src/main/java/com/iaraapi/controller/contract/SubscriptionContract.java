@@ -1,7 +1,7 @@
 package com.iaraapi.controller.contract;
 
-import com.iaraapi.dto.request.SubscriptionRequest;
-import com.iaraapi.dto.response.SubscriptionResponse;
+import com.iaraapi.model.dto.request.SubscriptionRequest;
+import com.iaraapi.model.dto.response.SubscriptionResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

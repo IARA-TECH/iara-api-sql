@@ -1,7 +1,7 @@
 package com.iaraapi.controller.contract;
 
-import com.iaraapi.dto.request.PaymentMethodRequest;
-import com.iaraapi.dto.response.PaymentMethodResponse;
+import com.iaraapi.model.dto.request.PaymentMethodRequest;
+import com.iaraapi.model.dto.response.PaymentMethodResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

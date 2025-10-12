@@ -1,8 +1,8 @@
 package com.iaraapi.controller;
 
 import com.iaraapi.controller.contract.UserPhotoContract;
-import com.iaraapi.dto.request.UserPhotoRequest;
-import com.iaraapi.dto.response.UserPhotoResponse;
+import com.iaraapi.model.dto.request.UserPhotoRequest;
+import com.iaraapi.model.dto.response.UserPhotoResponse;
 import com.iaraapi.service.UserPhotoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

@@ -1,8 +1,8 @@
 package com.iaraapi.controller;
 
 import com.iaraapi.controller.contract.GenderContract;
-import com.iaraapi.dto.request.GenderRequest;
-import com.iaraapi.dto.response.GenderResponse;
+import com.iaraapi.model.dto.request.GenderRequest;
+import com.iaraapi.model.dto.response.GenderResponse;
 import com.iaraapi.service.GenderService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

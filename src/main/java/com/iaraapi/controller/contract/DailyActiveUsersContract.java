@@ -1,7 +1,7 @@
 package com.iaraapi.controller.contract;
 
-import com.iaraapi.dto.request.DailyActiveUsersRequest;
-import com.iaraapi.dto.response.DailyActiveUsersResponse;
+import com.iaraapi.model.dto.request.DailyActiveUsersRequest;
+import com.iaraapi.model.dto.response.DailyActiveUsersResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

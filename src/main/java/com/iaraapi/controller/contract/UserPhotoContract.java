@@ -1,7 +1,7 @@
 package com.iaraapi.controller.contract;
 
-import com.iaraapi.dto.request.UserPhotoRequest;
-import com.iaraapi.dto.response.UserPhotoResponse;
+import com.iaraapi.model.dto.request.UserPhotoRequest;
+import com.iaraapi.model.dto.response.UserPhotoResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

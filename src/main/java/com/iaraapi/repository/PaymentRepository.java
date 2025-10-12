@@ -1,6 +1,6 @@
 package com.iaraapi.repository;
 
-import com.iaraapi.model.Payment;
+import com.iaraapi.model.database.Payment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;

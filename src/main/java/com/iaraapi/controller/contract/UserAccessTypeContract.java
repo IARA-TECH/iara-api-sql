@@ -1,7 +1,7 @@
 package com.iaraapi.controller.contract;
 
-import com.iaraapi.dto.request.UserAccessTypeRequest;
-import com.iaraapi.dto.response.UserAccessTypeResponse;
+import com.iaraapi.model.dto.request.UserAccessTypeRequest;
+import com.iaraapi.model.dto.response.UserAccessTypeResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
