@@ -1,5 +1,6 @@
 package com.iaraapi.controller;
 
+import com.iaraapi.controller.contract.AccessTypeContract;
 import com.iaraapi.dto.request.AccessTypeRequest;
 import com.iaraapi.dto.response.AccessTypeResponse;
 import com.iaraapi.service.AccessTypeService;
@@ -15,7 +16,7 @@ import java.util.List;
 @RequestMapping("api/v1/access-types")
 @RequiredArgsConstructor
 @CrossOrigin("*")
-public class AccessTypeController {
+public class AccessTypeController implements AccessTypeContract {
     private final AccessTypeService accessTypeService;
 
     @PostMapping
