@@ -1,5 +1,6 @@
 package com.iaraapi.controller;
 
+import com.iaraapi.controller.contract.GenderContract;
 import com.iaraapi.model.dto.request.GenderRequest;
 import com.iaraapi.model.dto.response.GenderResponse;
 import com.iaraapi.service.GenderService;
@@ -15,7 +16,7 @@ import java.util.List;
 @RequestMapping("api/v1/genders")
 @RequiredArgsConstructor
 @CrossOrigin("*")
-public class GenderController {
+public class GenderController implements GenderContract {
     private final GenderService genderService;
 
     @PostMapping

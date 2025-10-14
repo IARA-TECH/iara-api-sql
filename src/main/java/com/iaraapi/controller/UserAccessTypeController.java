@@ -1,5 +1,6 @@
 package com.iaraapi.controller;
 
+import com.iaraapi.controller.contract.UserAccessTypeContract;
 import com.iaraapi.model.dto.request.UserAccessTypeRequest;
 import com.iaraapi.model.dto.response.UserAccessTypeResponse;
 import com.iaraapi.service.UserAccessTypeService;
@@ -16,7 +17,7 @@ import java.util.UUID;
 @RequestMapping("api/v1/user-access-type")
 @CrossOrigin("*")
 @RequiredArgsConstructor
-public class UserAccessTypeController {
+public class UserAccessTypeController implements UserAccessTypeContract {
 
     private final UserAccessTypeService userAccessTypeService;
 

@@ -1,5 +1,6 @@
 package com.iaraapi.controller;
 
+import com.iaraapi.controller.contract.AddressContract;
 import com.iaraapi.model.dto.request.AddressRequest;
 import com.iaraapi.model.dto.response.AddressResponse;
 import com.iaraapi.service.AddressService;
@@ -15,7 +16,7 @@ import java.util.List;
 @RequestMapping("/api/v1/addresses")
 @RequiredArgsConstructor
 @CrossOrigin("*")
-public class AddressController {
+public class AddressController implements AddressContract {
     private final AddressService addressService;
 
     @PostMapping
@@ -29,22 +30,22 @@ public class AddressController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AddressResponse> getAddressType(@PathVariable Integer id) {
+    public ResponseEntity<AddressResponse> getAddress(@PathVariable Integer id) {
         return ResponseEntity.ok(addressService.getById(id));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AddressResponse> updateAddressType(@PathVariable Integer id, @RequestBody @Valid AddressRequest addressRequest) {
+    public ResponseEntity<AddressResponse> updateAddress(@PathVariable Integer id, @RequestBody @Valid AddressRequest addressRequest) {
         return ResponseEntity.ok(addressService.update(id, addressRequest));
     }
 
     @PatchMapping("/deactivate/{id}")
-    public ResponseEntity<AddressResponse> deactivateAddressType(@PathVariable Integer id) {
+    public ResponseEntity<AddressResponse> deactivateAddress(@PathVariable Integer id) {
         return ResponseEntity.ok(addressService.deactivateEntity(id));
     }
 
     @PatchMapping("/reactivate/{id}")
-    public ResponseEntity<AddressResponse> reactivateAddressType(@PathVariable Integer id) {
+    public ResponseEntity<AddressResponse> reactivateAddress(@PathVariable Integer id) {
         return ResponseEntity.ok(addressService.reactivateEntity(id));
     }
 

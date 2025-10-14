@@ -1,5 +1,6 @@
 package com.iaraapi.controller;
 
+import com.iaraapi.controller.contract.DailyActiveUsersContract;
 import com.iaraapi.model.dto.request.DailyActiveUsersRequest;
 import com.iaraapi.model.dto.response.DailyActiveUsersResponse;
 import com.iaraapi.service.DailyActiveUsersService;
@@ -14,7 +15,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/daily-active-users")
-public class DailyActiveUsersController {
+public class DailyActiveUsersController implements DailyActiveUsersContract {
     private final DailyActiveUsersService service;
 
     @PostMapping
