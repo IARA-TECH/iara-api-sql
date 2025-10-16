@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 
 @Service
@@ -38,25 +39,30 @@ public class UserPhotoService extends BaseService<UserPhoto, Integer, UserPhotoR
     }
 
     @Override
+    protected UserPhotoResponse toResponse(UserPhoto userPhoto) {
+        return mapper.toResponse(userPhoto);
+    }
+
+    @Override
     @Transactional
     public UserPhotoResponse create(UserPhotoRequest request) {
-        log.info("[UserAccountPhotoService] Creating photo for user {}", request.getUserId());
+        log.info("[UserPhotoService] Creating photo for user {}", request.getUserId());
         try {
             userPhotoRepository.createUserAccountPhoto(request.getUserId(), request.getUrlBlob());
-            log.info("[UserAccountPhotoService] Photo created successfully for user {}", request.getUserId());
+            log.info("[UserPhotoService] Photo created successfully for user {}", request.getUserId());
             return new UserPhotoResponse(
                     request.getUrlBlob(),
                     request.getUserId()
             );
         } catch (Exception e) {
-            log.error("[UserAccountPhotoService] Error creating user photo: {}", e.getMessage(), e);
+            log.error("[UserPhotoService] Error creating user photo: {}", e.getMessage(), e);
             throw new RuntimeException("Error creating user photo.");
         }
     }
 
-    @Override
-    protected UserPhotoResponse toResponse(UserPhoto userPhoto) {
-        return mapper.toResponse(userPhoto);
+    public UserPhotoResponse getPhotoByUserId(UUID userId) {
+        return toResponse(userPhotoRepository.findByUser_id(userId)
+                .orElseThrow(() -> new EntityNotFoundException("User with ID " + userId + " may not have a photo.")));
     }
 
     @Override
