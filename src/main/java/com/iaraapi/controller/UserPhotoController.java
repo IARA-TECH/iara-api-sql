@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("api/v1/user-photos")
@@ -33,6 +34,11 @@ public class UserPhotoController implements UserPhotoContract {
     @GetMapping("/{id}")
     public ResponseEntity<UserPhotoResponse> getUserPhoto(@PathVariable Integer id) {
         return ResponseEntity.ok(userPhotoService.getById(id));
+    }
+
+    @GetMapping("/by-user/{userId}")
+    public ResponseEntity<UserPhotoResponse> getUserPhotoByUserId(@PathVariable UUID userId) {
+        return ResponseEntity.ok(userPhotoService.getPhotoByUserId(userId));
     }
 
     @PutMapping("/{id}")

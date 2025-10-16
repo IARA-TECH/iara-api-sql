@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 public class UserPhoto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "pk_id")
     private Integer id;
 
     private String urlBlob;
