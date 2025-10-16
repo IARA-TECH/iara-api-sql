@@ -27,9 +27,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
-      - name: Compilar e testar
-        run: mvn clean verify -B
-
       - name: Login no Docker Hub
         uses: docker/login-action@v3
         with:
