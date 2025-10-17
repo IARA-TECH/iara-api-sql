@@ -49,3 +49,5 @@ jobs:
         if: success()
         run: |
           echo "Deploy automático pode ser configurado aqui (ex: Render, Railway, Fly.io, etc)"
+
+# teste
