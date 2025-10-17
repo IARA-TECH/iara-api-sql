@@ -36,15 +36,16 @@ jobs:
       - name: Build da imagem Docker
         run: |
           IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/iara-api-sql:latest
-          echo "Construindo imagem: $IMAGE_NAME"
+          echo "Construindo imagem Docker: $IMAGE_NAME"
           docker build -t $IMAGE_NAME .
 
       - name: Push da imagem para o Docker Hub
         run: |
           IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/iara-api-sql:latest
+          echo "Enviando imagem para o Docker Hub..."
           docker push $IMAGE_NAME
 
       - name: Deploy na Cloud
         if: success()
         run: |
-          echo "Etapa de deploy (ex: Railway, Render, Fly.io, etc)"
+          echo "Deploy automático pode ser configurado aqui (ex: Render, Railway, Fly.io, etc)"
