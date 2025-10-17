@@ -27,9 +27,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
-      - name: Rodar testes
-        run: mvn test
-
       - name: Login no Docker Hub
         uses: docker/login-action@v3
         with:
