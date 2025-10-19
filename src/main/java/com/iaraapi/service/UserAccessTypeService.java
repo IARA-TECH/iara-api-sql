@@ -36,7 +36,7 @@ public class UserAccessTypeService {
                 .orElseThrow(() -> new EntityNotFoundException("User not found with ID: " + request.getUserId()));
 
         AccessType accessType = accessTypeRepository.findById(request.getAccessTypeId())
-                .orElseThrow(() -> new EntityNotFoundException("Access type with ID " + request.getAccessTypeId() + " not found with ID"));
+                .orElseThrow(() -> new EntityNotFoundException("Access type with ID " + request.getAccessTypeId() + " not found."));
 
         UserAccessType entity = new UserAccessType();
         entity.setId(getUserAccessTypeId(user.getId(), accessType.getId()));

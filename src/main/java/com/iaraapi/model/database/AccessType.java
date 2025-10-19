@@ -1,11 +1,7 @@
 package com.iaraapi.model.database;
 
+import jakarta.persistence.*;
 import lombok.Data;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.GenerationType;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -20,6 +16,7 @@ import java.time.LocalDateTime;
 public class AccessType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "pk_id")
     private Integer id;
 
     private String name;
