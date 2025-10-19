@@ -1,9 +1,7 @@
-package com.iaraapi.controller;
+package com.iaraapi.controller.redis;
 
-import com.iaraapi.controller.contract.RedisCacheContract;
 import com.iaraapi.model.redis.UserAccessRedis;
-import com.iaraapi.repository.redis.UserAccessRedisRepository;
-import com.iaraapi.service.UserAccessRedisService;
+import com.iaraapi.service.redis.UserAccessRedisService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

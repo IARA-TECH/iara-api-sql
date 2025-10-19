@@ -1,4 +1,4 @@
-package com.iaraapi.controller.contract;
+package com.iaraapi.controller.redis;
 
 import com.iaraapi.model.redis.UserAccessRedis;
 import io.swagger.v3.oas.annotations.Operation;

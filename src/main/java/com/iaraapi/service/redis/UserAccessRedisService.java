@@ -1,4 +1,4 @@
-package com.iaraapi.service;
+package com.iaraapi.service.redis;
 
 import com.iaraapi.model.database.UserAccessType;
 import com.iaraapi.repository.UserAccessTypeRepository;
