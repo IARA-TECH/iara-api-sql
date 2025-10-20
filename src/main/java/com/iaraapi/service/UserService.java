@@ -1,5 +1,6 @@
 package com.iaraapi.service;
 
+import com.iaraapi.model.database.UserPhoto;
 import com.iaraapi.model.dto.request.UserRequest;
 import com.iaraapi.model.dto.response.UserFactoryResponse;
 import com.iaraapi.model.dto.response.UserResponse;
@@ -9,6 +10,7 @@ import com.iaraapi.model.database.Gender;
 import com.iaraapi.model.database.User;
 import com.iaraapi.repository.FactoryRepository;
 import com.iaraapi.repository.GenderRepository;
+import com.iaraapi.repository.UserPhotoRepository;
 import com.iaraapi.repository.UserRepository;
 import com.iaraapi.util.PasswordUtil;
 import jakarta.persistence.EntityNotFoundException;
@@ -27,14 +29,19 @@ public class UserService extends BaseService<User, UUID, UserRequest, UserRespon
     private final UserRepository userRepository;
     private final GenderRepository genderRepository;
     private final FactoryRepository factoryRepository;
+    private final UserPhotoRepository userPhotoRepository;
     private final UserMapper mapper;
 
-    public UserService(UserRepository repository, UserMapper mapper, GenderRepository genderRepository, FactoryRepository factoryRepository) {
+    public UserService(UserRepository repository, UserMapper mapper,
+                       GenderRepository genderRepository,
+                       FactoryRepository factoryRepository,
+                       UserPhotoRepository userPhotoRepository) {
         super(repository, "User");
         this.userRepository = repository;
         this.factoryRepository = factoryRepository;
         this.genderRepository = genderRepository;
         this.mapper = mapper;
+        this.userPhotoRepository = userPhotoRepository;
     }
 
     @Override
@@ -74,7 +81,7 @@ public class UserService extends BaseService<User, UUID, UserRequest, UserRespon
 
     @Override
     protected UserResponse toResponse(User user) {
-        return mapper.toResponse(user, getUserManagerName(user));
+        return mapper.toResponse(user, getUserManagerName(user), getUserPhotoUrl(user.getId()));
     }
 
     @Override
@@ -160,5 +167,11 @@ public class UserService extends BaseService<User, UUID, UserRequest, UserRespon
     private Factory getFactory(Integer id) {
         return factoryRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Factory with ID " + id + "not found"));
+    }
+
+    private String getUserPhotoUrl(UUID userId){
+        return userPhotoRepository.findByUser_id(userId)
+                .orElseThrow(() -> new EntityNotFoundException("UserPhoto with User ID " + userId + " not found."))
+                .getUrlBlob();
     }
 }

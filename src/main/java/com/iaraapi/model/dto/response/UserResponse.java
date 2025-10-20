@@ -28,4 +28,6 @@ public class UserResponse {
     private String factoryName;
 
     private Integer factoryId;
+
+    private String userPhotoUrl;
 }
