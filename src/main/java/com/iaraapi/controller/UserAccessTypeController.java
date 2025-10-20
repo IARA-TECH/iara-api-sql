@@ -14,7 +14,7 @@ import java.util.UUID;
 
 @Slf4j
 @RestController
-@RequestMapping("api/v1/user-access-type")
+@RequestMapping("api/v1/user-access-types")
 @CrossOrigin("*")
 @RequiredArgsConstructor
 public class UserAccessTypeController implements UserAccessTypeContract {

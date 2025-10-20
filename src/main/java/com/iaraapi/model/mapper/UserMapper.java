@@ -21,12 +21,13 @@ public interface UserMapper {
 
     @Mappings({
         @Mapping(source = "userManagerName", target = "userManagerName"),
+        @Mapping(source = "userPhotoUrl", target = "userPhotoUrl"),
         @Mapping(source = "user.userManagerId", target = "userManagerId"),
         @Mapping(source = "user.gender.name", target = "genderName"),
         @Mapping(source = "user.gender.id", target = "genderId"),
         @Mapping(source = "user.factory.name", target = "factoryName"),
         @Mapping(source = "user.factory.id", target = "factoryId")
     })
-    UserResponse toResponse(User user, String userManagerName);
+    UserResponse toResponse(User user, String userManagerName, String userPhotoUrl);
 
 }
