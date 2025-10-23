@@ -27,7 +27,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .anyRequest().authenticated()
+                        .requestMatchers("/api/v1/").authenticated()
+                        .anyRequest().permitAll()
                 )
                 .userDetailsService(userDetailsService)
                 .exceptionHandling(e -> e.accessDeniedHandler(customAccessDeniedHandler))
