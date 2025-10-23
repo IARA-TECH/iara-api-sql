@@ -13,53 +13,64 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 
 @Service
 @Slf4j
-public class UserPhotoService extends BaseService<UserPhoto, Integer, UserPhotoRequest, UserPhotoResponse> {
+public class UserPhotoService {
     private final UserPhotoMapper mapper;
     private final UserRepository userRepository;
-    private final UserPhotoRepository userPhotoRepository;
+    private final UserPhotoRepository repository;
 
     public UserPhotoService(UserPhotoRepository repository, UserPhotoMapper mapper, UserRepository userRepository) {
-        super(repository, "UserPhoto");
         this.mapper = mapper;
         this.userRepository = userRepository;
-        this.userPhotoRepository = repository;
+        this.repository = repository;
     }
 
 
-    @Override
     protected UserPhoto toEntity(UserPhotoRequest request) {
         User user = userRepository.findById(request.getUserId())
                 .orElseThrow(() -> new EntityNotFoundException("User with ID " + request.getUserId() + " not found"));
         return mapper.toEntity(request, user);
     }
 
-    @Override
+
+    protected UserPhotoResponse toResponse(UserPhoto userPhoto) {
+        return mapper.toResponse(userPhoto);
+    }
+
     @Transactional
     public UserPhotoResponse create(UserPhotoRequest request) {
-        log.info("[UserAccountPhotoService] Creating photo for user {}", request.getUserId());
+        log.info("[UserPhotoService] Creating photo for user {}", request.getUserId());
         try {
-            userPhotoRepository.createUserAccountPhoto(request.getUserId(), request.getUrlBlob());
-            log.info("[UserAccountPhotoService] Photo created successfully for user {}", request.getUserId());
+            repository.createUserAccountPhoto(request.getUserId(), request.getUrlBlob());
+            log.info("[UserPhotoService] Photo created successfully for user {}", request.getUserId());
             return new UserPhotoResponse(
                     request.getUrlBlob(),
                     request.getUserId()
             );
         } catch (Exception e) {
-            log.error("[UserAccountPhotoService] Error creating user photo: {}", e.getMessage(), e);
+            log.error("[UserPhotoService] Error creating user photo: {}", e.getMessage(), e);
             throw new RuntimeException("Error creating user photo.");
         }
     }
 
-    @Override
-    protected UserPhotoResponse toResponse(UserPhoto userPhoto) {
-        return mapper.toResponse(userPhoto);
+    public UserPhotoResponse updateByUserId(UUID userId, UserPhotoRequest request) {
+            log.info("[UserPhotoService] [updateByUserId] UPDATE WITH USER ID {}", userId);
+            UserPhoto photo = repository.findByUser_id(userId)
+                    .orElseThrow(() -> new EntityNotFoundException("Photo with User ID " + userId + " not found."));
+            log.info("[UserPhotoService] [updateByUserId] photo = {}", photo);
+            updateEntity(photo, request);
+            return toResponse(repository.save(photo));
     }
 
-    @Override
+    public UserPhotoResponse getPhotoByUserId(UUID userId) {
+        return toResponse(repository.findByUser_id(userId)
+                .orElseThrow(() -> new EntityNotFoundException("User with ID " + userId + " may not have a photo. ")));
+    }
+
     protected void updateEntity(UserPhoto userPhoto, UserPhotoRequest request) {
         userPhoto.setUrlBlob(request.getUrlBlob());
         userPhoto.setChangedAt(LocalDateTime.now());

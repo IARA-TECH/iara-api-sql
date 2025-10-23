@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
+import java.util.UUID;
 
 @Tag(name = "User Photo Controller", description = "Endpoints to manage user photos")
 public interface UserPhotoContract {
@@ -24,22 +25,15 @@ public interface UserPhotoContract {
     })
     ResponseEntity<UserPhotoResponse> createUserPhoto(UserPhotoRequest userPhotoRequest);
 
-    @Operation(summary = "List all user photos", description = "Retrieve all registered user photos")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Request completed successfully",
-                    content = @Content(schema = @Schema(implementation = UserPhotoResponse.class))),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
-    })
-    ResponseEntity<List<UserPhotoResponse>> getAllUserPhotos();
-
-    @Operation(summary = "Find user photo by ID", description = "Retrieve a specific user photo by its ID")
+    @Operation(summary = "Find user photo by User ID", description = "Retrieve a specific user photo by User ID")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User photo found successfully",
                     content = @Content(schema = @Schema(implementation = UserPhotoResponse.class))),
             @ApiResponse(responseCode = "404", description = "User photo not found", content = @Content),
             @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
     })
-    ResponseEntity<UserPhotoResponse> getUserPhoto(Integer id);
+    ResponseEntity<UserPhotoResponse> getUserPhotoByUserId(UUID userId);
+
 
     @Operation(summary = "Update user photo", description = "Update an existing user photo by its ID")
     @ApiResponses(value = {
@@ -49,5 +43,5 @@ public interface UserPhotoContract {
             @ApiResponse(responseCode = "404", description = "User photo not found", content = @Content),
             @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
     })
-    ResponseEntity<UserPhotoResponse> updateUserPhoto(Integer id, UserPhotoRequest userPhotoRequest);
+    ResponseEntity<UserPhotoResponse> updateUserPhoto(UUID userId, UserPhotoRequest userPhotoRequest);
 }
