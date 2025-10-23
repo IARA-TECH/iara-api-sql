@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -170,8 +171,7 @@ public class UserService extends BaseService<User, UUID, UserRequest, UserRespon
     }
 
     private String getUserPhotoUrl(UUID userId){
-        return userPhotoRepository.findByUser_id(userId)
-                .orElseThrow(() -> new EntityNotFoundException("UserPhoto with User ID " + userId + " not found."))
-                .getUrlBlob();
+        Optional<UserPhoto> userPhoto = userPhotoRepository.findByUser_id(userId);
+        return userPhoto.map(UserPhoto::getUrlBlob).orElse(null);
     }
 }
