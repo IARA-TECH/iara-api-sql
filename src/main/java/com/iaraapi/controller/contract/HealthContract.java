@@ -13,8 +13,7 @@ import org.springframework.http.ResponseEntity;
 public interface HealthContract {
     @Operation(summary = "Checks if the API is running")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "API running successfully",
-                    content = @Content(schema = @Schema(implementation = GenderResponse.class))),
+            @ApiResponse(responseCode = "200", description = "API running successfully", content = @Content),
             @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
     })
     ResponseEntity<String> health();
