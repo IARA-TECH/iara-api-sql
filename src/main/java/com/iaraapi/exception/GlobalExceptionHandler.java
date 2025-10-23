@@ -49,15 +49,15 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<String> handleMethodArgumentNotValidException(MethodArgumentNotValidException e){
         Map<String, String> errors = new HashMap<>();
-        e.getBindingResult().getAllErrors().forEach(error -> {errors.put(error.getDefaultMessage(), error.getDefaultMessage());});
+        e.getBindingResult().getAllErrors().forEach(error -> errors.put(error.getDefaultMessage(), error.getDefaultMessage()));
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid data. Check and try again." + errors.toString());
     }
 
     @ExceptionHandler(InvalidDataException.class)
     public ResponseEntity<Object> handleInvalidDataException(InvalidDataException ex) {
         Map<String, Object> response = new HashMap<>();
-        response.put("mensagem", "Erro de validação");
-        response.put("erros", ex.getErrors());
+        response.put("message", "Validation error.");
+        response.put("errors", ex.getErrors());
 
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
