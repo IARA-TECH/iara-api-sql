@@ -10,9 +10,9 @@ import java.util.UUID;
 @Getter
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class UserAccessTypeRequest {
-    @NotNull(message = "User ID is required.")
+    @NotNull(message = "Access Type ID is required.")
     private Integer accessTypeId;
 
-    @NotNull(message = "Access Type ID is required.")
+    @NotNull(message = "User ID is required.")
     private UUID userId;
 }

@@ -7,6 +7,7 @@ import com.iaraapi.service.UserAccessTypeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,19 +23,21 @@ public class UserAccessTypeController implements UserAccessTypeContract {
     private final UserAccessTypeService userAccessTypeService;
 
     @PostMapping
+    @PreAuthorize("hasRole('Administrador')")
     public ResponseEntity<UserAccessTypeResponse> create(@RequestBody UserAccessTypeRequest request) {
         log.info("[UserAccessTypeController] [create] Creating user-access-type relation");
         return ResponseEntity.ok(userAccessTypeService.create(request));
     }
 
     @GetMapping("/{userId}")
+    @PreAuthorize("hasAnyRole('Administrador', 'Visualizador')")
     public ResponseEntity<List<UserAccessTypeResponse>> getAllByUserId(@PathVariable UUID userId) {
         log.info("[UserAccessTypeController] [getAllByUserId] Listing all active access types for user {}", userId);
         return ResponseEntity.ok(userAccessTypeService.getAllByUserId(userId));
     }
 
-
     @PatchMapping("/{userId}/deactivate/{accessTypeId}")
+    @PreAuthorize("hasRole('Administrador')")
     public ResponseEntity<UserAccessTypeResponse> deactivate(
             @PathVariable UUID userId,
             @PathVariable Integer accessTypeId) {
@@ -43,6 +46,7 @@ public class UserAccessTypeController implements UserAccessTypeContract {
     }
 
     @PatchMapping("/{userId}/reactivate/{accessTypeId}")
+    @PreAuthorize("hasRole('Administrador')")
     public ResponseEntity<UserAccessTypeResponse> reactivate(
             @PathVariable UUID userId,
             @PathVariable Integer accessTypeId) {

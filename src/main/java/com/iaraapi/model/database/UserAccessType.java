@@ -7,7 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "user_access_type")
+@Table(name = "user_account_access_type")
 @Data
 public class UserAccessType {
 
