@@ -50,7 +50,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleMethodArgumentNotValidException(MethodArgumentNotValidException e){
         Map<String, String> errors = new HashMap<>();
         e.getBindingResult().getAllErrors().forEach(error -> errors.put(error.getDefaultMessage(), error.getDefaultMessage()));
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid data. Check and try again." + errors.toString());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid data. Check and try again." + errors);
     }
 
     @ExceptionHandler(InvalidDataException.class)
