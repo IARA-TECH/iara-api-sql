@@ -27,7 +27,7 @@ public class DailyActiveUsersController implements DailyActiveUsersContract {
     }
 
     @GetMapping
-    @PreAuthorize("hasAnyRole('Administrador', 'Visualizador')")
+    @PreAuthorize("hasAnyRole('Administrador')")
     public ResponseEntity<List<DailyActiveUsersResponse>> getAll() {
         return ResponseEntity.ok(service.getAll());
     }
