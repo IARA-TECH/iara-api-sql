@@ -4,7 +4,6 @@ import com.iaraapi.controller.contract.UserContract;
 import com.iaraapi.model.dto.request.EmailRequest;
 import com.iaraapi.model.dto.request.NameRequest;
 import com.iaraapi.model.dto.request.UserRequest;
-import com.iaraapi.model.dto.response.UserFactoryResponse;
 import com.iaraapi.model.dto.response.UserResponse;
 import com.iaraapi.service.UserService;
 import jakarta.validation.Valid;
@@ -57,7 +56,7 @@ public class UserController implements UserContract {
 
     @GetMapping("by-factory/{factoryId}")
     @PreAuthorize("hasAnyRole('Administrador', 'Supervisor', 'Visualizador')")
-    public ResponseEntity<List<UserFactoryResponse>> getUsersByFactory(@PathVariable Integer factoryId) {
+    public ResponseEntity<List<UserResponse>> getUsersByFactory(@PathVariable Integer factoryId) {
         return ResponseEntity.ok(userService.getUsersByFactory(factoryId));
     }
 
