@@ -54,7 +54,6 @@ public class User {
     private LocalDateTime deactivatedAt;
 
     @OneToMany(mappedBy = "user" , cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore
     private Set<UserAccessType> userAccessTypes = new HashSet<>();
 
     @JsonProperty("access_types")

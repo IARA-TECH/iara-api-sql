@@ -49,10 +49,9 @@ public class UserAccessTypeService {
     public List<UserAccessTypeResponse> getAllByUserId(UUID userId) {
         log.info("[UserAccessTypeService] [getAllByUserId] Getting all access types for user={}", userId);
 
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new EntityNotFoundException("User with ID " + userId + " not found."));
+        List<UserAccessType> accessTypes = repository.findByUser_Id(userId);
 
-        return user.getUserAccessTypes().stream()
+        return accessTypes.stream()
                 .filter(uat -> uat.getDeactivatedAt() == null)
                 .map(mapper::toResponse)
                 .toList();
