@@ -2,6 +2,7 @@ package com.iaraapi.repository;
 
 import com.iaraapi.model.database.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -24,7 +25,8 @@ public interface UserRepository extends JpaRepository<User, UUID> {
             @Param("input_user_manager_uuid") UUID userManagerUuid
     );
 
-
+    @Query("SELECT u FROM User u LEFT JOIN FETCH u.userAccessTypes WHERE u.id = :userId")
+    Optional<User> findByIdWithAccessTypes(@Param("userId") UUID userId);
 
     List<User> findAllByFactory_Id(Integer factoryId);
 

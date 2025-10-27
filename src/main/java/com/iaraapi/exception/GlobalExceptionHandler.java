@@ -53,15 +53,6 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid data. Check and try again." + errors);
     }
 
-    @ExceptionHandler(InvalidDataException.class)
-    public ResponseEntity<Object> handleInvalidDataException(InvalidDataException ex) {
-        Map<String, Object> response = new HashMap<>();
-        response.put("message", "Validation error.");
-        response.put("errors", ex.getErrors());
-
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
-    }
-
     @ExceptionHandler(UnsupportedOperationException.class)
     public ResponseEntity<String> handleUnsupportedOperationException(UnsupportedOperationException ex) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
@@ -72,4 +63,8 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 
+    @ExceptionHandler(NullPointerException.class)
+    public ResponseEntity<String> handleNullPointerException(NullPointerException ex) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+    }
 }

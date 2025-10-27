@@ -51,6 +51,7 @@ public class RedisUserDetailsService implements UserDetailsService {
         }
         List<SimpleGrantedAuthority> authorities = getAuthorities(cachedRoles);
 
+        log.info("User with email {} has roles {}", email, authorities);
         return new org.springframework.security.core.userdetails.User(
                 user.getEmail(),
                 user.getPassword(),

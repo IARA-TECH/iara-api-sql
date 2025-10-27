@@ -1,5 +1,6 @@
 package com.iaraapi.model.database;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +15,10 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserAccessTypeId implements Serializable {
+    @Column(name = "user_account_uuid")
     private UUID userId;
+
+    @Column(name = "access_type_id")
     private Integer accessTypeId;
 
     @Override
