@@ -3,7 +3,6 @@ package com.iaraapi.controller.contract;
 import com.iaraapi.model.dto.request.EmailRequest;
 import com.iaraapi.model.dto.request.NameRequest;
 import com.iaraapi.model.dto.request.UserRequest;
-import com.iaraapi.model.dto.response.UserFactoryResponse;
 import com.iaraapi.model.dto.response.UserResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -65,11 +64,11 @@ public interface UserContract {
     @Operation(summary = "Get users by factory", description = "Retrieve all users associated with a specific factory")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Request completed successfully",
-                    content = @Content(schema = @Schema(implementation = UserFactoryResponse.class))),
+                    content = @Content(schema = @Schema(implementation = UserResponse.class))),
             @ApiResponse(responseCode = "404", description = "Factory not found", content = @Content),
             @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
     })
-    ResponseEntity<List<UserFactoryResponse>> getUsersByFactory(Integer factoryId);
+    ResponseEntity<List<UserResponse>> getUsersByFactory(Integer factoryId);
 
     @Operation(summary = "Update user", description = "Update an existing user by their ID")
     @ApiResponses(value = {

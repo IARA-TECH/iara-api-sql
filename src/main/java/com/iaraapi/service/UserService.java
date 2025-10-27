@@ -2,7 +2,6 @@ package com.iaraapi.service;
 
 import com.iaraapi.model.database.UserPhoto;
 import com.iaraapi.model.dto.request.UserRequest;
-import com.iaraapi.model.dto.response.UserFactoryResponse;
 import com.iaraapi.model.dto.response.UserResponse;
 import com.iaraapi.model.mapper.UserMapper;
 import com.iaraapi.model.database.Factory;
@@ -148,8 +147,16 @@ public class UserService extends BaseService<User, UUID, UserRequest, UserRespon
                 .toList();
     }
 
-    public List<UserFactoryResponse> getUsersByFactory(Integer factoryId) {
-        return userRepository.findUserAccountsByFactory(factoryId);
+    public List<UserResponse> getUsersByFactory(Integer factoryId) {
+        List<User> users = userRepository.findAllByFactory_Id(factoryId);
+
+        if (users.isEmpty()) {
+            return List.of();
+        }
+
+        return users.stream()
+                .map(this::toResponse)
+                .toList();
     }
 
 

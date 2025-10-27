@@ -1,6 +1,5 @@
 package com.iaraapi.repository;
 
-import com.iaraapi.model.dto.response.UserFactoryResponse;
 import com.iaraapi.model.database.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -28,21 +27,7 @@ public interface UserRepository extends JpaRepository<User, UUID> {
 
 
 
-    @Query(value = """
-        SELECT 
-            u.pk_uuid       AS id,
-            u.created_at    AS createdAt,
-            u.changed_at    AS changedAt,
-            u.deactivated_at AS deactivatedAt,
-            u.name          AS name,
-            u.email         AS email,
-            u.date_of_birth AS dateOfBirth,
-            u.gender_id     AS genderId,
-            u.gender        AS gender
-        FROM get_user_accounts_by_factory(:factoryId) u
-        """,
-            nativeQuery = true)
-    List<UserFactoryResponse> findUserAccountsByFactory(@Param("factoryId") Integer factoryId);
+    List<User> findAllByFactory_Id(Integer factoryId);
 
     Optional<User> findByEmailIgnoreCase(String email);
 
