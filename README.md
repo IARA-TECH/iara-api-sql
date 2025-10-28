@@ -51,8 +51,6 @@ A aplicação fornece endpoints REST para manipulação de dados, armazenamento 
 
 ---
 
-## 🧩 Como Executar
-
 ### 🐳 Usando Docker
 
 ```bash
