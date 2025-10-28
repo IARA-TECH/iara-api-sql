@@ -6,6 +6,8 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class AddressResponse {
+    private Integer id;
+
     private String state;
 
     private String city;

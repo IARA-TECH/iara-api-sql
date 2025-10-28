@@ -9,7 +9,7 @@ import java.util.UUID;
 @Getter
 @AllArgsConstructor
 public class DailyActiveUsersResponse {
-    Integer id;
-    UUID userId;
-    LocalDateTime accessedOn;
+    private Integer id;
+    private UUID userId;
+    private LocalDateTime accessedOn;
 }

@@ -9,10 +9,12 @@ import java.time.LocalDate;
 @Getter
 @AllArgsConstructor
 public class PaymentResponse {
+    private Integer id;
     private BigDecimal total;
     private LocalDate expiresOn;
     private LocalDate startsOn;
     private String paymentMethodName;
     private String subscriptionName;
     private String userName;
+    private String userId;
 }

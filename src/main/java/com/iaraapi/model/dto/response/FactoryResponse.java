@@ -6,6 +6,8 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class FactoryResponse {
+    private Integer id;
+
     private String name;
 
     private String cnpj;
