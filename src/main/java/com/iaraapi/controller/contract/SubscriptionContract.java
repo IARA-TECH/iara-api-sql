@@ -20,7 +20,8 @@ public interface SubscriptionContract {
             @ApiResponse(responseCode = "201", description = "Subscription created successfully",
                     content = @Content(schema = @Schema(implementation = SubscriptionResponse.class))),
             @ApiResponse(responseCode = "400", description = "Invalid data provided", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<SubscriptionResponse> createSubscription(SubscriptionRequest subscriptionRequest);
 
@@ -28,7 +29,8 @@ public interface SubscriptionContract {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Request completed successfully",
                     content = @Content(schema = @Schema(implementation = SubscriptionResponse.class))),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<List<SubscriptionResponse>> getAllSubscriptions();
 
@@ -37,7 +39,8 @@ public interface SubscriptionContract {
             @ApiResponse(responseCode = "200", description = "Subscription found successfully",
                     content = @Content(schema = @Schema(implementation = SubscriptionResponse.class))),
             @ApiResponse(responseCode = "404", description = "Subscription not found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<SubscriptionResponse> getSubscription(Integer id);
 
@@ -47,7 +50,8 @@ public interface SubscriptionContract {
                     content = @Content(schema = @Schema(implementation = SubscriptionResponse.class))),
             @ApiResponse(responseCode = "400", description = "Invalid data provided", content = @Content),
             @ApiResponse(responseCode = "404", description = "Subscription not found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<SubscriptionResponse> updateSubscription(Integer id, SubscriptionRequest subscriptionRequest);
 
@@ -56,7 +60,8 @@ public interface SubscriptionContract {
             @ApiResponse(responseCode = "200", description = "Subscription deactivated successfully",
                     content = @Content(schema = @Schema(implementation = SubscriptionResponse.class))),
             @ApiResponse(responseCode = "404", description = "Subscription not found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<SubscriptionResponse> deactivateSubscription(Integer id);
 
@@ -65,7 +70,8 @@ public interface SubscriptionContract {
             @ApiResponse(responseCode = "200", description = "Subscription reactivated successfully",
                     content = @Content(schema = @Schema(implementation = SubscriptionResponse.class))),
             @ApiResponse(responseCode = "404", description = "Subscription not found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<SubscriptionResponse> reactivateSubscription(Integer id);
 }

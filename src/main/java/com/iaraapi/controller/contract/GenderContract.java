@@ -20,7 +20,8 @@ public interface GenderContract {
             @ApiResponse(responseCode = "201", description = "Gender created successfully",
                     content = @Content(schema = @Schema(implementation = GenderResponse.class))),
             @ApiResponse(responseCode = "400", description = "Invalid data provided", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<GenderResponse> createGender(GenderRequest genderRequest);
 
@@ -28,7 +29,8 @@ public interface GenderContract {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Request completed successfully",
                     content = @Content(schema = @Schema(implementation = GenderResponse.class))),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<List<GenderResponse>> getAllGender();
 
@@ -37,7 +39,8 @@ public interface GenderContract {
             @ApiResponse(responseCode = "200", description = "Gender found successfully",
                     content = @Content(schema = @Schema(implementation = GenderResponse.class))),
             @ApiResponse(responseCode = "404", description = "Gender not found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<GenderResponse> getGender(Integer id);
 
@@ -47,7 +50,8 @@ public interface GenderContract {
                     content = @Content(schema = @Schema(implementation = GenderResponse.class))),
             @ApiResponse(responseCode = "400", description = "Invalid data provided", content = @Content),
             @ApiResponse(responseCode = "404", description = "Gender not found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<GenderResponse> updateGender(Integer id, GenderRequest genderRequest);
 
@@ -56,7 +60,8 @@ public interface GenderContract {
             @ApiResponse(responseCode = "200", description = "Gender deactivated successfully",
                     content = @Content(schema = @Schema(implementation = GenderResponse.class))),
             @ApiResponse(responseCode = "404", description = "Gender not found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<GenderResponse> deactivateGender(Integer id);
 
@@ -65,7 +70,8 @@ public interface GenderContract {
             @ApiResponse(responseCode = "200", description = "Gender reactivated successfully",
                     content = @Content(schema = @Schema(implementation = GenderResponse.class))),
             @ApiResponse(responseCode = "404", description = "Gender not found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<GenderResponse> reactivateGender(Integer id);
 }

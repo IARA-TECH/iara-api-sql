@@ -20,7 +20,8 @@ public interface FactoryContract {
             @ApiResponse(responseCode = "201", description = "Factory created successfully",
                     content = @Content(schema = @Schema(implementation = FactoryResponse.class))),
             @ApiResponse(responseCode = "400", description = "Invalid data provided", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<FactoryResponse> createFactory(FactoryRequest factoryRequest);
 
@@ -28,7 +29,8 @@ public interface FactoryContract {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Request completed successfully",
                     content = @Content(schema = @Schema(implementation = FactoryResponse.class))),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<List<FactoryResponse>> getAllFactories();
 
@@ -37,7 +39,8 @@ public interface FactoryContract {
             @ApiResponse(responseCode = "200", description = "Factory found successfully",
                     content = @Content(schema = @Schema(implementation = FactoryResponse.class))),
             @ApiResponse(responseCode = "404", description = "Factory not found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<FactoryResponse> getFactory(Integer id);
 
@@ -47,7 +50,8 @@ public interface FactoryContract {
                     content = @Content(schema = @Schema(implementation = FactoryResponse.class))),
             @ApiResponse(responseCode = "400", description = "Invalid data provided", content = @Content),
             @ApiResponse(responseCode = "404", description = "Factory not found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<FactoryResponse> updateFactory(Integer id, FactoryRequest factoryRequest);
 
@@ -56,7 +60,8 @@ public interface FactoryContract {
             @ApiResponse(responseCode = "200", description = "Factory deactivated successfully",
                     content = @Content(schema = @Schema(implementation = FactoryResponse.class))),
             @ApiResponse(responseCode = "404", description = "Factory not found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<FactoryResponse> deactivateFactory(Integer id);
 
@@ -65,7 +70,8 @@ public interface FactoryContract {
             @ApiResponse(responseCode = "200", description = "Factory reactivated successfully",
                     content = @Content(schema = @Schema(implementation = FactoryResponse.class))),
             @ApiResponse(responseCode = "404", description = "Factory not found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<FactoryResponse> reactivateFactory(Integer id);
 }

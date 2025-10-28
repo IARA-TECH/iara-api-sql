@@ -23,7 +23,8 @@ public interface UserContract {
             @ApiResponse(responseCode = "201", description = "User created successfully",
                     content = @Content(schema = @Schema(implementation = UserResponse.class))),
             @ApiResponse(responseCode = "400", description = "Invalid data provided", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<UserResponse> createUser(UserRequest userRequest);
 
@@ -31,7 +32,8 @@ public interface UserContract {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Request completed successfully",
                     content = @Content(schema = @Schema(implementation = UserResponse.class))),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<List<UserResponse>> getAllUsers();
 
@@ -40,7 +42,8 @@ public interface UserContract {
             @ApiResponse(responseCode = "200", description = "User found successfully",
                     content = @Content(schema = @Schema(implementation = UserResponse.class))),
             @ApiResponse(responseCode = "404", description = "User not found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<UserResponse> getUserById(UUID id);
 
@@ -49,7 +52,8 @@ public interface UserContract {
             @ApiResponse(responseCode = "200", description = "User found successfully",
                     content = @Content(schema = @Schema(implementation = UserResponse.class))),
             @ApiResponse(responseCode = "404", description = "User not found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<UserResponse> getUserByEmail(EmailRequest request);
 
@@ -57,7 +61,8 @@ public interface UserContract {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Request completed successfully",
                     content = @Content(schema = @Schema(implementation = UserResponse.class))),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<List<UserResponse>> getUserByName(NameRequest request);
 
@@ -66,7 +71,8 @@ public interface UserContract {
             @ApiResponse(responseCode = "200", description = "Request completed successfully",
                     content = @Content(schema = @Schema(implementation = UserResponse.class))),
             @ApiResponse(responseCode = "404", description = "Factory not found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<List<UserResponse>> getUsersByFactory(Integer factoryId);
 
@@ -76,7 +82,8 @@ public interface UserContract {
                     content = @Content(schema = @Schema(implementation = UserResponse.class))),
             @ApiResponse(responseCode = "400", description = "Invalid data provided", content = @Content),
             @ApiResponse(responseCode = "404", description = "User not found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<UserResponse> updateUser(UUID id, UserRequest userRequest);
 
@@ -85,7 +92,8 @@ public interface UserContract {
             @ApiResponse(responseCode = "200", description = "User deactivated successfully",
                     content = @Content(schema = @Schema(implementation = UserResponse.class))),
             @ApiResponse(responseCode = "404", description = "User not found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<UserResponse> deactivateUser(UUID id);
 
@@ -94,7 +102,8 @@ public interface UserContract {
             @ApiResponse(responseCode = "200", description = "User reactivated successfully",
                     content = @Content(schema = @Schema(implementation = UserResponse.class))),
             @ApiResponse(responseCode = "404", description = "User not found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<UserResponse> reactivateUser(UUID id);
 }
