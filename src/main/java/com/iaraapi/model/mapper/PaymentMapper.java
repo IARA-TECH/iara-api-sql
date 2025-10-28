@@ -23,5 +23,7 @@ public interface PaymentMapper {
     @Mapping(source = "subscription.name", target = "subscriptionName")
     @Mapping(source = "paymentMethod.name", target = "paymentMethodName")
     @Mapping(source = "user.name", target = "userName")
+    @Mapping(source = "user.id", target = "userId")
+    @Mapping(source = "payment.id", target = "id")
     PaymentResponse toResponse(Payment payment);
 }

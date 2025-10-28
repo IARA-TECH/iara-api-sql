@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 @Getter
 @AllArgsConstructor
 public class SubscriptionResponse {
+    private Integer id;
     private BigDecimal price;
     private String name;
     private Integer monthlyDuration;

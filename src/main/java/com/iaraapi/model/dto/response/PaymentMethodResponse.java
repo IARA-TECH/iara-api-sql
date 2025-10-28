@@ -8,5 +8,6 @@ import lombok.NoArgsConstructor;
 @Getter
 @AllArgsConstructor
 public class PaymentMethodResponse {
+    private Integer id;
     private final String name;
 }
