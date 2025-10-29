@@ -20,7 +20,8 @@ public interface AddressContract {
             @ApiResponse(responseCode = "201", description = "Address created successfully",
                     content = @Content(schema = @Schema(implementation = AddressResponse.class))),
             @ApiResponse(responseCode = "400", description = "Invalid data provided", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<AddressResponse> createAddress(AddressRequest addressRequest);
 
@@ -28,7 +29,8 @@ public interface AddressContract {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Request completed successfully",
                     content = @Content(schema = @Schema(implementation = AddressResponse.class))),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<List<AddressResponse>> getAllAddress();
 
@@ -37,7 +39,8 @@ public interface AddressContract {
             @ApiResponse(responseCode = "200", description = "Address found successfully",
                     content = @Content(schema = @Schema(implementation = AddressResponse.class))),
             @ApiResponse(responseCode = "404", description = "Address not found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<AddressResponse> getAddress(Integer id);
 
@@ -47,7 +50,8 @@ public interface AddressContract {
                     content = @Content(schema = @Schema(implementation = AddressResponse.class))),
             @ApiResponse(responseCode = "400", description = "Invalid data provided", content = @Content),
             @ApiResponse(responseCode = "404", description = "Address not found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<AddressResponse> updateAddress(Integer id, AddressRequest addressRequest);
 
@@ -56,7 +60,8 @@ public interface AddressContract {
             @ApiResponse(responseCode = "200", description = "Address deactivated successfully",
                     content = @Content(schema = @Schema(implementation = AddressResponse.class))),
             @ApiResponse(responseCode = "404", description = "Address not found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<AddressResponse> deactivateAddress(Integer id);
 
@@ -65,7 +70,8 @@ public interface AddressContract {
             @ApiResponse(responseCode = "200", description = "Address reactivated successfully",
                     content = @Content(schema = @Schema(implementation = AddressResponse.class))),
             @ApiResponse(responseCode = "404", description = "Address not found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<AddressResponse> reactivateAddress(Integer id);
 }

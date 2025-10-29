@@ -21,7 +21,8 @@ public interface UserPhotoContract {
             @ApiResponse(responseCode = "201", description = "User photo created successfully",
                     content = @Content(schema = @Schema(implementation = UserPhotoResponse.class))),
             @ApiResponse(responseCode = "400", description = "Invalid data provided", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<UserPhotoResponse> createUserPhoto(UserPhotoRequest userPhotoRequest);
 
@@ -30,7 +31,8 @@ public interface UserPhotoContract {
             @ApiResponse(responseCode = "200", description = "User photo found successfully",
                     content = @Content(schema = @Schema(implementation = UserPhotoResponse.class))),
             @ApiResponse(responseCode = "404", description = "User photo not found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<UserPhotoResponse> getUserPhotoByUserId(UUID userId);
 
@@ -41,7 +43,8 @@ public interface UserPhotoContract {
                     content = @Content(schema = @Schema(implementation = UserPhotoResponse.class))),
             @ApiResponse(responseCode = "400", description = "Invalid data provided", content = @Content),
             @ApiResponse(responseCode = "404", description = "User photo not found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<UserPhotoResponse> updateUserPhoto(UUID userId, UserPhotoRequest userPhotoRequest);
 }

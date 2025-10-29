@@ -19,7 +19,8 @@ public interface DailyActiveUsersContract {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Daily active users data created successfully"),
             @ApiResponse(responseCode = "400", description = "Invalid data provided", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<Void> create(DailyActiveUsersRequest request);
 
@@ -27,7 +28,8 @@ public interface DailyActiveUsersContract {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Request completed successfully",
                     content = @Content(schema = @Schema(implementation = DailyActiveUsersResponse.class))),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<List<DailyActiveUsersResponse>> getAll();
 }

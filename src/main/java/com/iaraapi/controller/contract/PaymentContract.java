@@ -20,7 +20,8 @@ public interface PaymentContract {
             @ApiResponse(responseCode = "201", description = "Payment created successfully",
                     content = @Content(schema = @Schema(implementation = PaymentResponse.class))),
             @ApiResponse(responseCode = "400", description = "Invalid data provided", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<PaymentResponse> createPayment(PaymentRequest paymentRequest);
 
@@ -28,7 +29,8 @@ public interface PaymentContract {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Request completed successfully",
                     content = @Content(schema = @Schema(implementation = PaymentResponse.class))),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<List<PaymentResponse>> getAllPayments();
 
@@ -37,7 +39,8 @@ public interface PaymentContract {
             @ApiResponse(responseCode = "200", description = "Payment found successfully",
                     content = @Content(schema = @Schema(implementation = PaymentResponse.class))),
             @ApiResponse(responseCode = "404", description = "Payment not found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<PaymentResponse> getPaymentById(Integer id);
 
@@ -47,7 +50,8 @@ public interface PaymentContract {
                     content = @Content(schema = @Schema(implementation = PaymentResponse.class))),
             @ApiResponse(responseCode = "400", description = "Invalid data provided", content = @Content),
             @ApiResponse(responseCode = "404", description = "Payment not found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<PaymentResponse> updatePayment(Integer id, PaymentRequest paymentRequest);
 
@@ -56,7 +60,8 @@ public interface PaymentContract {
             @ApiResponse(responseCode = "200", description = "Payment deactivated successfully",
                     content = @Content(schema = @Schema(implementation = PaymentResponse.class))),
             @ApiResponse(responseCode = "404", description = "Payment not found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<PaymentResponse> deactivatePayment(Integer id);
 
@@ -65,7 +70,8 @@ public interface PaymentContract {
             @ApiResponse(responseCode = "200", description = "Payment reactivated successfully",
                     content = @Content(schema = @Schema(implementation = PaymentResponse.class))),
             @ApiResponse(responseCode = "404", description = "Payment not found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<PaymentResponse> reactivatePayment(Integer id);
 }

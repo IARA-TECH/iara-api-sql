@@ -22,7 +22,8 @@ public interface UserAccessTypeContract {
                     content = @Content(schema = @Schema(implementation = UserAccessTypeResponse.class))),
             @ApiResponse(responseCode = "400", description = "Invalid data provided", content = @Content),
             @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
-            @ApiResponse(responseCode = "404", description = "Data not found", content = @Content)
+            @ApiResponse(responseCode = "404", description = "Data not found", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<UserAccessTypeResponse> create(UserAccessTypeRequest request);
 
@@ -31,7 +32,8 @@ public interface UserAccessTypeContract {
             @ApiResponse(responseCode = "200", description = "Request completed successfully",
                     content = @Content(schema = @Schema(implementation = UserAccessTypeResponse.class))),
             @ApiResponse(responseCode = "404", description = "User not found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<List<UserAccessTypeResponse>> getAllByUserId(UUID userId);
 
@@ -40,7 +42,8 @@ public interface UserAccessTypeContract {
             @ApiResponse(responseCode = "200", description = "Relation deactivated successfully",
                     content = @Content(schema = @Schema(implementation = UserAccessTypeResponse.class))),
             @ApiResponse(responseCode = "404", description = "Relation not found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<UserAccessTypeResponse> deactivate(UUID userId, Integer accessTypeId);
 
@@ -49,7 +52,8 @@ public interface UserAccessTypeContract {
             @ApiResponse(responseCode = "200", description = "Relation reactivated successfully",
                     content = @Content(schema = @Schema(implementation = UserAccessTypeResponse.class))),
             @ApiResponse(responseCode = "404", description = "Relation not found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<UserAccessTypeResponse> reactivate(UUID userId, Integer accessTypeId);
 }

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.sql.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -30,4 +31,6 @@ public class UserResponse {
     private Integer factoryId;
 
     private String userPhotoUrl;
+
+    private List<String> userAccessTypeNames;
 }

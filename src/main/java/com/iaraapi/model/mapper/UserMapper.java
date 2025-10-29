@@ -9,6 +9,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface UserMapper {
     @Mapping(target = "id", ignore = true)
@@ -26,8 +28,9 @@ public interface UserMapper {
         @Mapping(source = "user.gender.name", target = "genderName"),
         @Mapping(source = "user.gender.id", target = "genderId"),
         @Mapping(source = "user.factory.name", target = "factoryName"),
-        @Mapping(source = "user.factory.id", target = "factoryId")
+        @Mapping(source = "user.factory.id", target = "factoryId"),
+        @Mapping(source = "userAccessTypeNames", target = "userAccessTypeNames")
     })
-    UserResponse toResponse(User user, String userManagerName, String userPhotoUrl);
+    UserResponse toResponse(User user, String userManagerName, String userPhotoUrl, List<String> userAccessTypeNames);
 
 }

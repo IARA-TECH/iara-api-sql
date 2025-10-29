@@ -69,10 +69,15 @@ public class RedisUserDetailsService implements UserDetailsService {
         log.info("[RedisUserDetailsService] [getRolesFromDatabase] Getting all access types for user={}", userId);
 
         List<UserAccessType> roles = userAccessTypeRepository.findByUser_Id(UUID.fromString(userId));
+        log.info("Roles lidas do DB: {}", roles.size());
+
+        log.info("Nomes das Roles lidas do DB: {}", roles.stream().map(r -> r.getAccessType().getName()).collect(Collectors.joining(", ")));
 
         return roles.stream()
-                .map(role -> new UserAccessRedis("user:" + userId + ":access-types",
-                        role.getUser().getId().toString(), role.getAccessType().getId(),
+                .map(role -> new UserAccessRedis(
+                        role.getUser().getId().toString() + "_" + role.getAccessType().getName(),
+                        role.getUser().getId().toString(),
+                        role.getAccessType().getId(),
                         role.getAccessType().getName()))
                 .toList();
     }

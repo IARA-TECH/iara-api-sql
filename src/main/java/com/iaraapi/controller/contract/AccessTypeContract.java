@@ -20,7 +20,8 @@ public interface AccessTypeContract {
             @ApiResponse(responseCode = "201", description = "Access type created successfully",
                     content = @Content(schema = @Schema(implementation = AccessTypeResponse.class))),
             @ApiResponse(responseCode = "400", description = "Invalid data provided", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<AccessTypeResponse> createAccessType(AccessTypeRequest accessTypeRequest);
 
@@ -28,7 +29,8 @@ public interface AccessTypeContract {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Request completed successfully",
                     content = @Content(schema = @Schema(implementation = AccessTypeResponse.class))),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<List<AccessTypeResponse>> getAllAccessTypes();
 
@@ -37,7 +39,8 @@ public interface AccessTypeContract {
             @ApiResponse(responseCode = "200", description = "Access type found successfully",
                     content = @Content(schema = @Schema(implementation = AccessTypeResponse.class))),
             @ApiResponse(responseCode = "404", description = "Access type not found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<AccessTypeResponse> getAccessType(Integer id);
 
@@ -47,7 +50,8 @@ public interface AccessTypeContract {
                     content = @Content(schema = @Schema(implementation = AccessTypeResponse.class))),
             @ApiResponse(responseCode = "400", description = "Invalid data provided", content = @Content),
             @ApiResponse(responseCode = "404", description = "Access type not found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<AccessTypeResponse> updateAccessType(Integer id, AccessTypeRequest accessTypeRequest);
 
@@ -56,7 +60,8 @@ public interface AccessTypeContract {
             @ApiResponse(responseCode = "200", description = "Access type deactivated successfully",
                     content = @Content(schema = @Schema(implementation = AccessTypeResponse.class))),
             @ApiResponse(responseCode = "404", description = "Access type not found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<AccessTypeResponse> deactivateAccessType(Integer id);
 
@@ -65,7 +70,8 @@ public interface AccessTypeContract {
             @ApiResponse(responseCode = "200", description = "Access type reactivated successfully",
                     content = @Content(schema = @Schema(implementation = AccessTypeResponse.class))),
             @ApiResponse(responseCode = "404", description = "Access type not found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<AccessTypeResponse> reactivateAccessType(Integer id);
 }
