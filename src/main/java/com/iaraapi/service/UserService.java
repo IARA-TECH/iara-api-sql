@@ -1,16 +1,10 @@
 package com.iaraapi.service;
 
-import com.iaraapi.model.database.UserPhoto;
+import com.iaraapi.model.database.*;
 import com.iaraapi.model.dto.request.UserRequest;
 import com.iaraapi.model.dto.response.UserResponse;
 import com.iaraapi.model.mapper.UserMapper;
-import com.iaraapi.model.database.Factory;
-import com.iaraapi.model.database.Gender;
-import com.iaraapi.model.database.User;
-import com.iaraapi.repository.FactoryRepository;
-import com.iaraapi.repository.GenderRepository;
-import com.iaraapi.repository.UserPhotoRepository;
-import com.iaraapi.repository.UserRepository;
+import com.iaraapi.repository.*;
 import com.iaraapi.util.PasswordUtil;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -19,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -33,12 +28,14 @@ public class UserService extends BaseService<User, UUID, UserRequest, UserRespon
     private final UserPhotoRepository userPhotoRepository;
     private final UserMapper mapper;
     private final PasswordEncoder passwordEncoder;
+    private final UserAccessTypeRepository userAccessTypeRepository;
 
     public UserService(UserRepository repository, UserMapper mapper,
                        GenderRepository genderRepository,
                        FactoryRepository factoryRepository,
                        UserPhotoRepository userPhotoRepository,
-                       PasswordEncoder passwordEncoder) {
+                       PasswordEncoder passwordEncoder,
+                       UserAccessTypeRepository userAccessTypeRepository) {
         super(repository, "User");
         this.userRepository = repository;
         this.factoryRepository = factoryRepository;
@@ -46,6 +43,7 @@ public class UserService extends BaseService<User, UUID, UserRequest, UserRespon
         this.mapper = mapper;
         this.userPhotoRepository = userPhotoRepository;
         this.passwordEncoder = passwordEncoder;
+        this.userAccessTypeRepository = userAccessTypeRepository;
     }
 
     @Override
@@ -86,7 +84,7 @@ public class UserService extends BaseService<User, UUID, UserRequest, UserRespon
 
     @Override
     protected UserResponse toResponse(User user) {
-        return mapper.toResponse(user, getUserManagerName(user), getUserPhotoUrl(user.getId()));
+        return mapper.toResponse(user, getUserManagerName(user), getUserPhotoUrl(user.getId()), getUserAccessTypeNames(user.getId()));
     }
 
     @Override
@@ -185,5 +183,13 @@ public class UserService extends BaseService<User, UUID, UserRequest, UserRespon
     private String getUserPhotoUrl(UUID userId){
         Optional<UserPhoto> userPhoto = userPhotoRepository.findByUser_id(userId);
         return userPhoto.map(UserPhoto::getUrlBlob).orElse(null);
+    }
+
+    private List<String> getUserAccessTypeNames(UUID userId) {
+        List<UserAccessType> userAccessTypes = userAccessTypeRepository.findByUser_Id(userId);
+        return userAccessTypes.stream()
+                .map(userAccessType ->
+                        userAccessType.getAccessType().getName())
+                .toList();
     }
 }
