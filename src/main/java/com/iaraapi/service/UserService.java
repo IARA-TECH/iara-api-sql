@@ -15,6 +15,7 @@ import com.iaraapi.util.PasswordUtil;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -31,46 +32,50 @@ public class UserService extends BaseService<User, UUID, UserRequest, UserRespon
     private final FactoryRepository factoryRepository;
     private final UserPhotoRepository userPhotoRepository;
     private final UserMapper mapper;
+    private final PasswordEncoder passwordEncoder;
 
     public UserService(UserRepository repository, UserMapper mapper,
                        GenderRepository genderRepository,
                        FactoryRepository factoryRepository,
-                       UserPhotoRepository userPhotoRepository) {
+                       UserPhotoRepository userPhotoRepository,
+                       PasswordEncoder passwordEncoder) {
         super(repository, "User");
         this.userRepository = repository;
         this.factoryRepository = factoryRepository;
         this.genderRepository = genderRepository;
         this.mapper = mapper;
         this.userPhotoRepository = userPhotoRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     @Transactional
     public UserResponse create(UserRequest request) {
         log.info("[UserService] Creating user {}", request.getName());
+        String password;
 
-        String randomPassword = PasswordUtil.generateRandomPassword();
-
-        try {
-            userRepository.createUserAccount(
-                    request.getName(),
-                    request.getEmail(),
-                    randomPassword,
-                    request.getDateOfBirth(),
-                    request.getGenderId(),
-                    request.getFactoryId(),
-                    request.getUserManagerId()
-            );
-
-            User user = userRepository.findByEmailIgnoreCase(request.getEmail())
-                    .orElseThrow(() -> new EntityNotFoundException("User not found after creation"));
-
-            return toResponse(user);
-
-        } catch (Exception e) {
-            log.error("[UserService] Error creating user: {}", e.getMessage(), e);
-            throw new RuntimeException("Error creating user");
+        if (request.getPassword() == null || request.getPassword().isEmpty()) {
+            password = PasswordUtil.generateRandomPassword();
         }
+        else {
+            password = request.getPassword();
+        }
+
+        userRepository.createUserAccount(
+                request.getName(),
+                request.getEmail(),
+                passwordEncoder.encode(password),
+                request.getDateOfBirth(),
+                request.getGenderId(),
+                request.getFactoryId(),
+                request.getUserManagerId()
+        );
+
+        User user = userRepository.findByEmailIgnoreCase(request.getEmail())
+                .orElseThrow(() -> new EntityNotFoundException("User not found after creation"));
+
+        return toResponse(user);
+
     }
 
 
