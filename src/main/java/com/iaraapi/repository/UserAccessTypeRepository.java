@@ -11,4 +11,6 @@ import java.util.UUID;
 @Repository
 public interface UserAccessTypeRepository extends JpaRepository<UserAccessType, UserAccessTypeId> {
     List<UserAccessType> findByUser_Id(UUID userId);
+
+    void deleteByUser_IdAndAccessType_Id(UUID userId, Integer accessTypeId);
 }
