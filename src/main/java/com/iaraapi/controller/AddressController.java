@@ -44,15 +44,9 @@ public class AddressController implements AddressContract {
         return ResponseEntity.ok(addressService.update(id, addressRequest));
     }
 
-    @PatchMapping("/deactivate/{id}")
+    @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('Administrador')")
-    public ResponseEntity<AddressResponse> deactivateAddress(@PathVariable Integer id) {
-        return ResponseEntity.ok(addressService.deactivateEntity(id));
-    }
-
-    @PatchMapping("/reactivate/{id}")
-    @PreAuthorize("hasRole('Administrador')")
-    public ResponseEntity<AddressResponse> reactivateAddress(@PathVariable Integer id) {
-        return ResponseEntity.ok(addressService.reactivateEntity(id));
+    public ResponseEntity<String> deleteAddress(@PathVariable Integer id) {
+        return ResponseEntity.ok(addressService.deleteAddressById(id));
     }
 }

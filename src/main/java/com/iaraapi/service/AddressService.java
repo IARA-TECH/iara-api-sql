@@ -8,11 +8,9 @@ import com.iaraapi.model.database.Factory;
 import com.iaraapi.repository.AddressRepository;
 import com.iaraapi.repository.FactoryRepository;
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 
 @Service
 @Slf4j
@@ -24,6 +22,11 @@ public class AddressService extends BaseService<Address, Integer, AddressRequest
         super(repository, "Address");
         this.mapper = mapper;
         this.factoryRepository = factoryRepository;
+    }
+
+    public String deleteAddressById(Integer id) {
+        repository.deleteById(id);
+        return "Address with id: " + id + " deleted";
     }
 
     @Override
@@ -47,30 +50,6 @@ public class AddressService extends BaseService<Address, Integer, AddressRequest
         address.setBuildingNumber(request.getBuildingNumber());
         address.setStreet(request.getStreet());
         address.setComplement(request.getComplement());
-    }
-
-    @Override
-    @Transactional
-    public AddressResponse deactivateEntity(Integer id) {
-        log.info("[AddressService] [deactivateEntity] DEACTIVATE ADDRESS WITH ID {}", id);
-        Address address = repository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Address with ID " + id + " not found."));
-
-        address.setDeactivatedAt(LocalDateTime.now());
-        repository.save(address);
-        return toResponse(address);
-    }
-
-    @Override
-    @Transactional
-    public AddressResponse reactivateEntity(Integer id) {
-        log.info("[AddressService] [reactivateEntity] DEACTIVATE ADDRESS WITH ID {}", id);
-        Address address = repository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Address with ID " + id + " not found."));
-
-        address.setDeactivatedAt(null);
-        repository.save(address);
-        return toResponse(address);
     }
 }
 
