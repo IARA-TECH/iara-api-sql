@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -55,23 +56,14 @@ public interface AddressContract {
     })
     ResponseEntity<AddressResponse> updateAddress(Integer id, AddressRequest addressRequest);
 
-    @Operation(summary = "Deactivate address", description = "Deactivate an address by its ID")
+    @Operation(summary = "Update address", description = "Update an existing address by its ID")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Address deactivated successfully",
+            @ApiResponse(responseCode = "200", description = "Address updated successfully",
                     content = @Content(schema = @Schema(implementation = AddressResponse.class))),
+            @ApiResponse(responseCode = "400", description = "Invalid data provided", content = @Content),
             @ApiResponse(responseCode = "404", description = "Address not found", content = @Content),
             @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
             @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
-    ResponseEntity<AddressResponse> deactivateAddress(Integer id);
-
-    @Operation(summary = "Reactivate address", description = "Reactivate an address by its ID")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Address reactivated successfully",
-                    content = @Content(schema = @Schema(implementation = AddressResponse.class))),
-            @ApiResponse(responseCode = "404", description = "Address not found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
-            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
-    })
-    ResponseEntity<AddressResponse> reactivateAddress(Integer id);
+    ResponseEntity<String> deleteAddress(@PathVariable Integer id);
 }

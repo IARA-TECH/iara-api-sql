@@ -187,6 +187,9 @@ public class UserService extends BaseService<User, UUID, UserRequest, UserRespon
 
     private List<String> getUserAccessTypeNames(UUID userId) {
         List<UserAccessType> userAccessTypes = userAccessTypeRepository.findByUser_Id(userId);
+        if (userAccessTypes.isEmpty()) {
+            return List.of();
+        }
         return userAccessTypes.stream()
                 .map(userAccessType ->
                         userAccessType.getAccessType().getName())

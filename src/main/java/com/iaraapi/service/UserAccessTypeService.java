@@ -14,7 +14,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -52,35 +51,15 @@ public class UserAccessTypeService {
         List<UserAccessType> accessTypes = repository.findByUser_Id(userId);
 
         return accessTypes.stream()
-                .filter(uat -> uat.getDeactivatedAt() == null)
                 .map(mapper::toResponse)
                 .toList();
     }
 
     @Transactional
-    public UserAccessTypeResponse deactivate(UUID userId, Integer accessTypeId) {
-        log.info("[UserAccessTypeService] [deactivate] Deactivating relation user={} accessType={}", userId, accessTypeId);
-
-        UserAccessTypeId id = getUserAccessTypeId(userId, accessTypeId);
-        UserAccessType entity = repository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Relation not found for given IDs."));
-
-        entity.setDeactivatedAt(LocalDateTime.now());
-
-        return mapper.toResponse(repository.save(entity));
-    }
-
-    @Transactional
-    public UserAccessTypeResponse reactivate(UUID userId, Integer accessTypeId) {
-        log.info("[UserAccessTypeService] [reactivate] Reactivating relation user={} accessType={}", userId, accessTypeId);
-
-        UserAccessTypeId id = getUserAccessTypeId(userId, accessTypeId);
-        UserAccessType entity = repository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Relation not found for given IDs."));
-
-        entity.setDeactivatedAt(null);
-
-        return mapper.toResponse(repository.save(entity));
+    public String deleteByUserId(UUID userId, Integer accessTypeId) {
+        log.info("[UserAccessTypeService] [deleteByUserId] Deleting access type with id={} for user={}", accessTypeId, userId);
+        repository.deleteByUser_IdAndAccessType_Id(userId, accessTypeId);
+        return "Access Type " + accessTypeId + " deleted for user " + userId;
     }
 
     private UserAccessTypeId getUserAccessTypeId(UUID userId, Integer accessTypeId) {

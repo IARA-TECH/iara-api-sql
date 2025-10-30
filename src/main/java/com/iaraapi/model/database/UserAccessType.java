@@ -26,5 +26,4 @@ public class UserAccessType {
 
     @CreationTimestamp
     private LocalDateTime createdAt;
-    private LocalDateTime deactivatedAt;
 }

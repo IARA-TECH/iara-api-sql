@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.UUID;
@@ -37,23 +38,13 @@ public interface UserAccessTypeContract {
     })
     ResponseEntity<List<UserAccessTypeResponse>> getAllByUserId(UUID userId);
 
-    @Operation(summary = "Deactivate user-access-type relation", description = "Deactivate the association between a user and an access type")
+    @Operation(summary = "List all user access types", description = "Retrieve all active access types associated with a specific user.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Relation deactivated successfully",
+            @ApiResponse(responseCode = "200", description = "Request completed successfully",
                     content = @Content(schema = @Schema(implementation = UserAccessTypeResponse.class))),
-            @ApiResponse(responseCode = "404", description = "Relation not found", content = @Content),
+            @ApiResponse(responseCode = "404", description = "User not found", content = @Content),
             @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
             @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
-    ResponseEntity<UserAccessTypeResponse> deactivate(UUID userId, Integer accessTypeId);
-
-    @Operation(summary = "Reactivate user-access-type relation", description = "Reactivate the association between a user and an access type")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Relation reactivated successfully",
-                    content = @Content(schema = @Schema(implementation = UserAccessTypeResponse.class))),
-            @ApiResponse(responseCode = "404", description = "Relation not found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
-            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
-    })
-    ResponseEntity<UserAccessTypeResponse> reactivate(UUID userId, Integer accessTypeId);
+    public ResponseEntity<String> delete(@PathVariable UUID userId, @PathVariable Integer accessTypeId);
 }

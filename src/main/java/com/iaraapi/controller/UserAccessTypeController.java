@@ -36,21 +36,10 @@ public class UserAccessTypeController implements UserAccessTypeContract {
         return ResponseEntity.ok(userAccessTypeService.getAllByUserId(userId));
     }
 
-    @PatchMapping("/{userId}/deactivate/{accessTypeId}")
+    @DeleteMapping("access-type/{accessTypeId}/user/{userId}")
     @PreAuthorize("hasRole('Administrador')")
-    public ResponseEntity<UserAccessTypeResponse> deactivate(
-            @PathVariable UUID userId,
-            @PathVariable Integer accessTypeId) {
-        log.info("[UserAccessTypeController] [deactivate] Deactivating relation user={} accessType={}", userId, accessTypeId);
-        return ResponseEntity.ok(userAccessTypeService.deactivate(userId, accessTypeId));
-    }
-
-    @PatchMapping("/{userId}/reactivate/{accessTypeId}")
-    @PreAuthorize("hasRole('Administrador')")
-    public ResponseEntity<UserAccessTypeResponse> reactivate(
-            @PathVariable UUID userId,
-            @PathVariable Integer accessTypeId) {
-        log.info("[UserAccessTypeController] [reactivate] Reactivating relation user={} accessType={}", userId, accessTypeId);
-        return ResponseEntity.ok(userAccessTypeService.reactivate(userId, accessTypeId));
+    public ResponseEntity<String> delete(@PathVariable UUID userId,  @PathVariable Integer accessTypeId) {
+        log.info("[UserAccessTypeController] [delete] Deleting user access type");
+        return ResponseEntity.ok(userAccessTypeService.deleteByUserId(userId, accessTypeId));
     }
 }
