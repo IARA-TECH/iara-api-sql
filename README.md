@@ -102,17 +102,14 @@ Exemplo de requisição:
 curl -X POST http://localhost:8081/api/v1/users \
   -H "Content-Type: application/json" \
   -d '{
-        "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-        "name": "string",
-        "email": "string",
-        "date_of_birth": "2025-10-28T13:13:28.849Z",
-        "user_manager_name": "string",
-        "user_manager_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-        "gender_name": "string",
-        "gender_id": 0,
-        "factory_name": "string",
-        "factory_id": 0,
-        "user_photo_url": "string"
+          "id": "17b4c5c3-7cfd-4616-9505-d5d7c7944080",
+          "name": "Breno Silva",
+          "email": "breno.silva@email.com",
+          "password": "123456",
+          "date_of_birth": "1998-04-15T00:00:00.000Z",
+          "user_manager_id": "d7a2f6f0-3b2c-4f6e-bc43-6b1a1f9e1c8b",
+          "factory_id": 1,
+          "gender_id": 1
       }'
 ```
 ---
