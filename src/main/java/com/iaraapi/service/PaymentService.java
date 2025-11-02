@@ -1,6 +1,7 @@
 package com.iaraapi.service;
 
 import com.iaraapi.model.dto.request.PaymentRequest;
+import com.iaraapi.model.dto.response.FactoryActivePayment;
 import com.iaraapi.model.dto.response.PaymentResponse;
 import com.iaraapi.model.mapper.PaymentMapper;
 import com.iaraapi.model.database.Payment;
@@ -133,6 +134,10 @@ public class PaymentService extends BaseService<Payment, Integer, PaymentRequest
         repository.save(payment);
 
         return toResponse(payment);
+    }
+
+    public FactoryActivePayment getFactoryActivePayment(Integer factoryId) {
+        return paymentRepository.getFactoryActivePayment(factoryId);
     }
 
     private User getUser(UUID id) {
