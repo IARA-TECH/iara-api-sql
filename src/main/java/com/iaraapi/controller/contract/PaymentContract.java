@@ -1,6 +1,7 @@
 package com.iaraapi.controller.contract;
 
 import com.iaraapi.model.dto.request.PaymentRequest;
+import com.iaraapi.model.dto.response.FactoryActivePayment;
 import com.iaraapi.model.dto.response.PaymentResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -74,4 +75,14 @@ public interface PaymentContract {
             @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
     })
     ResponseEntity<PaymentResponse> reactivatePayment(Integer id);
+
+    @Operation(summary = "Find active payment for factory by ID", description = "Retrieve factory active payment by factory ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Payment found successfully",
+                    content = @Content(schema = @Schema(implementation = PaymentResponse.class))),
+            @ApiResponse(responseCode = "404", description = "Payment not found", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)
+    })
+    public ResponseEntity<FactoryActivePayment> getFactoryActivePayment(Integer factoryId);
 }

@@ -2,6 +2,7 @@ package com.iaraapi.controller;
 
 import com.iaraapi.controller.contract.PaymentContract;
 import com.iaraapi.model.dto.request.PaymentRequest;
+import com.iaraapi.model.dto.response.FactoryActivePayment;
 import com.iaraapi.model.dto.response.PaymentResponse;
 import com.iaraapi.service.PaymentService;
 import jakarta.validation.Valid;
@@ -55,5 +56,10 @@ public class PaymentController implements PaymentContract {
     @PreAuthorize("hasRole('Administrador')")
     public ResponseEntity<PaymentResponse> reactivatePayment(@PathVariable Integer id) {
         return ResponseEntity.ok(paymentService.reactivateEntity(id));
+    }
+
+    @GetMapping("/factory-active-payment/{factoryId}")
+    public ResponseEntity<FactoryActivePayment>  getFactoryActivePayment(@PathVariable Integer factoryId) {
+        return ResponseEntity.ok(paymentService.getFactoryActivePayment(factoryId));
     }
 }
